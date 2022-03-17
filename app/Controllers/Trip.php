@@ -79,11 +79,11 @@ class Trip extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-     *     response=200, description="ok",
+    *     response=200, description="ok",
      *     @OA\JsonContent(
      *      ref="#/components/schemas/Trip"
      *     )
-     *   ),
+     *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
      *   ),
