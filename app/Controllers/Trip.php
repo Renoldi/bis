@@ -69,30 +69,20 @@ class Trip extends ResourceController
      *   path="/api/fleet",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Fleets"},
+     *   tags={"Trip"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *       @OA\Schema(
-     *         required={"content"},
-     *         @OA\Property(
-     *           description="Binary content of file",
-     *           property="content",
-     *           type="string",
-     *           format="binary"
-     *         ),
-     *          @OA\Property(
-     *            property="description",
-     *            type="string"
-     *          ), 
-     *       )
+     *      @OA\Schema(ref="#/components/schemas/Trip"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *     @OA\Schema(type="string")
+     *     @OA\JsonContent(
+     *      ref="#/components/schemas/Trip"
+     *     )
      *   ),
      *   @OA\Response(
      *     response=400, description="Bad Request"
