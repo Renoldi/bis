@@ -35,9 +35,10 @@ $routes->setAutoRoute(true);
 // ['except' => ['PATCH']]
 // ['only' => ['index', ]]
 // ['filter' => 'auth']
+
 $routes->group("api", function ($routes) {
     $routes->resource('baseapi');
-    $routes->resource('fleet');
+    $routes->resource('trip');
 });
 /*
  * --------------------------------------------------------------------

@@ -3,18 +3,18 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use App\Entities\Fleets;
+use App\Entities\Trip;
 use OpenApi\Annotations as OA;
 
 
-class FleetModel extends Model
+class TripModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'fleet';
+    protected $table            = 'trip';
     protected $primaryKey       = 'trip_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = Fleets::class;
+    protected $returnType       = Trip::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [

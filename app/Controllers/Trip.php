@@ -3,21 +3,40 @@
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
-
 use OpenApi\Annotations as OA;
+use App\Models\TripModel;
 
-class Fleets extends ResourceController
+class Trip extends ResourceController
 {
-    protected $modelName = 'App\Models\FleetModel';
+    protected $modelName = TripModel::class;
     protected $format    = 'json';
     /**
      * Return an array of resource objects, themselves in array format
      *
      * @return mixed
      */
+    /**
+     * @OA\Get(
+     *   path="/api/trip",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Trip"},
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *     @OA\JsonContent(
+     *      type="array",
+     *       @OA\Items(ref="#/components/schemas/Trip")
+     *     ),
+     *   ),
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function index()
     {
-        //
+        return $this->respond($this->model->findAll());
     }
 
     /**
@@ -45,7 +64,7 @@ class Fleets extends ResourceController
      *
      * @return mixed
      */
-     /**
+    /**
      * @OA\Post(
      *   path="/api/fleet",
      *   summary="fleet document",
@@ -72,7 +91,7 @@ class Fleets extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-     *     response=200, description="Success",
+     *     response=200, description="ok",
      *     @OA\Schema(type="string")
      *   ),
      *   @OA\Response(
