@@ -7,11 +7,15 @@ use App\Libraries\StdobjeToArray;
 use CodeIgniter\RESTful\ResourceController;
 use OpenApi\Annotations as OA;
 use App\Models\TripModel;
+use CodeIgniter\API\ResponseTrait;
+
 
 class Trip extends ResourceController
 {
     protected $modelName = TripModel::class;
     protected $format    = 'json';
+    use ResponseTrait;
+
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -92,16 +96,6 @@ class Trip extends ResourceController
     }
 
     /**
-     * Return a new resource object, with default properties
-     *
-     * @return mixed
-     */
-    public function new()
-    {
-        //
-    }
-
-    /**
      * Create a new resource object, from "posted" parameters
      *
      * @return mixed
@@ -121,7 +115,7 @@ class Trip extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-     *     response=200, description="ok",
+     *     response=201, description="created",
      *      @OA\JsonContent(ref="#/components/schemas/Trip")
      *   ), 
      *   @OA\Response(
@@ -141,65 +135,17 @@ class Trip extends ResourceController
     public function create()
     {
         $data = $this->request->getVar();
-        if($data == null){
+        if ($data == null) {
             return $this->fail("data null");
         }
         $entity = new EntitiesTrip();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->save($data)) {
+        if (!$this->model->save($entity)) {
             return $this->fail($this->model->errors());
         }
-        
-        return $this->respondCreated($entity, 'post created');
-    }
 
-    /**
-     * Return the editable properties of a resource object
-     *
-     * @return mixed
-     */
-    /**
-     * @OA\Get(
-     *   path="/api/edit",
-     *   summary="fleet document",
-     *   description="fleet document",
-     *   tags={"Trip"},
-    
-     * @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Trip"),
-     *     )
-     *   ),
-     *   @OA\Response(
-     *     response=200, description="ok",
-     *     @OA\JsonContent(
-     *          type="array",
-     *          @OA\Items( 
-     *              @OA\Property(
-     *                  property="tripId ",
-     *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/Trip")
-     *              ),
-     *              @OA\Property(
-     *                  property="tripIddfg",
-     *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/Trip")
-     *              ),
-     *          ),
-     *     )
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
-     *   ),
-     *   security={{"token": {}}},
-     * )
-     */
-    public function edit($id = null)
-    {
-        //
+        return $this->respondCreated($entity, 'post created');
     }
 
     /**
@@ -207,9 +153,59 @@ class Trip extends ResourceController
      *
      * @return mixed
      */
+    /**
+     * @OA\Put(
+     *   path="/api/trip/{id}",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Trip"},
+     *   @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *  @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *      @OA\Schema(ref="#/components/schemas/Trip"),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="updated",
+     *      @OA\JsonContent(ref="#/components/schemas/Trip")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getVar();
+        if ($data == null) {
+            return $this->fail("data null");
+        }
+        $entity = new EntitiesTrip();
+        $array = new StdobjeToArray($data);
+        $entity->fill($array->get());
+        if (!$this->model->update($id, $entity)) {
+            return $this->fail($this->model->errors());
+        }
+
+        return $this->respondUpdated($entity, "updated");
     }
 
     /**
@@ -217,8 +213,62 @@ class Trip extends ResourceController
      *
      * @return mixed
      */
+    /**
+     * @OA\Delete(
+     *   path="/api/trip/{id}",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Trip"},
+     *   @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 200),
+     *      @OA\Property(property="error", type="double", example = null),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "Data Deleted"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function delete($id = null)
     {
-        //
+        $data = $this->model->find($id);
+        if ($data) {
+            if ($this->model->delete($id)) {
+                $response = [
+                    'status'   => 200,
+                    'error'    => null,
+                    'messages' => [
+                        'success' => 'Data Deleted '.$id
+                    ]
+                ];
+                return $this->respondDeleted($response);
+            } else
+                return $this->fail("fail delete $id");
+        } else {
+            return $this->failNotFound('No Data Found with id ' . $id);
+        }
     }
 }

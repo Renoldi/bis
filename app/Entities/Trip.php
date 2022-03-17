@@ -62,4 +62,11 @@ class Trip extends Entity
         'status' => null,
         'companyId' => null, 
     ];
+
+    public function setTripTitle(string $tripTitle)
+    {
+        $this->attributes['tripTitle'] = trim($tripTitle);
+
+        return $this;
+    }
 }
