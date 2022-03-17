@@ -8,6 +8,8 @@ use OpenApi\Annotations as OA;
 
 class Fleets extends ResourceController
 {
+    protected $modelName = 'App\Models\FleetModel';
+    protected $format    = 'json';
     /**
      * Return an array of resource objects, themselves in array format
      *

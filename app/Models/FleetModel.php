@@ -6,14 +6,7 @@ use CodeIgniter\Model;
 use App\Entities\Fleets;
 use OpenApi\Annotations as OA;
 
-/**
- * @OA\Schema(
- *   schema="FleetModel",
- *   type="integer",
- *   format="int64",
- *   description="The unique identifier of a product in our catalog"
- * )
- */
+
 class FleetModel extends Model
 {
     protected $DBGroup          = 'default';
