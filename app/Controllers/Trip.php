@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Entities\Trip as EntitiesTrip;
+use App\Libraries\StdobjeToArray;
 use CodeIgniter\RESTful\ResourceController;
 use OpenApi\Annotations as OA;
 use App\Models\TripModel;
@@ -54,7 +56,6 @@ class Trip extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
-     *
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -73,7 +74,6 @@ class Trip extends ResourceController
      *          @OA\Property(property="error", type="string", example = "not found"),
      *       )
      *     )
-     * 
      *   ),
      *   security={{"token": {}}},
      * )
@@ -108,7 +108,7 @@ class Trip extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/fleet",
+     *   path="/api/trip",
      *   summary="fleet document",
      *   description="fleet document",
      *   tags={"Trip"},
@@ -125,14 +125,33 @@ class Trip extends ResourceController
      *      @OA\JsonContent(ref="#/components/schemas/Trip")
      *   ), 
      *   @OA\Response(
-     *     response=400, description="Bad Request"
+     *     response=400, description="Request error",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 400),
+     *      @OA\Property(property="error", type="double", example = 400),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
      *   ),
      *   security={{"token": {}}},
      * )
      */
     public function create()
     {
-        //
+        $data = $this->request->getVar();
+        if($data == null){
+            return $this->fail("data null");
+        }
+        $entity = new EntitiesTrip();
+        $array = new StdobjeToArray($data);
+        $entity->fill($array->get());
+        if (!$this->model->save($data)) {
+            return $this->fail($this->model->errors());
+        }
+        
+        return $this->respondCreated($entity, 'post created');
     }
 
     /**
@@ -141,7 +160,7 @@ class Trip extends ResourceController
      * @return mixed
      */
     /**
-     * @OA\Post(
+     * @OA\Get(
      *   path="/api/edit",
      *   summary="fleet document",
      *   description="fleet document",

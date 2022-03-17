@@ -18,13 +18,14 @@ class TripModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'tripTitle',
         'type',
-        'fleet_category',
+        'fleetCategory',
         'route',
-        'shedule_id',
+        'sheduleId',
         'weekend',
         'status',
-        'company_id',
+        'companyId', 
     ];
 
     // Dates
@@ -35,7 +36,16 @@ class TripModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'tripTitle' => 'required|alpha_numeric_punct|min_length[3]|max_length[255]|is_unique[trip.tripTitle,tripId,{tripId}]',
+        'type' => 'required|numeric',
+        'fleetCategory' => 'required|numeric',
+        'route' => 'required|numeric',
+        'sheduleId' => 'required|numeric',
+        'weekend' => 'required|numeric',
+        'status' => 'required|numeric',
+        'companyId' => 'required|numeric',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
