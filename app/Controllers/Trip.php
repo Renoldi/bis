@@ -79,10 +79,8 @@ class Trip extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-    *     response=200, description="ok",
-     *     @OA\JsonContent(
-     *      ref="#/components/schemas/Trip"
-     *     )
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Trip")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -99,6 +97,44 @@ class Trip extends ResourceController
      * Return the editable properties of a resource object
      *
      * @return mixed
+     */
+    /**
+     * @OA\Post(
+     *   path="/api/edit",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Trip"},
+    
+     * @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *      @OA\Schema(ref="#/components/schemas/Trip"),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *     @OA\JsonContent(
+     *          type="array",
+     *          @OA\Items( 
+     *              @OA\Property(
+     *                  property="tripId ",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Trip")
+     *              ),
+     *              @OA\Property(
+     *                  property="tripIddfg",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Trip")
+     *              ),
+     *          ),
+     *     )
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   security={{"token": {}}},
+     * )
      */
     public function edit($id = null)
     {
