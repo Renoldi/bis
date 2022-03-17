@@ -63,6 +63,18 @@ class Trip extends ResourceController
      *   @OA\Response(
      *     response=400, description="Bad Request"
      *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     * 
+     *   ),
      *   security={{"token": {}}},
      * )
      */
@@ -77,7 +89,6 @@ class Trip extends ResourceController
         }
 
         return $this->respond($record);
-
     }
 
     /**
