@@ -1,0 +1,8 @@
+https://codeigniter4.github.io/userguide/cli/cli_generators.html#make-controller
+
+https://codeigniter.com/user_guide/concepts/http.html
+send body
+data raw 
+    getVar();
+
+https://codeigniter.com/user_guide/outgoing/api_responses.html
