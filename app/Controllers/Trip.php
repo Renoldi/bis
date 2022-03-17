@@ -44,9 +44,40 @@ class Trip extends ResourceController
      *
      * @return mixed
      */
+    /**
+     * @OA\Get(
+     *   path="/api/trip/{id}",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Trip"},
+     *   @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Trip")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function show($id = null)
     {
-        //
+        $record = $this->model->find($id);
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'trip with id %d not found',
+                $id
+            ));
+        }
+
+        return $this->respond($record);
+
     }
 
     /**

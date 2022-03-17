@@ -11,7 +11,7 @@ class TripModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'trip';
-    protected $primaryKey       = 'trip_id';
+    protected $primaryKey       = 'tripId';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = Trip::class;

@@ -6,3 +6,5 @@ data raw
     getVar();
 
 https://codeigniter.com/user_guide/outgoing/api_responses.html
+
+https://swagger.io/docs/specification/describing-parameters/#path-parameters
