@@ -66,7 +66,6 @@ class Trip extends Entity
     public function setTripTitle(string $tripTitle)
     {
         $this->attributes['tripTitle'] = trim($tripTitle);
-
         return $this;
     }
 }

@@ -39,6 +39,7 @@ $routes->setAutoRoute(true);
 $routes->group("api", function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
+    $routes->resource('tripRoute');
 });
 /*
  * --------------------------------------------------------------------
