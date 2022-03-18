@@ -8,3 +8,4 @@ data raw
 https://codeigniter.com/user_guide/outgoing/api_responses.html
 
 https://swagger.io/docs/specification/describing-parameters/#path-parameters
+https://www.binaryboxtuts.com/php-tutorials/codeigniter-4-json-web-tokenjwt-authentication/
