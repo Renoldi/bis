@@ -41,10 +41,11 @@ $routes->group("api", function ($routes) {
     $routes->resource('trip');
     $routes->resource('tripRoute');
     $routes->resource('Search');
-    // $routes->resource('user');
+    // resource must below 
     $routes->post('user/login', 'User::login');
     $routes->get('user/setPassword/(:any)', 'User::setPassword/$1');
     $routes->get('user/details', 'User::details');
+    $routes->resource('user');
 });
 /*
  * --------------------------------------------------------------------

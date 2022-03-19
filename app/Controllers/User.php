@@ -89,7 +89,7 @@ class User extends ResourceController
         $record = $this->model->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
-                'trip with id %d not found',
+                'user with id %d not found',
                 $id
             ));
         }
@@ -352,10 +352,9 @@ class User extends ResourceController
                 );
 
                 $token = JWT::encode($payload, $key, 'HS256');
-
                 $response = [
                     'message' => 'Login Succesful',
-                    "iat" => Date('Y-m-d H:i:s', $iat),   
+                    "token" => $token,   
                 ];
                 return $this->respond($response);
             }
@@ -396,6 +395,7 @@ class User extends ResourceController
         $data = password_hash($pass, PASSWORD_BCRYPT);
         $response = [
             'password' => $data,
+            'origin' => $pass,
         ];
         return $this->respond($response);
     }
