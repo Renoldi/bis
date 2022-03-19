@@ -51,19 +51,16 @@ class Auth implements FilterInterface
                         'messages' => [
                             'error' =>   'Token sdfsdf Required'
                         ],
-                        $token,
-                        $header
                     ]
 
                 )
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         }
 
-         
+
 
         try {
-          $dgd =  JWT::decode($token, new Key($key, 'HS256'));
-             
+            $dgd =  JWT::decode($token, new Key($key, 'HS256'));
         } catch (Exception $ex) {
             return Services::response()
                 ->setJSON([
