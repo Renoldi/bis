@@ -44,7 +44,7 @@ class User extends Model
         // 'lastLogin' => 'required|valid_date',
         // 'lastLogout' => 'required|valid_date',
         'isAdmin' => 'required',
-        'companyId' => 'required',
+        'companyId' => 'required|integer',
         'firstname' => 'required',
         // 'lastname' => 'required',
         'about' => 'required',
