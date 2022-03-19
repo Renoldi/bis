@@ -37,7 +37,7 @@ $routes->setAutoRoute(true);
 // ['filter' => 'auth']
 $routes->post('api/user/login', 'User::login');
 
-$routes->group("api", function ($routes) {
+$routes->group("api", ['filter' => 'Auth'], function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
     $routes->resource('tripRoute');

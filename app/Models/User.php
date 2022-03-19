@@ -41,16 +41,12 @@ class User extends Model
     // Validation
     protected $validationRules      = [
         'email' => 'required|valid_email|is_unique[user.email]',
-        // 'lastLogin' => 'required|valid_date',
-        // 'lastLogout' => 'required|valid_date',
-        'isAdmin' => 'required',
-        'companyId' => 'required|integer',
+        'isAdmin' => 'required|integer',
         'firstname' => 'required',
-        // 'lastname' => 'required',
         'about' => 'required',
         'password' => 'required',
-        // 'image' => 'required',
         'status' => 'required', 
+        'companyId' => 'required|integer',
          
     ];
     protected $validationMessages   = [];

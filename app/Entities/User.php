@@ -68,14 +68,7 @@ use CodeIgniter\Entity\Entity;
 class User extends Entity
 {
     // map => original field
-    protected $datamap = [
-        'passwordResetToken' => "password_reset_token",
-        'lastLogin' => "last_login",
-        'lastLogout' => "last_logout",
-        'ipAddress' => "ip_address",
-        'isAdmin' => "is_admin",
-        'companyId' => "company_id",
-    ];
+    protected $datamap = [];
     protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
     protected $casts   = [];
 
@@ -85,14 +78,14 @@ class User extends Entity
         'about' => null,
         'email' => null,
         'password' => null,
-        'password_reset_token' => null,
+        'passwordResetToken' => null,
         'image' => null,
-        'last_login' => null,
-        'last_logout' => null,
-        'ip_address' => null,
+        'lastLogin' => null,
+        'lastLogout' => null,
+        'ipAddress' => null,
         'status' => null,
-        'is_admin' => null,
-        'company_id' => null,
+        'isAdmin' => null,
+        'companyId' => null,
     ];
 
     public function setPassword(string $pass)
@@ -100,15 +93,17 @@ class User extends Entity
         $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
         return $this;
     }
+
     public function setisAdmin(bool $isAdmin = false)
     {
         $this->attributes['isAdmin'] = ($isAdmin ? 1 : 0);
         return $this;
     }
-    
+
     public function setStatus(bool $status = false)
     {
         $this->attributes['status'] = ($status ? 1 : 0);
         return $this;
     }
+    
 }
