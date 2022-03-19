@@ -52,12 +52,9 @@ class Auth implements FilterInterface
                             'error' =>   'Token Required'
                         ],
                     ]
-
                 )
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         }
-
-
 
         try {
             $dgd =  JWT::decode($token, new Key($key, 'HS256'));
