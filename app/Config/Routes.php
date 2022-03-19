@@ -42,7 +42,7 @@ $routes->group("api", function ($routes) {
     $routes->resource('tripRoute');
     // $routes->resource('user');
     $routes->post('user/login', 'User::login');
-    $routes->get('user/setPassword/(:segment)',      'User::setPassword/$1');
+    $routes->get('user/setPassword/(:any)',      'User::setPassword/$1');
 });
 /*
  * --------------------------------------------------------------------
@@ -60,3 +60,4 @@ $routes->group("api", function ($routes) {
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+

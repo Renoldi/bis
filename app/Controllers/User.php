@@ -290,6 +290,9 @@ class User extends ResourceController
         if (!$pwd_verify) {
             return $this->respond(['error' => 'Invalid password.'], 401);
         }
+
+        
+
         $key = getenv('JWT_SECRET');
         $iat = time(); // current timestamp value
         $exp = $iat + (3600 * 24 * (365 / 12));
