@@ -4,6 +4,67 @@ namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
 
+/**
+ * @OA\Schema(
+ *   schema="User",
+ * @OA\Property(
+ *      property="id",
+ *      type="integer",
+ *    ),
+ * @OA\Property(
+ *      property="passwordResetToken",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="lastLogin",
+ *      type="datetime",
+ *    ),
+ * @OA\Property(
+ *      property="lastLogout",
+ *      type="datetime",
+ *    ),
+ * @OA\Property(
+ *      property="ipAddress",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="isAdmin",
+ *      type="bool",
+ *    ),
+ * @OA\Property(
+ *      property="companyId",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="firstname",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="lastname",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="about",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="email",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="password",
+ *      type="integer",
+ *    ),
+ * @OA\Property(
+ *      property="image",
+ *      type="string",
+ *    ),
+ * @OA\Property(
+ *      property="status",
+ *      type="integer",
+ *    ), 
+ * )
+ */
 class User extends Entity
 {
     // map => original field

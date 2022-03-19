@@ -40,9 +40,11 @@ $routes->group("api", function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
     $routes->resource('tripRoute');
+    $routes->resource('Search');
     // $routes->resource('user');
     $routes->post('user/login', 'User::login');
-    $routes->get('user/setPassword/(:any)',      'User::setPassword/$1');
+    $routes->get('user/setPassword/(:any)', 'User::setPassword/$1');
+    $routes->get('user/details', 'User::details');
 });
 /*
  * --------------------------------------------------------------------
@@ -60,4 +62,3 @@ $routes->group("api", function ($routes) {
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
-

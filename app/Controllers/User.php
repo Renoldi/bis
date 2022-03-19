@@ -17,6 +17,7 @@ class User extends ResourceController
     protected $format    = 'json';
     use ResponseTrait;
 
+
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -32,7 +33,7 @@ class User extends ResourceController
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/TripRoute")
+     *       @OA\Items(ref="#/components/schemas/User")
      *     ),
      *   ),
      *   @OA\Response(
@@ -64,7 +65,7 @@ class User extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/TripRoute")
+     *      @OA\JsonContent(ref="#/components/schemas/User")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -112,12 +113,12 @@ class User extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/TripRoute"),
+     *      @OA\Schema(ref="#/components/schemas/User"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/TripRoute")
+     *      @OA\JsonContent(ref="#/components/schemas/User")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -169,12 +170,12 @@ class User extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/TripRoute"),
+     *      @OA\Schema(ref="#/components/schemas/User"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/TripRoute")
+     *      @OA\JsonContent(ref="#/components/schemas/User")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -273,65 +274,121 @@ class User extends ResourceController
         }
     }
 
+    private function getKey()
+    {
+        return getenv('JWT_SECRET');
+    }
+
+
     public function login()
     {
 
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
+        $rules = [
+            "email" => "required|valid_email",
+            "password" => "required|min_length[5]",
+        ];
+        if (!$this->validate($rules)) {
 
-        $user =  $this->model->where('email', $email)->first();
+            $response = [
+                'status'   => 200,
+                'error'    => true,
+                'messages' => [
+                    'error' =>  $this->validator->getErrors()
+                ]
+            ];
 
-        if (is_null($user)) {
-            return $this->respond(['error' => 'Invalid username '], 401);
+            return $this->respondCreated($response);
+        } else {
+
+
+            $user =  $this->model->where('email', $email)->first();
+
+            if (is_null($user)) {
+                return $this->respond(['error' => 'Invalid username '], 401);
+            }
+
+            $pwd_verify = password_verify($password, $user->password);
+
+            if (!$pwd_verify) {
+                return $this->respond(['error' => 'Invalid password.'], 401);
+            }
+            $iat = time(); // current timestamp value
+
+            $entity = new EntitiesUser();
+            $lastLogin = Date('Y-m-d H:i:s', $iat);
+            $entity->lastLogin = $lastLogin;
+            $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
+            $entity->about = "login";
+
+            if ($this->model->update($user->id, $entity)) {
+                $key = $this->getKey();
+                $exp = $iat + (3600 * 24 * (365 / 12));
+                $payload = array(
+                    "iss" => base_url(),
+                    "aud" => array(
+                        "my-api-identifier",
+                        base_url('api/user/details'),
+                        $this->request->getServer('REMOTE_ADDR')
+                    ),
+                    "sub" => "login " . $user->email . "" . $lastLogin,
+                    "iat" => $iat, //Time the JWT issued at
+                    "exp" =>  $exp, // Expiration time of token,
+                    "user" => array(
+                        "id" => "9",
+                        "firstname" => $user->firstname,
+                        "lastname" =>  $user->lastname,
+                        "about" =>  $user->about,
+                        "email" =>  $user->email,
+                        "image" =>  $user->image,
+                        "status" => $user->status,
+                        "lastLogin" => $lastLogin,
+                        "lastLogout" => $user->lastLogout,
+                        "ipAddress" => $user->ipAddress,
+                        "isAdmin" => $user->isAdmin,
+                        "companyId" => $user->companyId,
+                    ),
+                );
+
+                $token = JWT::encode($payload, $key, 'HS256');
+
+                $response = [
+                    'message' => 'Login Succesful',
+                    "iat" => Date('Y-m-d H:i:s', $iat),   
+                ];
+                return $this->respond($response);
+            }
         }
+    }
 
-        $pwd_verify = password_verify($password, $user->password);
-
-        if (!$pwd_verify) {
-            return $this->respond(['error' => 'Invalid password.'], 401);
-        }
-
-        
-
+    public function details()
+    {
         $key = getenv('JWT_SECRET');
-        $iat = time(); // current timestamp value
-        $exp = $iat + (3600 * 24 * (365 / 12));
-        $payload = array(
-            "iss" => "Issuer of the JWT",
-            "aud" => "Audience that the JWT",
-            "sub" => "Subject of the JWT",
-            "iat" => $iat, //Time the JWT issued at
-            "exp" =>  $exp, // Expiration time of token,
-            "user" => array(
-                "id" => "9",
-                "firstname" => $user->firstname,
-                "lastname" =>  $user->lastname,
-                "about" =>  $user->about,
-                "email" =>  $user->email,
-                "image" =>  $user->image,
-                "status" => $user->status,
-                "lastLogin" => $user->lastLogin,
-                "lastLogout" => $user->lastLogout,
-                "ipAddress" => $user->ipAddress,
-                "isAdmin" => $user->isAdmin,
-                "companyId" => $user->companyId,
-            ),
-        );
+        $header = $this->request->getServer('HTTP_AUTHORIZATION');
+        $token = null;
 
-        $token = JWT::encode($payload, $key, 'HS256');
+        // extract the token from the header
+        if (!empty($header)) {
+            if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
+                $token = $matches[1];
+            }
+        }
 
+        // check if token is null or empty
+        if (is_null($token) || empty($token)) {
+            return $this->failUnauthorized();
+        }
         try {
-            $decoded = JWT::decode($token."dfgdfg", new Key($key, 'HS256'));
+            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+            $response = [
+                'message' => 'detail user',
+                'details' => $decoded,
+            ];
+            return $this->respond($response);
         } catch (Exception $ex) {
             return $this->failUnauthorized();
         }
-
-        $response = [
-            'message' => 'Login Succesful',
-            'token' => $token,
-            'decode' => $decoded,
-        ];
-        return $this->respond($response);
     }
 
     public function setPassword($pass = null)

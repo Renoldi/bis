@@ -73,7 +73,7 @@ class Search extends ResourceController
      *
      * @return mixed
      */
- 
+
     /**
      * @OA\Post(
      *   path="/api/Search",
@@ -120,8 +120,9 @@ class Search extends ResourceController
                 "getPost" =>  $this->request->getPost(),
                 "getVar" =>  $this->request->getVar(),
                 "getJSON" =>  $this->request->getJSON(),
-                "getServer(host)" =>  $this->request->getServer('Host'),
+                "getServer(host)" =>  $this->request->getServer('HTTP_HOST'),
                 "getServer" =>  $this->request->getServer(),
+                "getHeader" => $this->request->getServer('REMOTE_ADDR')
             ];
         // $aa  = [];
         // foreach($data as $ke => $v){
