@@ -8,9 +8,10 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
-
+use App\Filters\Auth;
 class Filters extends BaseConfig
 {
+    
     /**
      * Configures aliases for Filter classes to
      * make reading things nicer and simpler.
@@ -23,7 +24,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        
+        'Auth'          => Auth::class
     ];
 
     /**

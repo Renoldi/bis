@@ -279,10 +279,61 @@ class User extends ResourceController
         return getenv('JWT_SECRET');
     }
 
-
+    /**
+     * @OA\Post(
+     *   path="/api/user/login",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"User"},
+   
+     *  @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *      @OA\Schema(
+     *          @OA\Property(
+     *              property="email",
+     *              type="string",
+     *          ),
+     *          @OA\Property(
+     *              property="password",
+     *              type="string",
+     *          ),
+     *      ),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(
+     *            @OA\Property(
+     *              property="message",
+     *              type="string",
+     *          ),
+     *          @OA\Property(
+     *              property="token",
+     *              type="string",
+     *          ),
+     * )
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function login()
     {
-
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
         $rules = [
@@ -294,14 +345,12 @@ class User extends ResourceController
             $response = [
                 'status'   => 200,
                 'error'    => true,
-                'messages' => [
-                    'error' =>  $this->validator->getErrors()
-                ]
+                'messages' => $this->validator->getErrors()
+
             ];
 
             return $this->respondCreated($response);
         } else {
-
 
             $user =  $this->model->where('email', $email)->first();
 
@@ -354,7 +403,7 @@ class User extends ResourceController
                 $token = JWT::encode($payload, $key, 'HS256');
                 $response = [
                     'message' => 'Login Succesful',
-                    "token" => $token,   
+                    "token" => $token,
                 ];
                 return $this->respond($response);
             }
@@ -382,7 +431,7 @@ class User extends ResourceController
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
             $response = [
                 'message' => 'detail user',
-                'details' => $decoded,
+                'decoded' => $decoded,
             ];
             return $this->respond($response);
         } catch (Exception $ex) {

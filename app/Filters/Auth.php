@@ -8,13 +8,11 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use CodeIgniter\API\ResponseTrait;
+use Config\Services;
 use Exception;
-
 
 class Auth implements FilterInterface
 {
-    use ResponseTrait;
-
     /**
      * Do whatever processing this filter needs to do.
      * By default it should not return anything during
@@ -33,7 +31,7 @@ class Auth implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $key = getenv('JWT_SECRET');
-        $header = $this->request->getServer('HTTP_AUTHORIZATION');
+        $header = $request->getServer('HTTP_AUTHORIZATION');
         $token = null;
 
         // extract the token from the header
@@ -45,18 +43,32 @@ class Auth implements FilterInterface
 
         // check if token is null or empty
         if (is_null($token) || empty($token)) {
-            return $this->failUnauthorized();
+            return Services::response()
+                ->setJSON(
+                    [
+                        'status'   => 401,
+                        'error'    => true,
+                        'messages' => [
+                            'error' =>   'Token Required'
+                        ]
+                    ]
+
+                )
+                ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         }
+
         try {
-            $decoded = JWT::decode($token, new Key($key, 'HS256'));
-            $response = [
-                'message' => 'check user',
-                'token' => $token,
-                'decode' => $decoded,
-            ];
-            return $this->respond($response);
+            JWT::decode($token, new Key($key, 'HS256'));
         } catch (Exception $ex) {
-            return $this->failUnauthorized();
+            return Services::response()
+                ->setJSON([
+                    'status'   => 401,
+                    'error'    => true,
+                    'messages' => [
+                        'error' =>   'Token Required'
+                    ]
+                ])
+                ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         }
     }
 

@@ -35,14 +35,14 @@ $routes->setAutoRoute(true);
 // ['except' => ['PATCH']]
 // ['only' => ['index', ]]
 // ['filter' => 'auth']
+$routes->post('api/user/login', 'User::login');
 
-$routes->group("api", function ($routes) {
+$routes->group("api", ['filter' => 'Auth'], function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
     $routes->resource('tripRoute');
     $routes->resource('Search');
     // resource must below 
-    $routes->post('user/login', 'User::login');
     $routes->get('user/setPassword/(:any)', 'User::setPassword/$1');
     $routes->get('user/details', 'User::details');
     $routes->resource('user');
