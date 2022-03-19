@@ -46,7 +46,7 @@ class User extends Model
         'isAdmin' => 'required',
         'companyId' => 'required',
         'firstname' => 'required',
-        'lastname' => 'required',
+        // 'lastname' => 'required',
         'about' => 'required',
         'password' => 'required',
         // 'image' => 'required',
