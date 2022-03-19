@@ -5,7 +5,6 @@ namespace App\Filters;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Config\Services;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use CodeIgniter\API\ResponseTrait;
