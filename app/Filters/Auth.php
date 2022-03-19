@@ -49,7 +49,7 @@ class Auth implements FilterInterface
                         'status'   => 401,
                         'error'    => true,
                         'messages' => [
-                            'error' =>   'Token sdfsdf Required'
+                            'error' =>   'Token Required'
                         ],
                     ]
 
