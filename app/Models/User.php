@@ -39,7 +39,20 @@ class User extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'email' => 'required|valid_email|is_unique[user.email]',
+        // 'lastLogin' => 'required|valid_date',
+        // 'lastLogout' => 'required|valid_date',
+        'isAdmin' => 'required',
+        'companyId' => 'required',
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'about' => 'required',
+        'password' => 'required',
+        // 'image' => 'required',
+        'status' => 'required', 
+         
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

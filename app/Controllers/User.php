@@ -200,6 +200,10 @@ class User extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
+        }       
+
+        if ($data == null) {
+            return $this->fail("data null");
         }
         $entity = new EntitiesUser();
         $array = new StdobjeToArray($data);
@@ -208,7 +212,7 @@ class User extends ResourceController
             return $this->fail($this->model->errors());
         }
 
-        return $this->respondUpdated($entity, "updated");
+        return $this->respondUpdated($data, "updated");
     }
 
     /**

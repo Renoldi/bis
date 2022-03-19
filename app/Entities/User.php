@@ -33,7 +33,7 @@ use CodeIgniter\Entity\Entity;
  *    ),
  * @OA\Property(
  *      property="companyId",
- *      type="string",
+ *      type="integer",
  *    ),
  * @OA\Property(
  *      property="firstname",
@@ -100,13 +100,12 @@ class User extends Entity
         $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
         return $this;
     }
-    
     public function setisAdmin(bool $isAdmin = false)
     {
         $this->attributes['isAdmin'] = ($isAdmin ? 1 : 0);
         return $this;
     }
-
+    
     public function setStatus(bool $status = false)
     {
         $this->attributes['status'] = ($status ? 1 : 0);
