@@ -6,13 +6,14 @@ use CodeIgniter\Entity\Entity;
 
 class User extends Entity
 {
+    // map => original field
     protected $datamap = [
-        'password_reset_token' => "passwordResetToken",
-        'last_login' => "lastLogin",
-        'last_logout' => "lastLogout",
-        'ip_address' => "ipAddress",
-        'is_admin' => "isAdmin",
-        'company_id' => "companyId",
+        'passwordResetToken' => "password_reset_token",
+        'lastLogin' => "last_login",
+        'lastLogout' => "last_logout",
+        'ipAddress' => "ip_address",
+        'isAdmin' => "is_admin",
+        'companyId' => "company_id",
     ];
     protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
     protected $casts   = [];
@@ -23,13 +24,13 @@ class User extends Entity
         'about' => null,
         'email' => null,
         'password' => null,
-        'passwordResetToken' => null,
+        'password_reset_token' => null,
         'image' => null,
-        'lastLogin' => null,
-        'lastLogout' => null,
-        'ipAddress' => null,
+        'last_login' => null,
+        'last_logout' => null,
+        'ip_address' => null,
         'status' => null,
-        'isAdmin' => null,
+        'is_admin' => null,
         'company_id' => null,
     ];
 

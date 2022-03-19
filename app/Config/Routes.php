@@ -40,7 +40,9 @@ $routes->group("api", function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
     $routes->resource('tripRoute');
-    $routes->resource('user');
+    // $routes->resource('user');
+    $routes->post('user/login', 'User::login');
+    $routes->get('user/setPassword/(:segment)',      'User::setPassword/$1');
 });
 /*
  * --------------------------------------------------------------------

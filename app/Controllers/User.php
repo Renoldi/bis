@@ -7,6 +7,9 @@ use App\Libraries\StdobjeToArray;
 use App\Models\User as ModelsUser;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
+use Exception;
+use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class User extends ResourceController
 {
@@ -259,7 +262,7 @@ class User extends ResourceController
                     'status'   => 200,
                     'error'    => null,
                     'messages' => [
-                        'success' => 'Data Deleted '.$id
+                        'success' => 'Data Deleted ' . $id
                     ]
                 ];
                 return $this->respondDeleted($response);
@@ -268,5 +271,72 @@ class User extends ResourceController
         } else {
             return $this->failNotFound('No Data Found with id ' . $id);
         }
+    }
+
+    public function login()
+    {
+
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+
+        $user =  $this->model->where('email', $email)->first();
+
+        if (is_null($user)) {
+            return $this->respond(['error' => 'Invalid username '], 401);
+        }
+
+        $pwd_verify = password_verify($password, $user->password);
+
+        if (!$pwd_verify) {
+            return $this->respond(['error' => 'Invalid password.'], 401);
+        }
+        $key = getenv('JWT_SECRET');
+        $iat = time(); // current timestamp value
+        $exp = $iat + (3600 * 24 * (365 / 12));
+        $payload = array(
+            "iss" => "Issuer of the JWT",
+            "aud" => "Audience that the JWT",
+            "sub" => "Subject of the JWT",
+            "iat" => $iat, //Time the JWT issued at
+            "exp" =>  $exp, // Expiration time of token,
+            "user" => array(
+                "id" => "9",
+                "firstname" => $user->firstname,
+                "lastname" =>  $user->lastname,
+                "about" =>  $user->about,
+                "email" =>  $user->email,
+                "image" =>  $user->image,
+                "status" => $user->status,
+                "lastLogin" => $user->lastLogin,
+                "lastLogout" => $user->lastLogout,
+                "ipAddress" => $user->ipAddress,
+                "isAdmin" => $user->isAdmin,
+                "companyId" => $user->companyId,
+            ),
+        );
+
+        $token = JWT::encode($payload, $key, 'HS256');
+
+        try {
+            $decoded = JWT::decode($token."dfgdfg", new Key($key, 'HS256'));
+        } catch (Exception $ex) {
+            return $this->failUnauthorized();
+        }
+
+        $response = [
+            'message' => 'Login Succesful',
+            'token' => $token,
+            'decode' => $decoded,
+        ];
+        return $this->respond($response);
+    }
+
+    public function setPassword($pass = null)
+    {
+        $data = password_hash($pass, PASSWORD_BCRYPT);
+        $response = [
+            'password' => $data,
+        ];
+        return $this->respond($response);
     }
 }
