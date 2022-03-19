@@ -34,14 +34,14 @@ class Auth implements FilterInterface
         $header = $request->getServer('HTTP_AUTHORIZATION');
         $token = null;
 
-        // extract the token from the header
+        // // extract the token from the header
         if (!empty($header)) {
             if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
                 $token = $matches[1];
             }
         }
 
-        // check if token is null or empty
+        // // // check if token is null or empty
         if (is_null($token) || empty($token)) {
             return Services::response()
                 ->setJSON(
@@ -49,16 +49,21 @@ class Auth implements FilterInterface
                         'status'   => 401,
                         'error'    => true,
                         'messages' => [
-                            'error' =>   'Token Required'
-                        ]
+                            'error' =>   'Token sdfsdf Required'
+                        ],
+                        $token,
+                        $header
                     ]
 
                 )
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         }
 
+         
+
         try {
-            JWT::decode($token, new Key($key, 'HS256'));
+          $dgd =  JWT::decode($token, new Key($key, 'HS256'));
+             
         } catch (Exception $ex) {
             return Services::response()
                 ->setJSON([

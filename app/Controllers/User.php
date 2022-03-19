@@ -11,6 +11,7 @@ use Exception;
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+ 
 class User extends ResourceController
 {
     protected $modelName = ModelsUser::class;
@@ -329,7 +330,6 @@ class User extends ResourceController
      *       )
      *     )
      *   ),
-     *   security={{"token": {}}},
      * )
      */
     public function login()
@@ -410,6 +410,42 @@ class User extends ResourceController
         }
     }
 
+    /**
+     * @OA\Get(
+     *   path="/api/user/details",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"User"},
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(
+     *            @OA\Property(
+     *              property="message",
+     *              type="string",
+     *          ),
+     *          @OA\Property(
+     *              property="token",
+     *              type="string",
+     *          ),
+     * )
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function details()
     {
         $key = getenv('JWT_SECRET');
@@ -423,7 +459,7 @@ class User extends ResourceController
             }
         }
 
-        // check if token is null or empty
+        // // check if token is null or empty
         if (is_null($token) || empty($token)) {
             return $this->failUnauthorized();
         }
