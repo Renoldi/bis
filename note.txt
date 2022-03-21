@@ -10,3 +10,4 @@ https://codeigniter.com/user_guide/outgoing/api_responses.html
 https://swagger.io/docs/specification/describing-parameters/#path-parameters
 https://www.binaryboxtuts.com/php-tutorials/codeigniter-4-json-web-tokenjwt-authentication/
 // https://codeigniter4.github.io/userguide/incoming/routing.html#using-named-routes
+https://swagger.io/docs/specification/data-models/data-types/
