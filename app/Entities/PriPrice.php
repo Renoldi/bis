@@ -21,19 +21,19 @@ use CodeIgniter\Entity\Entity;
  *    ),
  * @OA\Property(
  *      property="price",
- *      type="decimal",
+ *      type="double",
  *    ),
  * @OA\Property(
  *      property="childrenPrice",
- *      type="decimal",
+ *      type="double",
  *    ),
  * @OA\Property(
  *      property="specialPrice",
- *      type="decimal",
+ *      type="double",
  *    ),
  * @OA\Property(
  *      property="groupPricePerPerson",
- *      type="decimal",
+ *      type="double",
  *    ),
  * @OA\Property(
  *      property="groupSize",

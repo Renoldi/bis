@@ -13,15 +13,15 @@ use CodeIgniter\Entity\Entity;
  *    ),
  * @OA\Property(
  *      property="start",
- *      type="string",
+ *      type="string", example = "08:00:00"
  *    ),
  * @OA\Property(
  *      property="end",
- *      type="string",
+ *      type="string", example = "15:00:00"
  *    ),
  * @OA\Property(
  *      property="duration",
- *      type="decimal",
+ *      type="double",
  *    ),
  * @OA\Property(
  *      property="companyId",
