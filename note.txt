@@ -11,3 +11,12 @@ https://swagger.io/docs/specification/describing-parameters/#path-parameters
 https://www.binaryboxtuts.com/php-tutorials/codeigniter-4-json-web-tokenjwt-authentication/
 // https://codeigniter4.github.io/userguide/incoming/routing.html#using-named-routes
 https://swagger.io/docs/specification/data-models/data-types/
+
+search
+   trip, 
+   shedule,
+   trip_route,
+   trip_assign,
+   fleet_type,
+   pri_price,
+   trip_location,
