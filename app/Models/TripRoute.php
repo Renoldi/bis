@@ -56,7 +56,9 @@ class TripRoute extends Model
         'status' => 'required|numeric',
         'companyId' => 'required|numeric',
     ];
-    protected $validationMessages   = [];
+    protected $validationMessages   = [
+        
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 

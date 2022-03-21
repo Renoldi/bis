@@ -33,8 +33,19 @@ class PriPrice extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
+    protected $validationRules      = [
+
+    ];
+    protected $validationMessages   = [
+        'routeId'=> 'required|integer',
+        'vehicleTypeId'=> 'required|integer',
+        'price'=> 'required|decimal',
+        'childrenPrice'=> 'required|decimal',
+        'specialPrice'=> 'required|decimal',
+        'groupPricePerPerson'=> 'required|decimal',
+        'groupSize'=> 'required|integer',
+        'companyId'=> 'required|integer',
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 

@@ -35,7 +35,17 @@ class FleetType extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'name' => 'required|alpha_space|min_length[10]|is_unique[fleet_type.name,id,{id}]',
+        'type' => 'required|integer',
+        'layout' => 'required|integer',
+        'lastSeat' => 'required|integer',
+        'totalSeat' => 'required|integer',
+        'seatNumbers' => 'required|integer',
+        'fleetFacilities' => 'required|integer',
+        'status' => 'required|integer',
+        'companyId' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

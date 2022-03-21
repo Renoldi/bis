@@ -21,14 +21,14 @@ class User extends Model
         'about',
         'email',
         'password',
-        'password_reset_token',
+        'passwordResetToken',
         'image',
-        'last_login',
-        'last_logout',
-        'ip_address',
+        'lastLogin',
+        'lastLogout',
+        'ipAddress',
         'status',
-        'is_admin',
-        'company_id',
+        'isAdmin',
+        'companyId',
     ];
 
     // Dates
