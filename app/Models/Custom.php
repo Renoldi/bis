@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class Custom extends Model
 {
     protected $db;
+    
 
     public function __construct()
     {
