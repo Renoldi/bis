@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
+use App\Entities\Trip as EntitiesTrip;
 use CodeIgniter\Model;
-use App\Entities\Trip;
 use OpenApi\Annotations as OA;
 
 
-class TripModel extends Model
+class Trip extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'trip';
     protected $primaryKey       = 'tripId';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = Trip::class;
+    protected $returnType       = EntitiesTrip::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Custom extends Model
 {
     protected $db;
-    
+    protected $returnType       = EntitiesFleetType::class;
 
     public function __construct()
     {

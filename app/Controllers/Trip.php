@@ -4,15 +4,15 @@ namespace App\Controllers;
 
 use App\Entities\Trip as EntitiesTrip;
 use App\Libraries\StdobjeToArray;
+use App\Models\Trip as ModelsTrip;
 use CodeIgniter\RESTful\ResourceController;
 use OpenApi\Annotations as OA;
-use App\Models\TripModel;
 use CodeIgniter\API\ResponseTrait;
 
 
 class Trip extends ResourceController
 {
-    protected $modelName = TripModel::class;
+    protected $modelName = ModelsTrip::class;
     protected $format    = 'json';
     use ResponseTrait;
 
