@@ -38,11 +38,11 @@ class FleetType extends Model
     protected $validationRules      = [
         'name' => 'required|alpha_space|min_length[10]|is_unique[fleet_type.name,id,{id}]',
         'type' => 'required|integer',
-        'layout' => 'required|integer',
-        'lastSeat' => 'required|integer',
+        'layout' => 'required|alpha_space',
+        'lastSeat' => 'required|alpha_space',
         'totalSeat' => 'required|integer',
-        'seatNumbers' => 'required|integer',
-        'fleetFacilities' => 'required|integer',
+        'seatNumbers' => 'required|alpha_numeric',
+        'fleetFacilities' => 'required|alpha_numeric',
         'status' => 'required|integer',
         'companyId' => 'required|integer',
     ];
