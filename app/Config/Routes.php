@@ -36,14 +36,14 @@ $routes->setAutoRoute(true);
 // ['only' => ['index', ]]
 // ['filter' => 'auth']
 $routes->post('api/user/login', 'User::login');
-
+$routes->get('api/user/setPassword/(:any)', 'User::setPassword/$1');
 $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
+    $routes->resource('FleetType');
     $routes->resource('tripRoute');
     $routes->resource('Search');
     // resource must below 
-    $routes->get('user/setPassword/(:any)', 'User::setPassword/$1');
     $routes->get('user/details', 'User::details');
     $routes->resource('user');
 });

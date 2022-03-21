@@ -298,11 +298,11 @@ class User extends ResourceController
      *      @OA\Schema(
      *          @OA\Property(
      *              property="email",
-     *              type="string",
+     *              type="string",example="admins@admin.com"
      *          ),
      *          @OA\Property(
      *              property="password",
-     *              type="string",
+     *              type="string",example="admin"
      *          ),
      *      ),
      *     )
