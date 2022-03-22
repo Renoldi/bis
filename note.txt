@@ -20,4 +20,4 @@ search
    trip_assign,
    fleet_type,  done
    pri_price,   done
-   trip_location,
+   trip_location, done

@@ -43,6 +43,7 @@ $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     $routes->resource('FleetType');
     $routes->resource('tripRoute');
     $routes->resource('TripLocation');
+    $routes->resource('TripAssign');
     $routes->resource('Schedule');
     $routes->resource('PriPrice');
     $routes->resource('Search');
