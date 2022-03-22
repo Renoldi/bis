@@ -12,11 +12,12 @@ https://www.binaryboxtuts.com/php-tutorials/codeigniter-4-json-web-tokenjwt-auth
 // https://codeigniter4.github.io/userguide/incoming/routing.html#using-named-routes
 https://swagger.io/docs/specification/data-models/data-types/
 
+https://codeigniter4.github.io/userguide/incoming/filters.html?highlight=filter#id12
 search
-   trip, 
-   shedule,
-   trip_route,
+   trip,        done
+   shedule,     done
+   trip_route,  done
    trip_assign,
-   fleet_type,
-   pri_price,
+   fleet_type,  done
+   pri_price,   done
    trip_location,
