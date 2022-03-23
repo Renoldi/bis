@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Entities\Schedule as EntitiesSchedule;
-use App\Entities\Shedule as EntitiesShedule;
 use CodeIgniter\Model;
 
 class Schedule extends Model
