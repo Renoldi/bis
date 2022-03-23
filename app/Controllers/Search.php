@@ -20,7 +20,7 @@ class Search extends ResourceController
 
     public function index()
     {
-        $data = ['data' => $this->request->getPost()];
+        $data = ['data' => $this->request->getVar()];
         return $this->respond($data,);
     }
 

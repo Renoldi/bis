@@ -37,7 +37,7 @@ $routes->setAutoRoute(true);
 // ['filter' => 'auth']
 $routes->post('api/user/login', 'User::login');
 $routes->get('api/user/setPassword/(:any)', 'User::setPassword/$1');
-$routes->resource('Search');
+$routes->resource('api/Search');
 $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
