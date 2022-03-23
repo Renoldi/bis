@@ -57,7 +57,7 @@ class Trip extends Entity
         'type' => null,
         'fleetCategory' => null,
         'route' => null,
-        'sheduleId' => null,
+        'scheduleId' => null,
         'weekend' => null,
         'status' => null,
         'companyId' => null, 

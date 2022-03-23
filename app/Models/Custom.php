@@ -56,7 +56,7 @@ class Custom extends Model
         $builder->select(
             "ta.`tripId` AS trip_id_no,
             ta.`route`,
-            ta.`sheduleId`,
+            ta.`shceduleId`,
             tr.`name` AS trip_routeName, 
             tl1.`name` AS pickupTripLocation,
             tl2.`name` AS drop_tripLocation,
@@ -76,11 +76,11 @@ class Custom extends Model
         $builder->join("trip_route as tr", "tr.id = ta.route", "left");
         $builder->join("trip_assign as tras", "tras.trip = ta.tripId", "left");
         $builder->join("fleet_type AS tp", "tp.id = ta.type", "left");
-        $builder->join(" trip_location AS tl1", "tl1.id = tr.startPoint");
-        $builder->join(" trip_location AS tl2", "tl1.id = tr.startPoint");
+        $builder->join("trip_location AS tl1", "tl1.id = tr.startPoint");
+        $builder->join("trip_location AS tl2", "tl1.id = tr.startPoint");
         $builder->join("pri_price AS pp", "pp.routeid = ta.route AND pp.vehicletypeid= ta.type");
-        $builder->where(" (FIND_IN_SET('$startpoint',tr.`stoppage_points`))");
-        $builder->where(" (FIND_IN_SET('$endpoint',tr.`stoppage_points`))");
+        $builder->where(" (FIND_IN_SET('$startpoint',tr.`stoppagePoints`))");
+        $builder->where(" (FIND_IN_SET('$endpoint',tr.`stoppagePoints`))");
         $builder->where("(!FIND_IN_SET(DAYOFWEEK('$date'),ta.`weekend`))");
         $builder->groupBy("ta.tripId");
         $query = $builder->get();
