@@ -17,7 +17,32 @@ class Search extends ResourceController
      *
      * @return mixed
      */
-
+    /**
+     * @OA\Get(
+     *     path="/api/Search",
+     *     tags={"Search"},
+     *     @OA\Parameter(
+     *         name="start",
+     *         in="query",
+     *         description="start.",
+     *         required=true,
+     *     ), 
+     *     @OA\Parameter(
+     *         name="end",
+     *         in="query",
+     *         description="end.",
+     *         required=true,
+     *     ), 
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="query",
+     *         description="date.",
+     *         required=true,
+     * 
+     *     ), 
+     *     @OA\Response(response="200", description="An example resource")
+     * )
+     */
     public function index()
     {
         $data = ['data' => $this->request->getVar()];

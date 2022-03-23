@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Entities\Shedule as EntitiesShedule;
+use App\Entities\Schedule as EntitiesSchedule;
 use App\Libraries\StdobjeToArray;
-use App\Models\Shedule as ModelsShedule;
+use App\Models\Schedule as ModelsSchedule;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class Shedule extends ResourceController
+class Schedule extends ResourceController
 {
-    protected $modelName = ModelsShedule::class;
+    protected $modelName = ModelsSchedule::class;
     protected $format    = 'json';
     use ResponseTrait;
 
@@ -136,7 +136,7 @@ class Shedule extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesShedule();
+        $entity = new EntitiesSchedule();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
@@ -196,7 +196,7 @@ class Shedule extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesShedule();
+        $entity = new EntitiesSchedule();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {

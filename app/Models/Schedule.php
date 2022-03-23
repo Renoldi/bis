@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Entities\Shedule as EntitiesShedule;
 use CodeIgniter\Model;
 
-class Shedule extends Model
+class Schedule extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'shedule';
