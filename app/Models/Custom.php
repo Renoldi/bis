@@ -84,7 +84,7 @@ class Custom extends Model
         $builder->groupBy("ta.tripId");
         $query = $builder->get();
         $rest = $query->getResult();
-        $data = [$this->db->getLastQuery()->getQuery()];
+        // $data = [$this->db->getLastQuery()->getQuery()];
         return $rest;
         // return $query->getResult();
     }
