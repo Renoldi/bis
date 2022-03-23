@@ -37,6 +37,7 @@ $routes->setAutoRoute(true);
 // ['filter' => 'auth']
 $routes->post('api/user/login', 'User::login');
 $routes->get('api/user/setPassword/(:any)', 'User::setPassword/$1');
+$routes->resource('Search');
 $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     // $routes->resource('baseapi');
     $routes->resource('trip');
@@ -46,7 +47,6 @@ $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     $routes->resource('TripAssign');
     $routes->resource('Schedule');
     $routes->resource('PriPrice');
-    $routes->resource('Search');
     // resource must below 
     $routes->get('user/details', 'User::details');
     $routes->resource('user');

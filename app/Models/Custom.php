@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Config\Database;
 
 class Custom extends Model
 {
@@ -11,7 +12,9 @@ class Custom extends Model
 
     public function __construct()
     {
-        $this->db = db_connect();
+        parent::__construct();
+        $this->db = Database::connect();
+        // $this->db = db_connect();
     }
 
     public function trans()
@@ -45,5 +48,42 @@ class Custom extends Model
         if ($this->db->transStatus() === false) {
             // generate an error... or use the log_message() function to log your error
         }
+    }
+
+    public function search($startpoint,$endpoint,$date)
+    {
+        $builder = $this->db->table('trip as ta');
+        $builder->select(
+            "ta.`tripId` AS trip_id_no,
+            ta.`route`,
+            ta.`sheduleId`,
+            tr.`name` AS trip_routeName, 
+            tl1.`name` AS pickupTripLocation,
+            tl2.`name` AS drop_tripLocation,
+            ta.`type`, 
+            tp.`totalSeat` AS fleetSeats, 
+            pp.`price` AS price,
+            pp.`childrenPrice`,
+            pp.`specialPrice`,
+            tr.`approximateTime` AS duration,
+            tr.`stoppagePoints`,
+            tr.`distance`,
+            sc.`start`,
+            sc.`end`,
+            tras.`closedById`"
+        );
+        $builder->join("shedule as sc", "sc.sheduleId=ta.sheduleId", "left");
+        $builder->join("trip_route as tr", "tr.id = ta.route", "left");
+        $builder->join("trip_assign as tras", "tras.trip = ta.tripId", "left");
+        $builder->join("fleet_type AS tp", "tp.id = ta.type", "left");
+        $builder->join(" trip_location AS tl1", "tl1.id = tr.startPoint");
+        $builder->join(" trip_location AS tl2", "tl1.id = tr.startPoint");
+        $builder->join("pri_price AS pp", "pp.routeid = ta.route AND pp.vehicletypeid= ta.type");
+        $builder->where(" (FIND_IN_SET('$startpoint',tr.`stoppage_points`))");
+        $builder->where(" (FIND_IN_SET('$endpoint',tr.`stoppage_points`))");
+        $builder->where("(!FIND_IN_SET(DAYOFWEEK('$date'),ta.`weekend`))");
+        $builder->groupBy("ta.tripId");
+        $query = $builder->get();
+        return $query->getResult();
     }
 }

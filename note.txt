@@ -17,7 +17,7 @@ search
    trip,        done
    shedule,     done
    trip_route,  done
-   trip_assign,
+   trip_assign, done
    fleet_type,  done
    pri_price,   done
    trip_location, done
