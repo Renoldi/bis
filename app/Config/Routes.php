@@ -48,7 +48,7 @@ $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     $routes->resource('tripRoute');
     $routes->resource('TripLocation');
     $routes->resource('TripAssign');
-    $routes->resource('schedule');
+    $routes->resource('Schedule');
     $routes->resource('PriPrice');
     // resource must below 
     $routes->get('user/details', 'User::details');

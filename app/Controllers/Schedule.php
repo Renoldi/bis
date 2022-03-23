@@ -21,15 +21,15 @@ class Schedule extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Shedule",
+     *   path="/api/Schedule",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Shedule"},
+     *   tags={"Schedule"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Shedule")
+     *       @OA\Items(ref="#/components/schemas/Schedule")
      *     ),
      *   ),
      *   @OA\Response(
@@ -50,10 +50,10 @@ class Schedule extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Shedule/{id}",
+     *   path="/api/Schedule/{id}",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Shedule"},
+     *   tags={"Schedule"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -61,7 +61,7 @@ class Schedule extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Shedule")
+     *      @OA\JsonContent(ref="#/components/schemas/Schedule")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -100,21 +100,21 @@ class Schedule extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Shedule",
+     *   path="/api/Schedule",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Shedule"},
+     *   tags={"Schedule"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Shedule"),
+     *      @OA\Schema(ref="#/components/schemas/Schedule"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Shedule")
+     *      @OA\JsonContent(ref="#/components/schemas/Schedule")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -153,10 +153,10 @@ class Schedule extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/Shedule/{id}",
+     *   path="/api/Schedule/{id}",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Shedule"},
+     *   tags={"Schedule"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -166,12 +166,12 @@ class Schedule extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Shedule"),
+     *      @OA\Schema(ref="#/components/schemas/Schedule"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Shedule")
+     *      @OA\JsonContent(ref="#/components/schemas/Schedule")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -213,10 +213,10 @@ class Schedule extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/Shedule/{id}",
+     *   path="/api/Schedule/{id}",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Shedule"},
+     *   tags={"Schedule"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",

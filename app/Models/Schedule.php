@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\Schedule as EntitiesSchedule;
 use App\Entities\Shedule as EntitiesShedule;
 use CodeIgniter\Model;
 
@@ -9,10 +10,10 @@ class Schedule extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'shedule';
-    protected $primaryKey       = 'sheduleId';
+    protected $primaryKey       = 'scheduleId';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = EntitiesShedule::class;
+    protected $returnType       = EntitiesSchedule::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [

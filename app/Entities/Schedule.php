@@ -6,9 +6,9 @@ use CodeIgniter\Entity\Entity;
 
 /**
  * @OA\Schema(
- *   schema="Shedule",
+ *   schema="Schedule",
  * @OA\Property(
- *      property="sheduleId",
+ *      property="scheduleId",
  *      type="integer",
  *    ),
  * @OA\Property(
