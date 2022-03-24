@@ -144,7 +144,7 @@ class Passenger extends ResourceController
         $util = new LibrariesUtil();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        $entity->idNo =$util->getRandomName();
+        $entity->idNo = $util->getRandomName();
         if (!$this->model->save($entity)) {
             return $this->fail($this->model->errors());
         }
@@ -344,8 +344,7 @@ class Passenger extends ResourceController
             ];
 
             return $this->respondCreated($response);
-        } 
-        else {
+        } else {
 
             $user =  $this->model->where('email', $email)->first();
 
@@ -358,6 +357,7 @@ class Passenger extends ResourceController
             if (!$pwd_verify) {
                 return $this->respond(['error' => 'Invalid password.'], 401);
             }
+
             $iat = time(); // current timestamp value
 
             $entity = new EntitiesPassenger();
@@ -372,30 +372,36 @@ class Passenger extends ResourceController
                 $payload = array(
                     "iss" => base_url(),
                     "aud" => array(
-                        "my-api-identifier",
+                        "my-api-Passenger",
                         base_url('api/Passenger/details'),
                         $this->request->getServer('REMOTE_ADDR')
                     ),
                     "sub" => "login " . $user->email . "" . $lastLogin,
                     "iat" => $iat, //Time the JWT issued at
                     "exp" =>  $exp, // Expiration time of token,
-                    "user" => $user
-                    
-                    // array(
-                    //     "id" => "9",
-                    //     "firstname" => $user->firstname,
-                    //     "lastname" =>  $user->lastname,
-                    //     "about" =>  $user->about,
-                    //     "email" =>  $user->email,
-                    //     "image" =>  $user->image,
-                    //     "status" => $user->status,
-                    //     "lastLogin" => $lastLogin,
-                    //     "lastLogout" => $user->lastLogout,
-                    //     "ipAddress" => $user->ipAddress,
-                    //     "isAdmin" => $user->isAdmin,
-                    //     "companyId" => $user->companyId,
-                    // ),
+                    "user" =>  array(
+                        "id" => $user->id,
+                        "idNo" => $user->idNo,
+                        "firstname" => $user->firstname,
+                        "lastname" => $user->lastname,
+                        "middleName" => $user->middleName,
+                        "phone" => $user->phone,
+                        "nid" => $user->nid,
+                        "email" => $user->email,
+                        "image" => $user->image,
+                        "addressLine1" => $user->addressLine1,
+                        "addressLine2" => $user->addressLine2,
+                        "city" => $user->city,
+                        "zipCode" => $user->zipCode,
+                        "country" => $user->country,
+                        "status" => $user->status,
+                        "lastLogin" => $user->lastLogin,
+                        "ipAddress" => $user->ipAddress
+                    )
                 );
+
+
+
 
                 $token = JWT::encode($payload, $key, 'HS256');
                 $response = [

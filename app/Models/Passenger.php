@@ -30,7 +30,9 @@ class Passenger extends Model
         'addressLine1',
         'zipCode',
         'country',
-        'status', 
+        'status',
+        'lastLogin',
+        'ipAddress',
     ];
 
     // Dates
@@ -42,14 +44,14 @@ class Passenger extends Model
 
     // Validation
     protected $validationRules      = [
-        'idNo' =>"required|",
-        'firstname' =>"required|",
-        'phone' =>"required|",
+        'idNo' => "required|",
+        'firstname' => "required|",
+        'phone' => "required|",
         'email' => 'required|valid_email|is_unique[tkt_passenger.email,id,{id}]',
-        'password' =>"required|min_length[6]",
-        'addressLine1' =>"required|",
-        'zipCode' =>"required|",
-        'status' =>"required|", 
+        'password' => "required|min_length[6]",
+        'addressLine1' => "required|",
+        'zipCode' => "required|",
+        'status' => "required|",
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

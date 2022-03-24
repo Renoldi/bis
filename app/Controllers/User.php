@@ -381,7 +381,7 @@ class User extends ResourceController
                 $payload = array(
                     "iss" => base_url(),
                     "aud" => array(
-                        "my-api-identifier",
+                        "my-api-User",
                         base_url('api/user/details'),
                         $this->request->getServer('REMOTE_ADDR')
                     ),

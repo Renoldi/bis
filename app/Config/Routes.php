@@ -47,7 +47,6 @@ $routes->group("api", function ($routes) {
 });
 
 $routes->group("api", ['filter' => 'Auth'], function ($routes) {
-    // $routes->resource('baseapi');
     $routes->resource('trip');
     $routes->resource('FleetType');
     $routes->resource('tripRoute');
@@ -55,11 +54,11 @@ $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     $routes->resource('TripAssign');
     $routes->resource('Schedule');
     $routes->resource('PriPrice');
-    $routes->resource('Passenger');
     // resource must below 
     $routes->get('user/details', 'User::details');
     $routes->get('Passenger/details', 'Passenger::details');
     $routes->resource('user');
+    $routes->resource('Passenger');
 });
 /*
  * --------------------------------------------------------------------

@@ -101,6 +101,8 @@ class Passenger extends Entity
         'zipCode' => null,
         'country' => null,
         'status' => null,
+        'lastLogin' => null,
+        'ipAddress' => null,
     ];
     public function setStatus(bool $status = false)
     {
