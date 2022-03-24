@@ -344,7 +344,8 @@ class Passenger extends ResourceController
             ];
 
             return $this->respondCreated($response);
-        } else {
+        } 
+        else {
 
             $user =  $this->model->where('email', $email)->first();
 
@@ -378,20 +379,22 @@ class Passenger extends ResourceController
                     "sub" => "login " . $user->email . "" . $lastLogin,
                     "iat" => $iat, //Time the JWT issued at
                     "exp" =>  $exp, // Expiration time of token,
-                    "user" => array(
-                        "id" => "9",
-                        "firstname" => $user->firstname,
-                        "lastname" =>  $user->lastname,
-                        "about" =>  $user->about,
-                        "email" =>  $user->email,
-                        "image" =>  $user->image,
-                        "status" => $user->status,
-                        "lastLogin" => $lastLogin,
-                        "lastLogout" => $user->lastLogout,
-                        "ipAddress" => $user->ipAddress,
-                        "isAdmin" => $user->isAdmin,
-                        "companyId" => $user->companyId,
-                    ),
+                    "user" => $user
+                    
+                    // array(
+                    //     "id" => "9",
+                    //     "firstname" => $user->firstname,
+                    //     "lastname" =>  $user->lastname,
+                    //     "about" =>  $user->about,
+                    //     "email" =>  $user->email,
+                    //     "image" =>  $user->image,
+                    //     "status" => $user->status,
+                    //     "lastLogin" => $lastLogin,
+                    //     "lastLogout" => $user->lastLogout,
+                    //     "ipAddress" => $user->ipAddress,
+                    //     "isAdmin" => $user->isAdmin,
+                    //     "companyId" => $user->companyId,
+                    // ),
                 );
 
                 $token = JWT::encode($payload, $key, 'HS256');

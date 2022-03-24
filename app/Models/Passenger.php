@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\Passenger as EntitiesPassenger;
 use CodeIgniter\Model;
 
 class Passenger extends Model
@@ -11,7 +12,7 @@ class Passenger extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'array';
+    protected $returnType       = EntitiesPassenger::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
