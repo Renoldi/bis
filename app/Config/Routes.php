@@ -39,7 +39,8 @@ $routes->group("api", function ($routes) {
     $routes->post('user/login', 'User::login');
     $routes->get('user/setPassword/(:any)', 'User::setPassword/$1');
     $routes->resource('Search');
-    $routes->post('UploadFile/fromBase64', 'UploadFile::fromBase64');
+    $routes->post('UploadFile/fromBase64', 'UploadFile::imageBase64');
+    $routes->post('UploadFile/image', 'UploadFile::imageMultipart');
     $routes->resource('UploadFile');
 });
 

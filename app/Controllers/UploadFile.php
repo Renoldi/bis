@@ -6,12 +6,12 @@ use CodeIgniter\RESTful\ResourceController;
 
 class UploadFile extends ResourceController
 {
-    public function fromBase64()
+
+    public function imageBase64()
     {
         $image = $this->request->getVar('image');
 
         if (empty($image)) {
-
             return $this->fail("image empty");
         }
         try {
@@ -29,7 +29,6 @@ class UploadFile extends ResourceController
             }
             // $data = [$mime_content_type, $size_in_kb." kb", $size_in_mb." mb"];
         } catch (\Exception $ex) {
-
             return $this->fail('image error');
         }
 
@@ -46,26 +45,11 @@ class UploadFile extends ResourceController
 
         $data = [$mime_content_type];
         return $this->respond($data);
+    }
 
-
-        // if (! $this->validate($validationRule)) {
-        //     $data = ['errors' => $this->validator->getErrors()];
-
-        //     return view('upload_form', $data);
-        // }
-
-        // $img = $this->request->getFile('userfile');
-
-        // if (! $img->hasMoved()) {
-        //     $newName = $img->getRandomName();
-        //     $img->move(WRITEPATH . 'uploads', $newName);
-
-        //     return view('upload_success', $data);
-        // } else {
-        //     $data = ['errors' => 'The file has already been moved.'];
-
-        //     return view('upload_form', $data);
-        // }
+    public function imageMultipart()
+    {
+        
     }
     /**
      * Return an array of resource objects, themselves in array format
