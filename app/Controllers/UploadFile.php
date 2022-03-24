@@ -2,14 +2,17 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
 class UploadFile extends ResourceController
 {
+    use ResponseTrait;
 
+    protected $pathImage = "assets/images/";
     public function imageBase64()
     {
-        $image = $this->request->getVar('image');
+        $image = $this->request->getVar('userfile');
 
         if (empty($image)) {
             return $this->fail("image empty");
@@ -37,7 +40,7 @@ class UploadFile extends ResourceController
 
         $getContent = str_replace(' ', '+', $getContent);
         $data = base64_decode($getContent);
-        $file = "assets/images/" . uniqid() . ".$extension";
+        $file = $this->pathImage . uniqid() . ".$extension";
 
         $success = file_put_contents($file, $data);
         $data = [$mime_content_type, base_url($file)];
@@ -49,7 +52,31 @@ class UploadFile extends ResourceController
 
     public function imageMultipart()
     {
-        
+        $validationRule = [
+            'userfile' => [
+                'label' => 'Image File',
+                'rules' => 'uploaded[userfile]'
+                    . '|is_image[userfile]'
+                    . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                    . '|max_size[userfile,1024]'
+                // . '|max_dims[userfile,1024,768]',
+            ],
+        ];
+        if (!$this->validate($validationRule)) {
+            return $this->fail($this->validator->getErrors());
+        }
+
+        $img = $this->request->getFile('userfile');
+
+        if (!$img->hasMoved()) {
+            $newName = $img->getRandomName();
+            $img->move($this->pathImage, $newName);
+            $data = [base_url($this->pathImage . $newName)];
+            return $this->respond($data);
+        } else {
+            $data = ['errors' => 'The file has already been moved.'];
+            return $this->fail($data);
+        }
     }
     /**
      * Return an array of resource objects, themselves in array format
