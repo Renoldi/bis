@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Passenger extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'passengers';
+    protected $table            = 'tkt_passenger';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,7 +15,21 @@ class Passenger extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        '',
+        'idNo',
+        'firstname',
+        'lastname',
+        'middleName',
+        'phone',
+        'email',
+        'password',
+        'passwordResetToken',
+        'rememberToken',
+        'image',
+        'city',
+        'addressLine1',
+        'zipCode',
+        'country',
+        'status', 
     ];
 
     // Dates
@@ -26,7 +40,16 @@ class Passenger extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'idNo' =>"required|",
+        'firstname' =>"required|",
+        'phone' =>"required|",
+        'email' => 'required|valid_email|is_unique[tkt_passenger.email,id,{id}]',
+        'password' =>"required|min_length[6]",
+        'addressLine1' =>"required|",
+        'zipCode' =>"required|",
+        'status' =>"required|", 
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

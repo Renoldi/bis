@@ -38,6 +38,7 @@ $routes->setAutoRoute(true);
 // ['filter' => 'auth']
 $routes->group("api", function ($routes) {
     $routes->post('user/login', 'User::login');
+    $routes->post('Passenger/login', 'Passenger::login');
     $routes->get('user/setPassword/(:any)', 'User::setPassword/$1');
     $routes->resource('Search');
     $routes->post('UploadFile/fromBase64', 'UploadFile::imageBase64');
@@ -57,6 +58,7 @@ $routes->group("api", ['filter' => 'Auth'], function ($routes) {
     $routes->resource('Passenger');
     // resource must below 
     $routes->get('user/details', 'User::details');
+    $routes->get('Passenger/details', 'Passenger::details');
     $routes->resource('user');
 });
 /*
