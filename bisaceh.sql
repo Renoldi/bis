@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2022 at 09:53 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.25
+-- Generation Time: Apr 10, 2022 at 04:21 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,170 +24,170 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acc_account_name`
+-- Table structure for table `accaccountname`
 --
 
-CREATE TABLE `acc_account_name` (
-  `account_id` int(11) UNSIGNED NOT NULL,
-  `account_name` varchar(255) NOT NULL,
-  `account_type` int(11) NOT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+CREATE TABLE `accaccountname` (
+  `accountId` int(11) UNSIGNED NOT NULL,
+  `accountName` varchar(255) NOT NULL,
+  `accountType` int(11) NOT NULL,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acn_account_transaction`
+-- Table structure for table `acnaccounttransaction`
 --
 
-CREATE TABLE `acn_account_transaction` (
-  `account_tran_id` int(11) UNSIGNED NOT NULL,
-  `account_id` int(11) NOT NULL,
-  `transaction_description` varchar(255) NOT NULL,
+CREATE TABLE `acnaccounttransaction` (
+  `accountTranId` int(11) UNSIGNED NOT NULL,
+  `accountId` int(11) NOT NULL,
+  `transactionDescription` varchar(255) NOT NULL,
   `amount` varchar(25) DEFAULT NULL,
-  `document_pic` text DEFAULT NULL,
-  `create_by_id` int(11) DEFAULT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `documentPic` text DEFAULT NULL,
+  `createById` int(11) DEFAULT NULL,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agent_info`
+-- Table structure for table `agentinfo`
 --
 
-CREATE TABLE `agent_info` (
-  `agent_id` int(11) NOT NULL,
-  `agent_first_name` varchar(30) DEFAULT NULL,
-  `agent_second_name` varchar(150) DEFAULT NULL,
-  `agent_company_name` varchar(150) DEFAULT NULL,
-  `agent_document_id` varchar(150) DEFAULT NULL,
-  `agent_pic_document` varchar(255) DEFAULT NULL,
-  `agent_picture` varchar(255) DEFAULT NULL,
-  `agent_phone` varchar(150) DEFAULT NULL,
-  `agent_mobile` varchar(150) DEFAULT NULL,
-  `agent_email` varchar(150) DEFAULT NULL,
-  `agent_address_line_1` varchar(150) DEFAULT NULL,
-  `agent_address_line_2` varchar(150) DEFAULT NULL,
-  `agent_address_city` varchar(150) DEFAULT NULL,
-  `agent_address_zip_code` varchar(150) DEFAULT NULL,
-  `agent_country` varchar(150) DEFAULT NULL,
-  `agent_commission` float NOT NULL,
+CREATE TABLE `agentinfo` (
+  `agentId` int(11) NOT NULL,
+  `agentFirstName` varchar(30) DEFAULT NULL,
+  `agentSecondName` varchar(150) DEFAULT NULL,
+  `agentCompanyName` varchar(150) DEFAULT NULL,
+  `agentDocumentId` varchar(150) DEFAULT NULL,
+  `agentPicDocument` varchar(255) DEFAULT NULL,
+  `agentPicture` varchar(255) DEFAULT NULL,
+  `agentPhone` varchar(150) DEFAULT NULL,
+  `agentMobile` varchar(150) DEFAULT NULL,
+  `agentEmail` varchar(150) DEFAULT NULL,
+  `agentAddressLine1` varchar(150) DEFAULT NULL,
+  `agentAddressLine2` varchar(150) DEFAULT NULL,
+  `agentAddressCity` varchar(150) DEFAULT NULL,
+  `agentAddressZipCode` varchar(150) DEFAULT NULL,
+  `agentCountry` varchar(150) DEFAULT NULL,
+  `agentCommission` float NOT NULL,
   `status` varchar(150) DEFAULT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agent_ledger`
+-- Table structure for table `agentledger`
 --
 
-CREATE TABLE `agent_ledger` (
+CREATE TABLE `agentledger` (
   `id` int(11) NOT NULL,
-  `agent_id` int(11) NOT NULL,
-  `booking_id` varchar(30) NOT NULL,
+  `agentId` int(11) NOT NULL,
+  `bookingId` varchar(30) NOT NULL,
   `debit` float NOT NULL DEFAULT 0,
   `credit` float NOT NULL DEFAULT 0,
   `date` date NOT NULL,
-  `commission_rate` float NOT NULL DEFAULT 0,
-  `total_price` float NOT NULL DEFAULT 0,
-  `company_id` varchar(100) DEFAULT NULL
+  `commissionRate` float NOT NULL DEFAULT 0,
+  `totalPrice` float NOT NULL DEFAULT 0,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bank_info`
+-- Table structure for table `bankinfo`
 --
 
-CREATE TABLE `bank_info` (
+CREATE TABLE `bankinfo` (
   `id` int(11) NOT NULL,
-  `bank_name` varchar(200) NOT NULL,
-  `account_name` varchar(100) NOT NULL,
-  `account_number` varchar(100) NOT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `bankName` varchar(200) NOT NULL,
+  `accountName` varchar(100) NOT NULL,
+  `accountNumber` varchar(100) NOT NULL,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bank_info`
+-- Dumping data for table `bankinfo`
 --
 
-INSERT INTO `bank_info` (`id`, `bank_name`, `account_name`, `account_number`, `company_id`) VALUES
+INSERT INTO `bankinfo` (`id`, `bankName`, `accountName`, `accountNumber`, `companyId`) VALUES
 (1, 'Bank Aceh', 'PT Karina', '27392379', '6'),
 (2, 'Bank BSI', 'PT Taradita', '736238726872', '4');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bank_transaction`
+-- Table structure for table `banktransaction`
 --
 
-CREATE TABLE `bank_transaction` (
+CREATE TABLE `banktransaction` (
   `id` int(11) NOT NULL,
-  `bank_id` varchar(50) DEFAULT NULL,
-  `transaction_id` varchar(50) DEFAULT NULL,
-  `payer_name` varchar(200) DEFAULT NULL,
-  `booking_id` varchar(50) DEFAULT NULL,
+  `bankId` varchar(50) DEFAULT NULL,
+  `transactionId` varchar(50) DEFAULT NULL,
+  `payerName` varchar(200) DEFAULT NULL,
+  `bookingId` varchar(50) DEFAULT NULL,
   `note` varchar(250) DEFAULT NULL,
   `refund` varchar(50) DEFAULT NULL,
   `amount` float DEFAULT NULL,
-  `b_account_no` varchar(50) DEFAULT NULL,
-  `transaction_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `company_id` varchar(100) DEFAULT NULL
+  `bAccountNo` varchar(50) DEFAULT NULL,
+  `transactionDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bank_transaction`
+-- Dumping data for table `banktransaction`
 --
 
-INSERT INTO `bank_transaction` (`id`, `bank_id`, `transaction_id`, `payer_name`, `booking_id`, `note`, `refund`, `amount`, `b_account_no`, `transaction_date`, `company_id`) VALUES
+INSERT INTO `banktransaction` (`id`, `bankId`, `transactionId`, `payerName`, `bookingId`, `note`, `refund`, `amount`, `bAccountNo`, `transactionDate`, `companyId`) VALUES
 (1, '2', '5387548375483', 'PD81O0VB', 'BO15FY9Z', 'bank booking', NULL, 320000, '0', '2021-10-29 10:57:59', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `booking_downtime`
+-- Table structure for table `bookingdowntime`
 --
 
-CREATE TABLE `booking_downtime` (
+CREATE TABLE `bookingdowntime` (
   `id` int(11) NOT NULL,
-  `reg_no` varchar(50) NOT NULL,
+  `regNo` varchar(50) NOT NULL,
   `downtime` varchar(20) NOT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company_info`
+-- Table structure for table `companyinfo`
 --
 
-CREATE TABLE `company_info` (
-  `company_id` int(11) NOT NULL,
-  `company_first_name` varchar(100) DEFAULT NULL,
-  `company_second_name` varchar(100) DEFAULT NULL,
-  `company_name` varchar(100) DEFAULT NULL,
-  `company_document_id` varchar(100) DEFAULT NULL,
-  `company_pic_document` varchar(100) DEFAULT NULL,
-  `company_picture` varchar(100) DEFAULT NULL,
-  `company_phone` varchar(100) DEFAULT NULL,
-  `company_mobile` varchar(100) DEFAULT NULL,
-  `company_email` varchar(100) DEFAULT NULL,
-  `company_address_line_1` varchar(100) DEFAULT NULL,
-  `company_address_line_2` varchar(100) DEFAULT NULL,
-  `company_address_city` varchar(100) DEFAULT NULL,
-  `company_address_zip_code` varchar(100) DEFAULT NULL,
-  `company_country` varchar(100) DEFAULT NULL,
+CREATE TABLE `companyinfo` (
+  `companyId` int(11) NOT NULL,
+  `companyFirstName` varchar(100) DEFAULT NULL,
+  `companySecondName` varchar(100) DEFAULT NULL,
+  `companyName` varchar(100) DEFAULT NULL,
+  `companyDocumentId` varchar(100) DEFAULT NULL,
+  `companyPicDocument` varchar(100) DEFAULT NULL,
+  `companyPicture` varchar(100) DEFAULT NULL,
+  `companyPhone` varchar(100) DEFAULT NULL,
+  `companyMobile` varchar(100) DEFAULT NULL,
+  `companyEmail` varchar(100) DEFAULT NULL,
+  `companyAddressLine1` varchar(100) DEFAULT NULL,
+  `companyAddressLine2` varchar(100) DEFAULT NULL,
+  `companyAddressCity` varchar(100) DEFAULT NULL,
+  `companyAddressZipCode` varchar(100) DEFAULT NULL,
+  `companyCountry` varchar(100) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
-  `company_id_user` varchar(100) DEFAULT NULL
+  `companyIdUser` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `company_info`
+-- Dumping data for table `companyinfo`
 --
 
-INSERT INTO `company_info` (`company_id`, `company_first_name`, `company_second_name`, `company_name`, `company_document_id`, `company_pic_document`, `company_picture`, `company_phone`, `company_mobile`, `company_email`, `company_address_line_1`, `company_address_line_2`, `company_address_city`, `company_address_zip_code`, `company_country`, `status`, `company_id_user`) VALUES
+INSERT INTO `companyinfo` (`companyId`, `companyFirstName`, `companySecondName`, `companyName`, `companyDocumentId`, `companyPicDocument`, `companyPicture`, `companyPhone`, `companyMobile`, `companyEmail`, `companyAddressLine1`, `companyAddressLine2`, `companyAddressCity`, `companyAddressZipCode`, `companyCountry`, `status`, `companyIdUser`) VALUES
 (4, 'Admin', 'Taradita', 'PT Taradita', '', NULL, NULL, 'PT Taradita', '', 'admin@taradita.com', '', '', 'admin@taradita.com', '', '', NULL, '5'),
 (5, 'Admin', 'Arfalanthur', 'PT Arfalanthur', '', NULL, NULL, '021 2736727', '', 'admin@arfalanthur.com', '', '', 'admin@arfalanthur.com', '', '', NULL, NULL),
 (6, 'Admin', 'Lorena', 'PT Karina', '', NULL, NULL, '021 37263726', '', 'admin@karina.com', '', '', 'admin@karina.com', '', '', NULL, NULL),
@@ -196,65 +196,65 @@ INSERT INTO `company_info` (`company_id`, `company_first_name`, `company_second_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email_config`
+-- Table structure for table `emailconfig`
 --
 
-CREATE TABLE `email_config` (
+CREATE TABLE `emailconfig` (
   `id` int(11) NOT NULL,
   `protocol` text NOT NULL,
-  `smtp_host` text NOT NULL,
-  `smtp_port` text NOT NULL,
-  `smtp_user` varchar(35) NOT NULL,
-  `smtp_pass` varchar(35) NOT NULL,
+  `smtpHost` text NOT NULL,
+  `smtpPort` text NOT NULL,
+  `smtpUser` varchar(35) NOT NULL,
+  `smtpPass` varchar(35) NOT NULL,
   `mailtype` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `email_config`
+-- Dumping data for table `emailconfig`
 --
 
-INSERT INTO `email_config` (`id`, `protocol`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `mailtype`) VALUES
+INSERT INTO `emailconfig` (`id`, `protocol`, `smtpHost`, `smtpPort`, `smtpUser`, `smtpPass`, `mailtype`) VALUES
 (1, 'smtp', 'mail.google.com', '465', 'hmisahaq01@gmail.com', 'hmisahaq01730164623', 'html');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee_history`
+-- Table structure for table `employeehistory`
 --
 
-CREATE TABLE `employee_history` (
+CREATE TABLE `employeehistory` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `second_name` varchar(30) DEFAULT NULL,
+  `firstName` varchar(30) DEFAULT NULL,
+  `secondName` varchar(30) DEFAULT NULL,
   `position` varchar(30) DEFAULT NULL,
-  `phone_no` varchar(30) DEFAULT NULL,
-  `email_no` varchar(30) DEFAULT NULL,
-  `document_id` varchar(30) DEFAULT NULL,
-  `document_pic` varchar(255) DEFAULT NULL,
-  `address_line_1` varchar(150) DEFAULT NULL,
-  `address_line_2` varchar(150) DEFAULT NULL,
+  `phoneNo` varchar(30) DEFAULT NULL,
+  `emailNo` varchar(30) DEFAULT NULL,
+  `documentId` varchar(30) DEFAULT NULL,
+  `documentPic` varchar(255) DEFAULT NULL,
+  `addressLine1` varchar(150) DEFAULT NULL,
+  `addressLine2` varchar(150) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
-  `blood_group` varchar(6) DEFAULT NULL,
+  `bloodGroup` varchar(6) DEFAULT NULL,
   `country` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `zip` varchar(20) DEFAULT NULL,
   `status` varchar(6) DEFAULT NULL,
-  `is_assign` tinyint(2) NOT NULL DEFAULT 0,
-  `company_id` varchar(100) DEFAULT NULL
+  `isAssign` tinyint(2) NOT NULL DEFAULT 0,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee_type`
+-- Table structure for table `employeetype`
 --
 
-CREATE TABLE `employee_type` (
-  `type_id` int(11) NOT NULL,
-  `type_name` varchar(30) DEFAULT NULL,
+CREATE TABLE `employeetype` (
+  `typeId` int(11) NOT NULL,
+  `typeName` varchar(30) DEFAULT NULL,
   `details` varchar(100) DEFAULT NULL,
   `status` varchar(5) DEFAULT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -264,100 +264,100 @@ CREATE TABLE `employee_type` (
 --
 
 CREATE TABLE `enquiry` (
-  `enquiry_id` int(11) NOT NULL,
+  `enquiryId` int(11) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `enquiry` text DEFAULT NULL,
   `checked` tinyint(1) DEFAULT NULL,
-  `ip_address` varchar(20) DEFAULT NULL,
-  `user_agent` varchar(255) DEFAULT NULL,
-  `checked_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `ipAddress` varchar(20) DEFAULT NULL,
+  `userAgent` varchar(255) DEFAULT NULL,
+  `checkedBy` int(11) DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fit_fitness`
+-- Table structure for table `fitfitness`
 --
 
-CREATE TABLE `fit_fitness` (
-  `fitness_id` int(11) NOT NULL,
-  `fitness_name` varchar(50) DEFAULT NULL,
-  `fitness_description` varchar(200) DEFAULT NULL
+CREATE TABLE `fitfitness` (
+  `fitnessId` int(11) NOT NULL,
+  `fitnessName` varchar(50) DEFAULT NULL,
+  `fitnessDescription` varchar(200) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fleet_category`
+-- Table structure for table `fleetcategory`
 --
 
-CREATE TABLE `fleet_category` (
+CREATE TABLE `fleetcategory` (
   `id` int(11) UNSIGNED NOT NULL,
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fleet_category`
+-- Dumping data for table `fleetcategory`
 --
 
-INSERT INTO `fleet_category` (`id`, `type`) VALUES
+INSERT INTO `fleetcategory` (`id`, `type`) VALUES
 (1, 'HiAce');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fleet_facilities`
+-- Table structure for table `fleetfacilities`
 --
 
-CREATE TABLE `fleet_facilities` (
+CREATE TABLE `fleetfacilities` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `company_id` varchar(100) DEFAULT NULL
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fleet_registration`
+-- Table structure for table `fleetregistration`
 --
 
-CREATE TABLE `fleet_registration` (
+CREATE TABLE `fleetregistration` (
   `id` int(11) UNSIGNED NOT NULL,
-  `reg_no` varchar(255) DEFAULT NULL,
-  `fleet_type_id` int(11) DEFAULT NULL,
-  `engine_no` varchar(255) DEFAULT NULL,
-  `model_no` varchar(255) DEFAULT NULL,
-  `chasis_no` varchar(255) DEFAULT NULL,
+  `regNo` varchar(255) DEFAULT NULL,
+  `fleetTypeId` int(11) DEFAULT NULL,
+  `engineNo` varchar(255) DEFAULT NULL,
+  `modelNo` varchar(255) DEFAULT NULL,
+  `chasisNo` varchar(255) DEFAULT NULL,
   `owner` varchar(255) DEFAULT NULL,
-  `owner_phone` varchar(30) DEFAULT NULL,
+  `ownerPhone` varchar(30) DEFAULT NULL,
   `company` varchar(255) DEFAULT NULL,
-  `ac_available` tinyint(1) DEFAULT NULL,
+  `acAvailable` tinyint(1) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `is_assign` tinyint(2) NOT NULL DEFAULT 0,
-  `company_id` varchar(100) DEFAULT NULL
+  `isAssign` tinyint(2) NOT NULL DEFAULT 0,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fleet_registration`
+-- Dumping data for table `fleetregistration`
 --
 
-INSERT INTO `fleet_registration` (`id`, `reg_no`, `fleet_type_id`, `engine_no`, `model_no`, `chasis_no`, `owner`, `owner_phone`, `company`, `ac_available`, `status`, `is_assign`, `company_id`) VALUES
+INSERT INTO `fleetregistration` (`id`, `regNo`, `fleetTypeId`, `engineNo`, `modelNo`, `chasisNo`, `owner`, `ownerPhone`, `company`, `acAvailable`, `status`, `isAssign`, `companyId`) VALUES
 (1, 'B 1235 HHJ', 1, '37468346387', '2017', '734638438', 'PT Taradita', '021 273672627', 'Toyota HiAce', 0, 1, 0, '4'),
 (2, 'B 1234 HHJ', 2, '37468346387', '2017', '734638438', 'PT Taradita', '021 273672627', 'Toyota HiAce', 0, 1, 0, '4');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fleet_type`
+-- Table structure for table `fleettype`
 --
 
-CREATE TABLE `fleet_type` (
+CREATE TABLE `fleettype` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `type` int(11) NOT NULL,
@@ -371,10 +371,10 @@ CREATE TABLE `fleet_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fleet_type`
+-- Dumping data for table `fleettype`
 --
 
-INSERT INTO `fleet_type` (`id`, `name`, `type`, `layout`, `lastSeat`, `totalSeat`, `seatNumbers`, `fleetFacilities`, `status`, `companyId`) VALUES
+INSERT INTO `fleettype` (`id`, `name`, `type`, `layout`, `lastSeat`, `totalSeat`, `seatNumbers`, `fleetFacilities`, `status`, `companyId`) VALUES
 (1, '4-8 Bangku', 1, 'hiace-8', '0', 8, 'A1, B1, B2, C1, C2, D1, D2, D3', NULL, 1, 4),
 (2, '4-10 Bangku', 1, 'hiace-10', '0', 10, 'A1, B1, B2, B3, C1, C2, C3, D1, D2, D3', NULL, 1, 4),
 (3, '-8 Bangku', 1, 'hiace-8', '0', 8, 'A1, B1, B2, C1, C2, D1, D2, D3', NULL, 1, 5),
@@ -384,35 +384,35 @@ INSERT INTO `fleet_type` (`id`, `name`, `type`, `layout`, `lastSeat`, `totalSeat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ftn_fitness_period`
+-- Table structure for table `ftnfitnessperiod`
 --
 
-CREATE TABLE `ftn_fitness_period` (
+CREATE TABLE `ftnfitnessperiod` (
   `id` int(11) NOT NULL,
-  `fitness_id` int(11) DEFAULT NULL,
-  `vehicle_id` int(11) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `start_milage` float DEFAULT NULL,
-  `end_milage` float DEFAULT NULL
+  `fitnessId` int(11) DEFAULT NULL,
+  `vehicleId` int(11) DEFAULT NULL,
+  `startDate` date DEFAULT NULL,
+  `endDate` date DEFAULT NULL,
+  `startMilage` float DEFAULT NULL,
+  `endMilage` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `how_to_use`
+-- Table structure for table `howtouse`
 --
 
-CREATE TABLE `how_to_use` (
+CREATE TABLE `howtouse` (
   `id` int(11) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `how_to_use`
+-- Dumping data for table `howtouse`
 --
 
-INSERT INTO `how_to_use` (`id`, `description`) VALUES
+INSERT INTO `howtouse` (`id`, `description`) VALUES
 (1, '<p>There is&nbsp; no information UUUU<img src=\"../../assets/tinymce/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>');
 
 -- --------------------------------------------------------
@@ -440,147 +440,147 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `indonesian`) VALUES
 (5, 'dashboard', 'Dashboard', 'Dashboard'),
 (6, 'home', 'HOME', 'Halaman Depan'),
 (7, 'profile', 'Profile', 'Profil'),
-(8, 'profile_setting', 'Profile Setting', 'Pengaturan Profil'),
+(8, 'profileSetting', 'Profile Setting', 'Pengaturan Profil'),
 (9, 'firstname', 'First Name', 'Nama Depan'),
 (10, 'lastname', 'Last Name', 'Nama Belakang'),
 (11, 'about', 'About', 'Tentang'),
 (12, 'preview', 'Preview', 'Lihat'),
 (13, 'image', 'Image', 'Gambar'),
 (14, 'save', 'Save', 'Simpan'),
-(15, 'upload_successfully', 'Upload Successfully!', 'Unggah Berhasil!'),
-(16, 'user_added_successfully', 'User Added Successfully!', 'Pengguna Berhasil Ditambahkan!'),
-(17, 'please_try_again', 'Please Try Again...', 'Silahkan Coba Lagi...'),
-(18, 'inbox_message', 'Inbox Messages', 'Pesan Kotak Masuk'),
-(19, 'sent_message', 'Sent Message', 'Pesan Terkirim'),
-(20, 'message_details', 'Message Details', 'Detail Pesan'),
-(21, 'new_message', 'New Message', 'Pesan baru'),
-(22, 'receiver_name', 'Receiver Name', 'Nama Penerima'),
-(23, 'sender_name', 'Sender Name', 'Nama pengirim'),
+(15, 'uploadSuccessfully', 'Upload Successfully!', 'Unggah Berhasil!'),
+(16, 'userAddedSuccessfully', 'User Added Successfully!', 'Pengguna Berhasil Ditambahkan!'),
+(17, 'pleaseTryAgain', 'Please Try Again...', 'Silahkan Coba Lagi...'),
+(18, 'inboxMessage', 'Inbox Messages', 'Pesan Kotak Masuk'),
+(19, 'sentMessage', 'Sent Message', 'Pesan Terkirim'),
+(20, 'messageDetails', 'Message Details', 'Detail Pesan'),
+(21, 'newMessage', 'New Message', 'Pesan baru'),
+(22, 'receiverName', 'Receiver Name', 'Nama Penerima'),
+(23, 'senderName', 'Sender Name', 'Nama pengirim'),
 (24, 'subject', 'Subject', 'Subjek'),
 (25, 'message', 'Message', 'Pesan'),
-(26, 'message_sent', 'Message Sent!', 'Pesan terkirim!'),
-(27, 'ip_address', 'IP Address', 'Alamat IP'),
-(28, 'last_login', 'Last Login', 'Login terakhir'),
-(29, 'last_logout', 'Last Logout', 'Logout Terakhir'),
+(26, 'messageSent', 'Message Sent!', 'Pesan terkirim!'),
+(27, 'ipAddress', 'IP Address', 'Alamat IP'),
+(28, 'lastLogin', 'Last Login', 'Login terakhir'),
+(29, 'lastLogout', 'Last Logout', 'Logout Terakhir'),
 (30, 'status', 'Status', 'Status'),
-(31, 'delete_successfully', 'Delete Successfully!', 'Berhasil Dihapus!'),
+(31, 'deleteSuccessfully', 'Delete Successfully!', 'Berhasil Dihapus!'),
 (32, 'send', 'Send', 'Kirim'),
 (33, 'date', 'Date', 'Tanggal'),
 (34, 'action', 'Action', 'Tindakan'),
-(35, 'sl_no', 'No.', 'No.'),
-(36, 'are_you_sure', 'Are You Sure ? ', 'Apakah Anda yakin ?'),
-(37, 'application_setting', 'Application Setting', 'Pengaturan Aplikasi'),
-(38, 'application_title', 'Application Title', 'Judul Aplikasi'),
+(35, 'slNo', 'No.', 'No.'),
+(36, 'areYouSure', 'Are You Sure ? ', 'Apakah Anda yakin ?'),
+(37, 'applicationSetting', 'Application Setting', 'Pengaturan Aplikasi'),
+(38, 'applicationTitle', 'Application Title', 'Judul Aplikasi'),
 (39, 'address', 'Address', 'Alamat'),
 (40, 'phone', 'Phone', 'Telepon'),
 (41, 'favicon', 'Favicon', 'Favicon'),
 (42, 'logo', 'Logo', 'Logo'),
 (43, 'language', 'Language', 'Bahasa'),
-(44, 'left_to_right', 'Left To Right', 'Left To Right'),
-(45, 'right_to_left', 'Right To Left', 'Right To Left'),
-(46, 'footer_text', 'Footer Text', 'Footer Text'),
-(47, 'site_align', 'Application Alignment', 'Penyelarasan Aplikasi'),
-(48, 'welcome_back', 'Welcome Back!', 'Selamat Datang kembali!'),
-(49, 'please_contact_with_admin', 'Please Contact With Admin', 'Silahkan Kontak Dengan Admin'),
-(50, 'incorrect_email_or_password', 'Incorrect Email/Password', 'Email/Kata Sandi Salah'),
-(51, 'select_option', 'Select Option', 'Pilih opsi'),
-(52, 'ftp_setting', 'Data Synchronize [FTP Setting]', 'Sinkronisasi Data [Pengaturan FTP]'),
+(44, 'leftToRight', 'Left To Right', 'Left To Right'),
+(45, 'rightToLeft', 'Right To Left', 'Right To Left'),
+(46, 'footerText', 'Footer Text', 'Footer Text'),
+(47, 'siteAlign', 'Application Alignment', 'Penyelarasan Aplikasi'),
+(48, 'welcomeBack', 'Welcome Back!', 'Selamat Datang kembali!'),
+(49, 'pleaseContactWithAdmin', 'Please Contact With Admin', 'Silahkan Kontak Dengan Admin'),
+(50, 'incorrectEmailOrPassword', 'Incorrect Email/Password', 'Email/Kata Sandi Salah'),
+(51, 'selectOption', 'Select Option', 'Pilih opsi'),
+(52, 'ftpSetting', 'Data Synchronize [FTP Setting]', 'Sinkronisasi Data [Pengaturan FTP]'),
 (53, 'hostname', 'Host Name', 'Host Name'),
 (54, 'username', 'User Name', 'User Name'),
-(55, 'ftp_port', 'FTP Port', 'FTP Port'),
-(56, 'ftp_debug', 'FTP Debug', 'FTP Debug'),
-(57, 'project_root', 'Project Root', 'Project Root'),
-(58, 'update_successfully', 'Update Successfully', 'Perbarui Berhasil'),
-(59, 'save_successfully', 'Save Successfully!', 'Simpan Berhasil!'),
-(61, 'internet_connection', 'Internet Connection', 'Koneksi internet'),
+(55, 'ftpPort', 'FTP Port', 'FTP Port'),
+(56, 'ftpDebug', 'FTP Debug', 'FTP Debug'),
+(57, 'projectRoot', 'Project Root', 'Project Root'),
+(58, 'updateSuccessfully', 'Update Successfully', 'Perbarui Berhasil'),
+(59, 'saveSuccessfully', 'Save Successfully!', 'Simpan Berhasil!'),
+(61, 'internetConnection', 'Internet Connection', 'Koneksi internet'),
 (62, 'ok', 'Ok', 'ok'),
-(63, 'not_available', 'Not Available', 'Not Available'),
+(63, 'notAvailable', 'Not Available', 'Not Available'),
 (64, 'available', 'Available', 'Tersedia'),
-(65, 'outgoing_file', 'Outgoing File', 'File Keluar'),
-(66, 'incoming_file', 'Incoming File', 'Berkas Masuk'),
-(67, 'data_synchronize', 'Data Synchronize', 'Sinkronisasi Data'),
-(68, 'unable_to_upload_file_please_check_configuration', 'Unable to upload file! please check configuration', 'Tidak dapat mengunggah file! silakan periksa konfigurasi'),
-(69, 'please_configure_synchronizer_settings', 'Please configure synchronizer settings', 'Harap konfigurasikan pengaturan sinkronisasi'),
-(70, 'download_successfully', 'Download Successfully', 'Unduh Berhasil'),
-(71, 'unable_to_download_file_please_check_configuration', 'Unable to download file! please check configuration', 'Tidak dapat mengunduh berkas! silakan periksa konfigurasi'),
-(72, 'data_import_first', 'Data Import First', 'Import Data Terlebih Dahulu'),
-(73, 'data_import_successfully', 'Data Import Successfully!', 'Daya Berhasil Diimport!'),
-(74, 'unable_to_import_data_please_check_config_or_sql_file', 'Unable to import data! please check configuration / SQL file.', 'Tidak dapat mengimpor data! silakan periksa konfigurasi / file SQL.'),
-(75, 'download_data_from_server', 'Download Data from Server', 'Download Data dari Server'),
-(76, 'data_import_to_database', 'Data Import To Database', 'Import Data Ke Database'),
-(77, 'data_upload_to_server', 'Data Upload to Server', 'Upload Data ke Server'),
-(78, 'please_wait', 'Please Wait...', 'Harap tunggu...'),
-(79, 'ooops_something_went_wrong', ' Ooops something went wrong...', 'Ups ada yang salah...'),
-(80, 'module_permission_list', 'Module Permission List', 'Daftar Izin Modul'),
-(81, 'user_permission', 'User Permission', 'Izin Pengguna'),
-(82, 'add_module_permission', 'Add Module Permission', 'Tambah Izin Modul'),
-(83, 'module_permission_added_successfully', 'Module Permission Added Successfully!', 'Izin Modul Berhasil Ditambahkan!'),
-(84, 'update_module_permission', 'Update Module Permission', 'Perbarui Izin Modul'),
+(65, 'outgoingFile', 'Outgoing File', 'File Keluar'),
+(66, 'incomingFile', 'Incoming File', 'Berkas Masuk'),
+(67, 'dataSynchronize', 'Data Synchronize', 'Sinkronisasi Data'),
+(68, 'unableToUploadFilePleaseCheckConfiguration', 'Unable to upload file! please check configuration', 'Tidak dapat mengunggah file! silakan periksa konfigurasi'),
+(69, 'pleaseConfigureSynchronizerSettings', 'Please configure synchronizer settings', 'Harap konfigurasikan pengaturan sinkronisasi'),
+(70, 'downloadSuccessfully', 'Download Successfully', 'Unduh Berhasil'),
+(71, 'unableToDownloadFilePleaseCheckConfiguration', 'Unable to download file! please check configuration', 'Tidak dapat mengunduh berkas! silakan periksa konfigurasi'),
+(72, 'dataImportFirst', 'Data Import First', 'Import Data Terlebih Dahulu'),
+(73, 'dataImportSuccessfully', 'Data Import Successfully!', 'Daya Berhasil Diimport!'),
+(74, 'unableToImportDataPleaseCheckConfigOrSqlFile', 'Unable to import data! please check configuration / SQL file.', 'Tidak dapat mengimpor data! silakan periksa konfigurasi / file SQL.'),
+(75, 'downloadDataFromServer', 'Download Data from Server', 'Download Data dari Server'),
+(76, 'dataImportToDatabase', 'Data Import To Database', 'Import Data Ke Database'),
+(77, 'dataUploadToServer', 'Data Upload to Server', 'Upload Data ke Server'),
+(78, 'pleaseWait', 'Please Wait...', 'Harap tunggu...'),
+(79, 'ooopsSomethingWentWrong', ' Ooops something went wrong...', 'Ups ada yang salah...'),
+(80, 'modulePermissionList', 'Module Permission List', 'Daftar Izin Modul'),
+(81, 'userPermission', 'User Permission', 'Izin Pengguna'),
+(82, 'addModulePermission', 'Add Module Permission', 'Tambah Izin Modul'),
+(83, 'modulePermissionAddedSuccessfully', 'Module Permission Added Successfully!', 'Izin Modul Berhasil Ditambahkan!'),
+(84, 'updateModulePermission', 'Update Module Permission', 'Perbarui Izin Modul'),
 (85, 'download', 'Download', 'Download'),
-(86, 'module_name', 'Module Name', 'Nama Modul'),
+(86, 'moduleName', 'Module Name', 'Nama Modul'),
 (87, 'create', 'Create', 'Buat'),
 (88, 'read', 'Read', 'Baca'),
 (89, 'update', 'Update', 'Edit'),
 (90, 'delete', 'Delete', 'Hapus'),
-(91, 'module_list', 'Module List', 'Daftar Modul'),
-(92, 'add_module', 'Add Module', 'Tambah Modul'),
+(91, 'moduleList', 'Module List', 'Daftar Modul'),
+(92, 'addModule', 'Add Module', 'Tambah Modul'),
 (93, 'directory', 'Module Direcotory', 'Module Direcotory'),
 (94, 'description', 'Description', 'Deskripsi'),
-(95, 'image_upload_successfully', 'Image Upload Successfully!', 'Unggah Gambar Berhasil!'),
-(96, 'module_added_successfully', 'Module Added Successfully', 'Modul Berhasil Ditambah'),
+(95, 'imageUploadSuccessfully', 'Image Upload Successfully!', 'Unggah Gambar Berhasil!'),
+(96, 'moduleAddedSuccessfully', 'Module Added Successfully', 'Modul Berhasil Ditambah'),
 (97, 'inactive', 'Inactive', 'Inacticve'),
 (98, 'active', 'Active', 'Aktif'),
-(99, 'user_list', 'User List', 'Daftar pengguna'),
-(100, 'see_all_message', 'See All Messages', 'Lihat Semua Pesan'),
+(99, 'userList', 'User List', 'Daftar pengguna'),
+(100, 'seeAllMessage', 'See All Messages', 'Lihat Semua Pesan'),
 (101, 'setting', 'Setting', 'Pengaturan'),
 (102, 'logout', 'LOGOUT', 'Logout'),
 (103, 'admin', 'Admin', 'Admin'),
-(104, 'add_user', 'Add User', 'Tambah Pengguna'),
+(104, 'addUser', 'Add User', 'Tambah Pengguna'),
 (105, 'user', 'User', 'Pengguna'),
 (106, 'module', 'Module', 'Module'),
 (107, 'new', 'New', 'Baru'),
 (108, 'inbox', 'Inbox', 'Kotak Masuk'),
 (109, 'sent', 'Sent', 'Kirim'),
 (110, 'synchronize', 'Synchronize', 'Synchronize'),
-(111, 'data_synchronizer', 'Data Synchronizer', 'Sinkronisasi Data'),
-(112, 'module_permission', 'Module Permission', 'Synchronize'),
-(113, 'backup_now', 'Backup Now!', 'Backup Sekarang!'),
-(114, 'restore_now', 'Restore Now!', 'Restore Now!'),
-(115, 'backup_and_restore', 'Data Backup', 'Data Backup'),
+(111, 'dataSynchronizer', 'Data Synchronizer', 'Sinkronisasi Data'),
+(112, 'modulePermission', 'Module Permission', 'Synchronize'),
+(113, 'backupNow', 'Backup Now!', 'Backup Sekarang!'),
+(114, 'restoreNow', 'Restore Now!', 'Restore Now!'),
+(115, 'backupAndRestore', 'Data Backup', 'Data Backup'),
 (116, 'captcha', 'Captcha Word', 'Captcha Word'),
-(117, 'database_backup', 'Database Backup', 'Backup Database'),
-(118, 'restore_successfully', 'Restore Successfully', 'Restore Successfully'),
-(119, 'backup_successfully', 'Backup Successfully', 'Backup Berhasil'),
+(117, 'databaseBackup', 'Database Backup', 'Backup Database'),
+(118, 'restoreSuccessfully', 'Restore Successfully', 'Restore Successfully'),
+(119, 'backupSuccessfully', 'Backup Successfully', 'Backup Berhasil'),
 (120, 'filename', 'File Name', 'File Name'),
-(121, 'file_information', 'File Information', 'File Information'),
+(121, 'fileInformation', 'File Information', 'File Information'),
 (122, 'size', 'Size', 'Ukuran'),
-(123, 'backup_date', 'Backup Date', 'Tanggal Backup'),
+(123, 'backupDate', 'Backup Date', 'Tanggal Backup'),
 (124, 'overwrite', 'Overwrite', 'Timpa'),
-(125, 'invalid_file', 'Invalid File!', 'Invalid File!'),
-(126, 'invalid_module', 'Invalid Module', 'Invalid Module'),
-(127, 'remove_successfully', 'Remove Successfully!', 'Hapus Berhasil!'),
+(125, 'invalidFile', 'Invalid File!', 'Invalid File!'),
+(126, 'invalidModule', 'Invalid Module', 'Invalid Module'),
+(127, 'removeSuccessfully', 'Remove Successfully!', 'Hapus Berhasil!'),
 (128, 'install', 'Install', 'Pasang'),
 (129, 'uninstall', 'Uninstall', 'Uninstall'),
-(130, 'tables_are_not_available_in_database', 'Tables are not available in database.sql', 'Tabel tidak tersedia di database.sql'),
-(131, 'no_tables_are_registered_in_config', 'No tables are registerd in config.php', 'Tidak ada tabel yang terdaftar di config.php'),
+(130, 'tablesAreNotAvailableInDatabase', 'Tables are not available in database.sql', 'Tabel tidak tersedia di database.sql'),
+(131, 'noTablesAreRegisteredInConfig', 'No tables are registerd in config.php', 'Tidak ada tabel yang terdaftar di config.php'),
 (132, 'enquiry', 'Enquiry', 'Pertanyaan'),
-(133, 'read_unread', 'Read/Unread', 'Read/Unread'),
-(134, 'enquiry_information', 'Enquiry Information', 'Enquiry Information'),
-(135, 'user_agent', 'User Agent', 'User Agent'),
-(136, 'checked_by', 'Checked By', 'Diperiksa Oleh'),
-(137, 'new_enquiry', 'New Enquiry', 'New Enquiry'),
+(133, 'readUnread', 'Read/Unread', 'Read/Unread'),
+(134, 'enquiryInformation', 'Enquiry Information', 'Enquiry Information'),
+(135, 'userAgent', 'User Agent', 'User Agent'),
+(136, 'checkedBy', 'Checked By', 'Diperiksa Oleh'),
+(137, 'newEnquiry', 'New Enquiry', 'New Enquiry'),
 (138, 'fleet', 'Fleet Management', 'Fleet Management'),
-(139, 'fleet_type', 'Fleet Type', 'Pilih Mobil'),
+(139, 'fleetType', 'Fleet Type', 'Pilih Mobil'),
 (140, 'add', 'Add', 'Tambah'),
 (141, 'list', 'List', 'List'),
-(142, 'fleet_facilities', 'Fleet Facilities', 'Fasilitas Armada'),
-(143, 'fleet_registration', 'Vehicles', 'Vehicles'),
-(144, 'reg_no', 'Registration No.', 'Plat Nomor'),
-(145, 'model_no', 'Model No.', 'Model No.'),
-(146, 'engine_no', 'Model No.', 'Nomor Mesin'),
-(147, 'chasis_no', 'Chasis No.', 'No Rangka'),
-(148, 'total_seat', 'Total Seat', 'Total Kursi'),
-(149, 'seat_numbers', 'Seat Number', 'Nomor Kursi'),
+(142, 'fleetFacilities', 'Fleet Facilities', 'Fasilitas Armada'),
+(143, 'fleetRegistration', 'Vehicles', 'Vehicles'),
+(144, 'regNo', 'Registration No.', 'Plat Nomor'),
+(145, 'modelNo', 'Model No.', 'Model No.'),
+(146, 'engineNo', 'Model No.', 'Nomor Mesin'),
+(147, 'chasisNo', 'Chasis No.', 'No Rangka'),
+(148, 'totalSeat', 'Total Seat', 'Total Kursi'),
+(149, 'seatNumbers', 'Seat Number', 'Nomor Kursi'),
 (150, 'owner', 'Owner', 'Pemilik'),
 (151, 'company', 'Company Name', 'Nama Perusahaan'),
 (152, 'trip', 'Trip Management', 'Manajemen Perjalanan'),
@@ -588,455 +588,455 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `indonesian`) VALUES
 (154, 'route', 'Route', 'Rute'),
 (155, 'assign', 'Assign', 'Tugaskan'),
 (156, 'close', 'Close Trip', 'Tutup Perjalanan'),
-(157, 'location_name', 'Destination Name', 'Nama Destinasi'),
-(158, 'google_map', 'Google Map', 'Google Map'),
-(159, 'start_point', 'Start Point', 'Dari'),
-(160, 'end_point', 'End Point', 'Ke'),
-(161, 'route_name', 'Route Name', 'Nama Rute'),
+(157, 'locationName', 'Destination Name', 'Nama Destinasi'),
+(158, 'googleMap', 'Google Map', 'Google Map'),
+(159, 'startPoint', 'Start Point', 'Dari'),
+(160, 'endPoint', 'End Point', 'Ke'),
+(161, 'routeName', 'Route Name', 'Nama Rute'),
 (162, 'distance', 'Distance', 'Jarak'),
-(163, 'approximate_time', 'Approximate Time', 'Perkiraan Waktu'),
-(164, 'stoppage_points', 'Stoppage Points', 'Poin Penghentian'),
-(165, 'fleet_registration_no', 'Fleet Registration No.', 'Nomor Registrasi Armada'),
-(166, 'start_date', 'Start Date', 'Tanggal Mulai'),
-(167, 'end_date', 'End Date', 'Tanggal Akhir'),
-(168, 'driver_name', 'Driver Name', 'Nama Driver'),
-(169, 'assistants_ids', 'Assistants', 'Asisten'),
-(170, 'sold_ticket', 'Sold Ticket', 'Tiket Habis'),
-(171, 'total_income', 'Total Income', 'Total Pemasukan'),
-(172, 'total_expense', 'Total Expense', 'Total Biaya'),
-(173, 'total_fuel', 'Total Fuel', 'Total BBM'),
-(174, 'trip_comment', 'Trip Comment', 'Trip Comment'),
-(175, 'closed_by', 'Closed by', 'Ditutup Oleh'),
+(163, 'approximateTime', 'Approximate Time', 'Perkiraan Waktu'),
+(164, 'stoppagePoints', 'Stoppage Points', 'Poin Penghentian'),
+(165, 'fleetRegistrationNo', 'Fleet Registration No.', 'Nomor Registrasi Armada'),
+(166, 'startDate', 'Start Date', 'Tanggal Mulai'),
+(167, 'endDate', 'End Date', 'Tanggal Akhir'),
+(168, 'driverName', 'Driver Name', 'Nama Driver'),
+(169, 'assistantsIds', 'Assistants', 'Asisten'),
+(170, 'soldTicket', 'Sold Ticket', 'Tiket Habis'),
+(171, 'totalIncome', 'Total Income', 'Total Pemasukan'),
+(172, 'totalExpense', 'Total Expense', 'Total Biaya'),
+(173, 'totalFuel', 'Total Fuel', 'Total BBM'),
+(174, 'tripComment', 'Trip Comment', 'Trip Comment'),
+(175, 'closedBy', 'Closed by', 'Ditutup Oleh'),
 (176, 'ticket', 'Ticket Management', 'Ticket Management'),
 (177, 'passenger', 'Passenger', 'Penumpang'),
-(178, 'middle_name', 'Middle Name', 'Nama tengah'),
-(179, 'date_of_birth', 'Date of Birth', 'Tanggal Lahir'),
-(180, 'passenger_id', 'Passenger ID.', 'Penumpang'),
-(181, 'address_line_1', 'Address Line 1', 'Baris Alamat 1'),
-(182, 'address_line_2', 'Address Line 2', 'Baris Alamat 2'),
-(184, 'zip_code', 'Zip Code', 'Kode Pos'),
+(178, 'middleName', 'Middle Name', 'Nama tengah'),
+(179, 'dateOfBirth', 'Date of Birth', 'Tanggal Lahir'),
+(180, 'passengerId', 'Passenger ID.', 'Penumpang'),
+(181, 'addressLine1', 'Address Line 1', 'Baris Alamat 1'),
+(182, 'addressLine2', 'Address Line 2', 'Baris Alamat 2'),
+(184, 'zipCode', 'Zip Code', 'Kode Pos'),
 (186, 'name', 'Name', 'Nama'),
-(187, 'ac_available', 'AC available', 'Account Available'),
-(188, 'trip_id', 'Trip ID.', 'ID Perjalanan'),
+(187, 'acAvailable', 'AC available', 'Account Available'),
+(188, 'tripId', 'Trip ID.', 'ID Perjalanan'),
 (189, 'book', 'Book', 'Pesan'),
-(190, 'booking_id', 'Booking ID.', 'ID. Pemesanan'),
-(191, 'available_seats', 'Available Seats', 'Kursi Tersedia'),
-(192, 'select_seats', 'Select Seats', 'Pilih Kursi'),
+(190, 'bookingId', 'Booking ID.', 'ID. Pemesanan'),
+(191, 'availableSeats', 'Available Seats', 'Kursi Tersedia'),
+(192, 'selectSeats', 'Select Seats', 'Pilih Kursi'),
 (193, 'time', 'Time', 'Waktu'),
-(194, 'offer_code', 'Offer Code', 'Kode Penawaran'),
+(194, 'offerCode', 'Offer Code', 'Kode Penawaran'),
 (195, 'price', 'Price', 'Harga'),
 (196, 'discount', 'Discount', 'Diskon'),
-(197, 'request_facilities', 'Request Facilities', 'Fasilitas Permintaan'),
-(198, 'pickup_location', 'Pickup Location', 'Lokasi penjemputan'),
-(199, 'drop_location', 'Drop Location', 'Lokasi Jemput'),
+(197, 'requestFacilities', 'Request Facilities', 'Fasilitas Permintaan'),
+(198, 'pickupLocation', 'Pickup Location', 'Lokasi penjemputan'),
+(199, 'dropLocation', 'Drop Location', 'Lokasi Jemput'),
 (200, 'amount', 'Amount', 'Jumlah'),
-(201, 'invalid_passenger_id', 'Invalid Passenger ID', 'Invalid Passenger ID'),
-(202, 'invalid_input', 'Invalid Input', 'Invalid Input'),
-(203, 'booking_date', 'Booking Date', 'Tanggal Pemesanan'),
-(204, 'cancelation_fees', 'Cancelation Fees', 'Biaya Pembatalan'),
+(201, 'invalidPassengerId', 'Invalid Passenger ID', 'Invalid Passenger ID'),
+(202, 'invalidInput', 'Invalid Input', 'Invalid Input'),
+(203, 'bookingDate', 'Booking Date', 'Tanggal Pemesanan'),
+(204, 'cancelationFees', 'Cancelation Fees', 'Biaya Pembatalan'),
 (205, 'causes', 'Causes', 'Penyebab'),
 (206, 'comment', 'Comment', 'Komentar'),
 (207, 'refund', 'Refund', 'Pengembalian dana'),
-(208, 'refund_by', 'Refund by', 'Pengembalian dana oleh'),
+(208, 'refundBy', 'Refund by', 'Pengembalian dana oleh'),
 (209, 'feedback', 'Feedback', 'Masukan'),
 (210, 'rating', 'Rating', 'Peringkat'),
-(211, 'blood_group', 'Blood Group', 'Golongan Darag'),
+(211, 'bloodGroup', 'Blood Group', 'Golongan Darag'),
 (212, 'religion', 'Religion', 'Agama'),
 (219, 'details', 'Details', 'Detail'),
-(220, 'type_name', 'Type Name', 'Ketik nama'),
-(221, 'view_details', 'View Details', 'View Detail'),
-(222, 'document_pic', 'Document Picture', 'Gambar Dokumen'),
-(223, 'fitness_list', 'Fitness List', 'Fitness List'),
-(226, 'fitness_name', 'Fitness Name', 'Fitness Name'),
-(227, 'fitness_description', 'Description', 'Deskripsi'),
-(228, 'successfully_updated', 'Your Data Successfully Updated', 'Data Anda Berhasil Diperbarui'),
-(229, 'fitness_period', 'Fitness Period List', 'Daftar Periode Kebugaran'),
-(230, 'fitness_id', 'Fitness Name', 'Fitness Name'),
-(231, 'vehicle_id', 'Vehicles No', 'Kendaraan Tidak'),
-(234, 'start_milage', 'Start Milage', 'Mulai Jarak tempuh'),
-(235, 'end_milage', 'End Milage', 'Milage Akhir'),
+(220, 'typeName', 'Type Name', 'Ketik nama'),
+(221, 'viewDetails', 'View Details', 'View Detail'),
+(222, 'documentPic', 'Document Picture', 'Gambar Dokumen'),
+(223, 'fitnessList', 'Fitness List', 'Fitness List'),
+(226, 'fitnessName', 'Fitness Name', 'Fitness Name'),
+(227, 'fitnessDescription', 'Description', 'Deskripsi'),
+(228, 'successfullyUpdated', 'Your Data Successfully Updated', 'Data Anda Berhasil Diperbarui'),
+(229, 'fitnessPeriod', 'Fitness Period List', 'Daftar Periode Kebugaran'),
+(230, 'fitnessId', 'Fitness Name', 'Fitness Name'),
+(231, 'vehicleId', 'Vehicles No', 'Kendaraan Tidak'),
+(234, 'startMilage', 'Start Milage', 'Mulai Jarak tempuh'),
+(235, 'endMilage', 'End Milage', 'Milage Akhir'),
 (236, 'agent', 'Agent', 'Agen'),
-(237, 'agent_first_name', 'First Name', 'Nama Depan'),
-(238, 'agent_second_name', 'LastName', 'Nama Belakang'),
-(240, 'agent_document_id', 'Document ID', 'ID Dokumen'),
-(241, 'agent_pic_document', 'Document File', 'File Dokumen'),
-(242, 'agent_phone', 'Phone', 'Telepon'),
-(243, 'agent_mobile', 'Mobile No', 'Plat Nomor'),
-(244, 'agent_email', 'Email', 'Email'),
-(245, 'agent_address_line_1', 'Address Line 1', 'Baris Alamat 1'),
-(246, 'agent_address_line_2', 'Address Line 2', 'Baris Alamat 2'),
-(247, 'agent_address_city', 'City', 'Kota'),
-(248, 'agent_address_zip_code', 'ZIP', 'Zip'),
-(249, 'agent_country', 'Country', 'Negara'),
+(237, 'agentFirstName', 'First Name', 'Nama Depan'),
+(238, 'agentSecondName', 'LastName', 'Nama Belakang'),
+(240, 'agentDocumentId', 'Document ID', 'ID Dokumen'),
+(241, 'agentPicDocument', 'Document File', 'File Dokumen'),
+(242, 'agentPhone', 'Phone', 'Telepon'),
+(243, 'agentMobile', 'Mobile No', 'Plat Nomor'),
+(244, 'agentEmail', 'Email', 'Email'),
+(245, 'agentAddressLine1', 'Address Line 1', 'Baris Alamat 1'),
+(246, 'agentAddressLine2', 'Address Line 2', 'Baris Alamat 2'),
+(247, 'agentAddressCity', 'City', 'Kota'),
+(248, 'agentAddressZipCode', 'ZIP', 'Zip'),
+(249, 'agentCountry', 'Country', 'Negara'),
 (252, 'sl', 'SL', 'SL'),
-(253, 'route_id', 'Route Name', 'Nama Rute'),
-(254, 'vehicle_type_id', 'Vehicle Type', 'Jenis Kendaraan'),
-(255, 'group_price_per_person', 'Group Price Per Person', 'Harga Grup Per Orang'),
-(256, 'group_size', 'Group Members', 'Group Members'),
-(257, 'successfully_saved', 'Your Data Successfully Saved', 'Data Anda Berhasil Disimpan'),
+(253, 'routeId', 'Route Name', 'Nama Rute'),
+(254, 'vehicleTypeId', 'Vehicle Type', 'Jenis Kendaraan'),
+(255, 'groupPricePerPerson', 'Group Price Per Person', 'Harga Grup Per Orang'),
+(256, 'groupSize', 'Group Members', 'Group Members'),
+(257, 'successfullySaved', 'Your Data Successfully Saved', 'Data Anda Berhasil Disimpan'),
 (258, 'account', 'Account', 'Akun'),
-(259, 'account_name', 'Account Name', 'Nama Akun'),
-(260, 'account_type', 'Account Type', 'Jenis Akun'),
-(261, 'account_transaction', 'Account Transaction', 'Transaksi Akun'),
-(262, 'account_id', 'Account Name', 'Nama Akun'),
-(263, 'transaction_description', 'Transaction Details', 'Detil transaksi'),
-(265, 'pass_book_id', 'Passenger ID', 'Passenger ID'),
-(267, 'payment_id', 'Payment ID', 'Payment ID'),
-(268, 'create_by_id', 'Created By', 'Dibuat Oleh'),
+(259, 'accountName', 'Account Name', 'Nama Akun'),
+(260, 'accountType', 'Account Type', 'Jenis Akun'),
+(261, 'accountTransaction', 'Account Transaction', 'Transaksi Akun'),
+(262, 'accountId', 'Account Name', 'Nama Akun'),
+(263, 'transactionDescription', 'Transaction Details', 'Detil transaksi'),
+(265, 'passBookId', 'Passenger ID', 'Passenger ID'),
+(267, 'paymentId', 'Payment ID', 'Payment ID'),
+(268, 'createById', 'Created By', 'Dibuat Oleh'),
 (269, 'offer', 'Offer', 'menawarkan'),
-(270, 'offer_name', 'Offer Name', 'nama_penawaran'),
-(271, 'offer_start_date', 'Offer Start Date', 'offer_start_date'),
-(272, 'offer_end_date', 'Offer Last Date', 'Offer Last Date'),
-(274, 'offer_discount', 'Discount', 'Diskon'),
-(275, 'offer_terms', 'Offer Terms', 'Ketentuan Penawaran'),
-(276, 'offer_route_id', 'Route Name', 'Nama Rute'),
-(277, 'offer_number', 'Offer Number', 'Nomor Penawaran'),
-(280, 'seat_number', 'Seat No', 'Nomor Kursi'),
-(281, 'available_seat', 'Available Seat', 'Kursi Tersedia'),
-(282, 'owner_name', 'Owner Name', 'Nama pemilik'),
-(283, 'agent_picture', 'Picture', 'Gambar'),
-(284, 'account_add', 'Add Account', 'Tambah Akun'),
-(285, 'add_agent', 'Add Agent', 'Tambah Agen'),
+(270, 'offerName', 'Offer Name', 'namaPenawaran'),
+(271, 'offerStartDate', 'Offer Start Date', 'offerStartDate'),
+(272, 'offerEndDate', 'Offer Last Date', 'Offer Last Date'),
+(274, 'offerDiscount', 'Discount', 'Diskon'),
+(275, 'offerTerms', 'Offer Terms', 'Ketentuan Penawaran'),
+(276, 'offerRouteId', 'Route Name', 'Nama Rute'),
+(277, 'offerNumber', 'Offer Number', 'Nomor Penawaran'),
+(280, 'seatNumber', 'Seat No', 'Nomor Kursi'),
+(281, 'availableSeat', 'Available Seat', 'Kursi Tersedia'),
+(282, 'ownerName', 'Owner Name', 'Nama pemilik'),
+(283, 'agentPicture', 'Picture', 'Gambar'),
+(284, 'accountAdd', 'Add Account', 'Tambah Akun'),
+(285, 'addAgent', 'Add Agent', 'Tambah Agen'),
 (286, 'hr', 'Human Resource', 'HRD'),
-(287, 'create_hr', 'Add Employee', 'Tambah Karyawan'),
+(287, 'createHr', 'Add Employee', 'Tambah Karyawan'),
 (288, 'serial', 'Sl', 'SI'),
 (289, 'position', 'Position', 'Position'),
-(290, 'phone_no', 'Phone No', 'Phone No'),
-(291, 'email_no', 'Email', 'Email'),
+(290, 'phoneNo', 'Phone No', 'Phone No'),
+(291, 'emailNo', 'Email', 'Email'),
 (292, 'picture', 'Picture', 'Gambar'),
-(293, 'first_name', 'First Name', 'Nama Lengkap'),
-(294, 'second_name', 'Last Name', 'Nama Belakang'),
-(295, 'document_id', 'Documet Id', 'ID Dokumen'),
+(293, 'firstName', 'First Name', 'Nama Lengkap'),
+(294, 'secondName', 'Last Name', 'Nama Belakang'),
+(295, 'documentId', 'Documet Id', 'ID Dokumen'),
 (298, 'country', 'Country', 'Negara'),
 (299, 'city', 'City', 'Kota'),
 (300, 'zip', 'Zip ', 'Zip'),
-(393, 'add_passenger', 'Add Passenger', 'Tambah Penumpang'),
-(394, 'search_tiket', 'Search Ticket', 'Cari Tiket'),
+(393, 'addPassenger', 'Add Passenger', 'Tambah Penumpang'),
+(394, 'searchTiket', 'Search Ticket', 'Cari Tiket'),
 (395, 'slogan', 'Slogan', 'Slogan'),
 (396, 'website', 'Website', 'Website'),
 (397, 'submit', 'Submit', 'Submit'),
-(398, 'customer_service', 'Customer Service', 'Customer Service'),
-(399, 'submit_successfully', 'Submit Successfully!', 'Submit Successfully!'),
-(400, 'add_to_website', 'Add to Website', 'Tambahkan ke Website'),
-(401, 'our_customers_say', 'Our Customers Say', 'Our Customers Say'),
-(402, 'website_status', 'Website Status', 'Website Status'),
+(398, 'customerService', 'Customer Service', 'Customer Service'),
+(399, 'submitSuccessfully', 'Submit Successfully!', 'Submit Successfully!'),
+(400, 'addToWebsite', 'Add to Website', 'Tambahkan ke Website'),
+(401, 'ourCustomersSay', 'Our Customers Say', 'Our Customers Say'),
+(402, 'websiteStatus', 'Website Status', 'Website Status'),
 (403, 'title', 'Title', 'Judul'),
-(405, 'total_fleet', 'Total Fleet', 'Jumlah Armada'),
-(406, 'total_passenger', 'Total Passenger', 'Jumlah Penumpang'),
-(407, 'todays_trip', 'Today\'s Trip', 'Perjalanan hari ini'),
-(408, 'seats_available', 'Seats Available', 'Kursi tersedia'),
-(409, 'no_trip_avaiable', 'No trip avaiable', 'Tidak ada perjalanan yang tersedia'),
+(405, 'totalFleet', 'Total Fleet', 'Jumlah Armada'),
+(406, 'totalPassenger', 'Total Passenger', 'Jumlah Penumpang'),
+(407, 'todaysTrip', 'Today\'s Trip', 'Perjalanan hari ini'),
+(408, 'seatsAvailable', 'Seats Available', 'Kursi tersedia'),
+(409, 'noTripAvaiable', 'No trip avaiable', 'Tidak ada perjalanan yang tersedia'),
 (410, 'booking', 'Booking', 'Pemesanan'),
-(411, 'something_went_worng', 'Something went worng!', 'Something went worng!'),
-(412, 'paypal_email', 'Paypal Email', 'Paypal Email'),
+(411, 'somethingWentWorng', 'Something went worng!', 'Something went worng!'),
+(412, 'paypalEmail', 'Paypal Email', 'Paypal Email'),
 (413, 'currency', 'Currency', 'Mata Uang'),
 (414, 'reports', 'Reports', 'Laporan'),
 (415, 'search', 'Search', 'Pencarian'),
 (417, 'go', 'Go', 'Go'),
 (418, 'all', 'All', 'Semua'),
 (419, 'filter', 'Filter', 'Filter'),
-(420, 'last_year_progress', 'Last Year Progress', 'Last Year Progress'),
-(421, 'download_document', 'Download Document', 'Download Document'),
+(420, 'lastYearProgress', 'Last Year Progress', 'Last Year Progress'),
+(421, 'downloadDocument', 'Download Document', 'Download Document'),
 (422, 'mobile', 'Mobile No.', 'Mobile No.'),
-(424, 'account_list', 'Account List', 'List Akun'),
-(425, 'add_income', 'Add Income', 'Tambah Pendapatan'),
-(426, 'add_expense', 'Add Expense', 'Tambah Pengeluaran'),
-(427, 'agent_list', 'Agent List', 'List Agen'),
-(428, 'add_fitness', 'Add Fitness', 'Tambah Maintenance'),
+(424, 'accountList', 'Account List', 'List Akun'),
+(425, 'addIncome', 'Add Income', 'Tambah Pendapatan'),
+(426, 'addExpense', 'Add Expense', 'Tambah Pengeluaran'),
+(427, 'agentList', 'Agent List', 'List Agen'),
+(428, 'addFitness', 'Add Fitness', 'Tambah Maintenance'),
 (429, 'fitness', 'Fitness', 'Fitness'),
-(430, 'add_fitness_period', 'Add Fitness Period', 'Add Fitness Period'),
-(431, 'employee_type', 'Employee Type', 'Employee Type'),
-(432, 'employee_list', 'Employee List', 'Employee List'),
-(433, 'add_offer', 'Add Offer', 'Tambah Penawaran'),
-(434, 'offer_list', 'Offer List', 'Offer List'),
-(435, 'add_price', 'Add Price', 'Tambah Harga'),
-(436, 'price_list', 'Price List', 'Price List'),
+(430, 'addFitnessPeriod', 'Add Fitness Period', 'Add Fitness Period'),
+(431, 'employeeType', 'Employee Type', 'Employee Type'),
+(432, 'employeeList', 'Employee List', 'Employee List'),
+(433, 'addOffer', 'Add Offer', 'Tambah Penawaran'),
+(434, 'offerList', 'Offer List', 'Offer List'),
+(435, 'addPrice', 'Add Price', 'Tambah Harga'),
+(436, 'priceList', 'Price List', 'Price List'),
 (437, 'layout', 'Layout', 'Layout'),
-(438, 'last_seat_availabe', 'Last Seat Available', 'Kursi Terakhir Tersedia'),
-(439, 'paypal_transaction', 'Paypal Transaction', 'Paypal Transaction'),
+(438, 'lastSeatAvailabe', 'Last Seat Available', 'Kursi Terakhir Tersedia'),
+(439, 'paypalTransaction', 'Paypal Transaction', 'Paypal Transaction'),
 (440, 'enable', 'Enable', 'Enable'),
 (441, 'disable', 'Disable', 'Nonaktifkan'),
-(442, 'payment_gateway', 'Payment Gateway', 'Payment Gateway'),
-(443, 'payment_type', 'Payment Type', 'Payment Gateway'),
-(444, 'payment_status', 'Payment Status', 'Payment Status'),
+(442, 'paymentGateway', 'Payment Gateway', 'Payment Gateway'),
+(443, 'paymentType', 'Payment Type', 'Payment Gateway'),
+(444, 'paymentStatus', 'Payment Status', 'Payment Status'),
 (445, 'downtime', 'Down Time', 'Down Time'),
-(446, 'select_bus', 'Select Bus', 'Pilih Bus'),
-(447, 'user_info', 'Passenger Information', 'Informasi Penumpang'),
-(448, 'personal_info', 'Personal Information', 'Informasi pribadi'),
-(449, 'booking_info', 'Booking Information', 'Informasi Pemesanan'),
-(450, 'update_your_profile', 'Edit your Profile', 'Sunting profilmu'),
-(451, 'email_configue', 'Email Configuration', 'Sunting profilmu'),
+(446, 'selectBus', 'Select Bus', 'Pilih Bus'),
+(447, 'userInfo', 'Passenger Information', 'Informasi Penumpang'),
+(448, 'personalInfo', 'Personal Information', 'Informasi pribadi'),
+(449, 'bookingInfo', 'Booking Information', 'Informasi Pemesanan'),
+(450, 'updateYourProfile', 'Edit your Profile', 'Sunting profilmu'),
+(451, 'emailConfigue', 'Email Configuration', 'Sunting profilmu'),
 (452, 'protocol', 'Protocol', 'Protocol'),
-(453, 'smtp_host', 'SMTP Host', 'SMTP Host'),
-(454, 'smtp_port', 'SMTP Port', 'SMTP Port'),
-(455, 'smtp_pass', 'SMTP Password', 'SMTP Password'),
+(453, 'smtpHost', 'SMTP Host', 'SMTP Host'),
+(454, 'smtpPort', 'SMTP Port', 'SMTP Port'),
+(455, 'smtpPass', 'SMTP Password', 'SMTP Password'),
 (456, 'mailtype', 'Mail Type', 'Mail Type'),
-(457, 'smtp_user', 'SMTP User', 'SMTP User'),
+(457, 'smtpUser', 'SMTP User', 'SMTP User'),
 (458, 'html', 'Html', 'HTML'),
 (459, 'text', 'Text', 'Text'),
-(460, 'email_send_to_passenger', ' Email Sent Sucessfully', 'Email berhasil dikirim'),
+(460, 'emailSendToPassenger', ' Email Sent Sucessfully', 'Email berhasil dikirim'),
 (461, 'bank', 'Bank Information', 'Informasi Bank'),
 (462, 'instruction', 'Instruction', 'Petunjuk'),
-(463, 'account_details', 'Account Details', 'Detail Akun'),
-(464, 'bank_logo', 'Bank Logo', 'Logo Bank'),
-(465, 'bank_name', 'Bank Name', 'Nama Bank'),
-(466, 'bank_trans', 'Bank', 'Bank'),
-(467, 'transaction_successfully_send', 'Your Information successfully Send', 'Informasi Anda berhasil Kirim'),
+(463, 'accountDetails', 'Account Details', 'Detail Akun'),
+(464, 'bankLogo', 'Bank Logo', 'Logo Bank'),
+(465, 'bankName', 'Bank Name', 'Nama Bank'),
+(466, 'bankTrans', 'Bank', 'Bank'),
+(467, 'transactionSuccessfullySend', 'Your Information successfully Send', 'Informasi Anda berhasil Kirim'),
 (468, 'confirmation', 'Confirmation', 'Konfirmasi'),
-(469, 'account_no', 'Account No', 'No. Akun'),
-(470, 'transaction_no', 'Transaction No', 'Transaction No'),
+(469, 'accountNo', 'Account No', 'No. Akun'),
+(470, 'transactionNo', 'Transaction No', 'Transaction No'),
 (471, 'paypal', 'Paypal', 'Paypal'),
 (472, 'cash', 'Cash', 'Cash'),
-(473, 'paypal_checkout', 'Paypal Checkout', 'Paypal Checkout'),
-(474, 'confirm_banking', 'Confirm Banking', 'Konfirmasi bank'),
-(475, 'payment_information', 'Payment Information', 'Informasi Pembayaran'),
-(476, 'email_gritting', 'Congratulation Mr.', 'Selamat Bpk/Ibu.'),
-(477, 'email_ticket_idinfo', 'Your Purchase Ticket No-', 'Tiket Pembelian Anda No-'),
-(478, 'ticket_confirmation', 'Unpaid Bank Booking List', 'Daftar Pemesanan Bank yang Belum Dibayar'),
+(473, 'paypalCheckout', 'Paypal Checkout', 'Paypal Checkout'),
+(474, 'confirmBanking', 'Confirm Banking', 'Konfirmasi bank'),
+(475, 'paymentInformation', 'Payment Information', 'Informasi Pembayaran'),
+(476, 'emailGritting', 'Congratulation Mr.', 'Selamat Bpk/Ibu.'),
+(477, 'emailTicketIdinfo', 'Your Purchase Ticket No-', 'Tiket Pembelian Anda No-'),
+(478, 'ticketConfirmation', 'Unpaid Bank Booking List', 'Daftar Pemesanan Bank yang Belum Dibayar'),
 (479, 'deny', 'Deny', 'Tolak'),
 (480, 'confirm', 'CONFIRM', 'KONFIRMASI'),
 (481, 'note', 'Note', 'Catatan'),
-(482, 'accournt_no', 'Account Number', 'Nomor Rekening'),
-(483, 'payer_name', 'Payer Name', 'Nama Pembayar'),
-(484, 'accournt_non', 'Account Number', 'Nomor Rekening'),
-(485, 'confirm_booking', 'Confirm Booking', 'Konfirmasi Pemesanan'),
-(486, 'account_num', 'Account Number', 'Nomor Rekening'),
-(487, 'invalid_logo', 'Invalid Logo, Please upload gif|jpg|png|jpeg|ico type image', 'Invalid Logo, Please upload gif|jpg|png|jpeg|ico type image'),
-(488, 'invalid_favicon', 'Invalid Favicon, Please upload gif|jpg|png|jpeg|ico type image', 'Invalid Favicon, Please upload gif|jpg|png|jpeg|ico type image'),
-(489, 'print_ticket', 'Print Ticket', 'Cetak Tiket'),
-(490, 'cancel_ticket', 'Cancel Ticket', 'Batalkan Tiket'),
-(491, 'email_not_send', 'Email Not Send', 'Email Tidak Terkirim'),
+(482, 'accourntNo', 'Account Number', 'Nomor Rekening'),
+(483, 'payerName', 'Payer Name', 'Nama Pembayar'),
+(484, 'accourntNon', 'Account Number', 'Nomor Rekening'),
+(485, 'confirmBooking', 'Confirm Booking', 'Konfirmasi Pemesanan'),
+(486, 'accountNum', 'Account Number', 'Nomor Rekening'),
+(487, 'invalidLogo', 'Invalid Logo, Please upload gif|jpg|png|jpeg|ico type image', 'Invalid Logo, Please upload gif|jpg|png|jpeg|ico type image'),
+(488, 'invalidFavicon', 'Invalid Favicon, Please upload gif|jpg|png|jpeg|ico type image', 'Invalid Favicon, Please upload gif|jpg|png|jpeg|ico type image'),
+(489, 'printTicket', 'Print Ticket', 'Cetak Tiket'),
+(490, 'cancelTicket', 'Cancel Ticket', 'Batalkan Tiket'),
+(491, 'emailNotSend', 'Email Not Send', 'Email Tidak Terkirim'),
 (492, 'timezone', 'Time Zone', 'Time Zone'),
-(493, 'menu_permission_form', 'Menu Permission Form', 'Menu Permission Form'),
-(494, 'permission_setup', 'Permission setup', 'Permission setup'),
-(495, 'menu_permission_list', 'Menu Permission List', 'Menu Permission List'),
-(496, 'add_fleet_type', 'Add Fleet Type', 'Tambah Jenis Armada'),
-(497, 'fleet_type_list', 'Fleet Type List', 'Daftar Jenis Armada'),
-(498, 'add_facilities', 'Add Facilities', 'Tambah Fasilitas'),
-(499, 'facilities_list', 'Facilities List', 'Daftar Fasilitas'),
-(500, 'add_registration', 'Add Vehicle', 'Tambah Kendaraan'),
-(501, 'registration_list', 'Vehicle List', 'Daftar Kendaraan'),
-(502, 'refund_list', 'Refund List', 'Daftar pengembalian dana'),
-(503, 'add_refund', 'Add Refund', 'Tambah Refund'),
-(504, 'booking_list', 'Booking List', 'List Pemesanan'),
-(505, 'add_booking', 'Add Booking', 'Tambah Pemesanan'),
-(506, 'passenger_list', 'Passenger List', 'Daftar Penumpang'),
-(507, 'assign_list', 'Assignment List', 'List Penugasan'),
-(508, 'close_list', 'Close List', 'List Penutupan'),
-(509, 'add_assign', 'Assign Vehicle To Trip', 'Tugaskan Kendaraan ke Perjalanan'),
-(510, 'route_list', 'Route List', 'Daftar Rute'),
-(511, 'add_route', 'Add Route', 'Tambah Rute'),
-(512, 'location_list', 'Destination List', 'List Destinasi'),
-(513, 'add_location', 'Add Destination', 'Tambah Lokasi'),
-(514, 'add_role', 'Add Role', 'Tambah Role'),
-(515, 'add_bank', 'Add Bank', 'Tambah Bank'),
-(516, 'bank_list', 'Bank List', 'List Bank'),
-(517, 'role_name', 'Role Name', 'Nama peran'),
-(518, 'role_description', 'Role Description', 'Role Description'),
-(519, 'role_list', 'Role List', 'Daftar Peran'),
-(520, 'user_access_role', 'User Access Role', 'Peran Akses Pengguna'),
+(493, 'menuPermissionForm', 'Menu Permission Form', 'Menu Permission Form'),
+(494, 'permissionSetup', 'Permission setup', 'Permission setup'),
+(495, 'menuPermissionList', 'Menu Permission List', 'Menu Permission List'),
+(496, 'addFleetType', 'Add Fleet Type', 'Tambah Jenis Armada'),
+(497, 'fleetTypeList', 'Fleet Type List', 'Daftar Jenis Armada'),
+(498, 'addFacilities', 'Add Facilities', 'Tambah Fasilitas'),
+(499, 'facilitiesList', 'Facilities List', 'Daftar Fasilitas'),
+(500, 'addRegistration', 'Add Vehicle', 'Tambah Kendaraan'),
+(501, 'registrationList', 'Vehicle List', 'Daftar Kendaraan'),
+(502, 'refundList', 'Refund List', 'Daftar pengembalian dana'),
+(503, 'addRefund', 'Add Refund', 'Tambah Refund'),
+(504, 'bookingList', 'Booking List', 'List Pemesanan'),
+(505, 'addBooking', 'Add Booking', 'Tambah Pemesanan'),
+(506, 'passengerList', 'Passenger List', 'Daftar Penumpang'),
+(507, 'assignList', 'Assignment List', 'List Penugasan'),
+(508, 'closeList', 'Close List', 'List Penutupan'),
+(509, 'addAssign', 'Assign Vehicle To Trip', 'Tugaskan Kendaraan ke Perjalanan'),
+(510, 'routeList', 'Route List', 'Daftar Rute'),
+(511, 'addRoute', 'Add Route', 'Tambah Rute'),
+(512, 'locationList', 'Destination List', 'List Destinasi'),
+(513, 'addLocation', 'Add Destination', 'Tambah Lokasi'),
+(514, 'addRole', 'Add Role', 'Tambah Role'),
+(515, 'addBank', 'Add Bank', 'Tambah Bank'),
+(516, 'bankList', 'Bank List', 'List Bank'),
+(517, 'roleName', 'Role Name', 'Nama peran'),
+(518, 'roleDescription', 'Role Description', 'Role Description'),
+(519, 'roleList', 'Role List', 'Daftar Peran'),
+(520, 'userAccessRole', 'User Access Role', 'Peran Akses Pengguna'),
 (521, 'role', 'Role', 'Role'),
-(522, 'role_permission', 'Role Permission', 'Role Permission'),
-(523, 'web_setting', 'Web Setting', 'Web Setting'),
-(524, 'ticket_offer', 'Ticket Offer', 'Ticket Offer'),
+(522, 'rolePermission', 'Role Permission', 'Role Permission'),
+(523, 'webSetting', 'Web Setting', 'Web Setting'),
+(524, 'ticketOffer', 'Ticket Offer', 'Ticket Offer'),
 (525, 'shedules', 'Shedules', 'Shedules'),
-(526, 'add_shedule', 'Add Shedule', 'Tambah Jadwal'),
-(527, 'shedule_list', 'Shedule LIst', 'Shedule List'),
-(528, 'shedule_time', 'Shedule Time', 'Jadwalkan Waktu'),
-(529, 'travel_slogan', 'On the placess you\'ll go', 'Di tempat-tempat yang akan Anda kunjungi'),
-(530, 'travel_sub_slogan', 'It is not down in any map; true place naver are.', 'Itu tidak ada di peta mana pun; tempat yang benar naver adalah.'),
-(531, 'search_tour', 'Search Tours', 'Cari Tur'),
-(532, 'find_dream', 'Find your dream tour today!', 'Temukan tur impian Anda hari ini!'),
-(533, 'find_now', 'Find now!', 'Cari'),
+(526, 'addShedule', 'Add Shedule', 'Tambah Jadwal'),
+(527, 'sheduleList', 'Shedule LIst', 'Shedule List'),
+(528, 'sheduleTime', 'Shedule Time', 'Jadwalkan Waktu'),
+(529, 'travelSlogan', 'On the placess you\'ll go', 'Di tempat-tempat yang akan Anda kunjungi'),
+(530, 'travelSubSlogan', 'It is not down in any map; true place naver are.', 'Itu tidak ada di peta mana pun; tempat yang benar naver adalah.'),
+(531, 'searchTour', 'Search Tours', 'Cari Tur'),
+(532, 'findDream', 'Find your dream tour today!', 'Temukan tur impian Anda hari ini!'),
+(533, 'findNow', 'Find now!', 'Cari'),
 (534, 'start', 'Start', 'Mulai'),
 (535, 'end', 'End', 'Selesai'),
-(536, 'paypal_payment_paynow', 'PAYPAL PAY NOW', 'Paypal pay now'),
-(537, 'passenger_name', 'Passenger Name', 'Nama Penumpang'),
+(536, 'paypalPaymentPaynow', 'PAYPAL PAY NOW', 'Paypal pay now'),
+(537, 'passengerName', 'Passenger Name', 'Nama Penumpang'),
 (538, 'facilities', 'Facilities', 'Fasilitas'),
-(539, 'seat_name', 'Seat Name', 'Nama Kursi'),
+(539, 'seatName', 'Seat Name', 'Nama Kursi'),
 (540, 'adult', 'Adult', 'Dewasa'),
 (541, 'child', 'Child', 'Anak'),
 (542, 'special', 'Special', 'Spesial'),
-(543, 'grand_total', 'Grand Total', 'Total keseluruhan'),
-(544, 'book_for_one_hour', 'Book For One Hour', 'Pesan Selama Satu Jam'),
-(545, 'unpaid_cash_booking_list', 'Unpaid Cash Booking List', 'Daftar Pemesanan Tunai yang Belum Dibayar'),
-(546, 'bank_transaction', 'Bank Transaction', 'Transaksi Bank'),
-(547, 'payment_term_andcondition', 'Payment Terms & Conditions', 'Syarat & Ketentuan Pembayaran'),
-(548, 'add_terms', 'Add Terms', 'Tambah Kebijakan'),
-(549, 'terms_list', 'Terms & Condition', 'Syarat & Ketentuan'),
-(550, 'how_to_pay', 'How to Pay', 'Bagaimana cara membayar'),
-(551, 'terms_and_condition', 'Terms And Conditions', 'Syarat dan Ketentuan'),
+(543, 'grandTotal', 'Grand Total', 'Total keseluruhan'),
+(544, 'bookForOneHour', 'Book For One Hour', 'Pesan Selama Satu Jam'),
+(545, 'unpaidCashBookingList', 'Unpaid Cash Booking List', 'Daftar Pemesanan Tunai yang Belum Dibayar'),
+(546, 'bankTransaction', 'Bank Transaction', 'Transaksi Bank'),
+(547, 'paymentTermAndcondition', 'Payment Terms & Conditions', 'Syarat & Ketentuan Pembayaran'),
+(548, 'addTerms', 'Add Terms', 'Tambah Kebijakan'),
+(549, 'termsList', 'Terms & Condition', 'Syarat & Ketentuan'),
+(550, 'howToPay', 'How to Pay', 'Bagaimana cara membayar'),
+(551, 'termsAndCondition', 'Terms And Conditions', 'Syarat dan Ketentuan'),
 (552, 'nid', 'National ID', 'National ID'),
-(553, 'add_trip', 'Create Trip', 'Buat Perjalanan'),
+(553, 'addTrip', 'Create Trip', 'Buat Perjalanan'),
 (554, 'trips', 'Trips', 'Perjalanan'),
-(555, 'trip_list', 'Trip LIst', 'Daftar Perjalanan'),
-(556, 'trip_title', 'Trip Title', 'Judul Perjalanan'),
+(555, 'tripList', 'Trip LIst', 'Daftar Perjalanan'),
+(556, 'tripTitle', 'Trip Title', 'Judul Perjalanan'),
 (557, 'types', 'Types', 'Types'),
 (558, 'assigns', 'Assign', 'Tugaskan'),
-(559, 'see_all', 'See All', 'See All'),
-(560, 'no_o_ticket', 'NO of Tickts', 'Tidak Ada Tiket'),
+(559, 'seeAll', 'See All', 'See All'),
+(560, 'noOTicket', 'NO of Tickts', 'Tidak Ada Tiket'),
 (561, 'seats', 'Seat(s)', 'Kursi'),
 (562, 'prices', 'Price(s)', 'Harga'),
-(563, 'group_price', 'Group Price', 'Harga Kelompok'),
+(563, 'groupPrice', 'Group Price', 'Harga Kelompok'),
 (564, 'total', 'Total', 'Total'),
-(565, 'passenger_details', 'Passenger Details', 'Detail Penumpang'),
-(566, 'journey_details', 'Journey Details', 'Detail Perjalanan'),
-(567, 'term_n_condition', 'Term & Condition', 'Syarat & Ketentuan'),
-(568, 'enter_login_info', 'Enter Your Login Info', 'Enter Your Login Info'),
-(569, 'select_bank_name', 'Select Bank Name', 'Pilih Nama Bank'),
-(570, 'enter_transaction_id', 'Enter Transaction Id', 'Enter Transaction Id'),
-(571, 'booked_seat', 'Booked Seat', 'Kursi Dipesan'),
-(572, 'selected_seat', 'Selected Seat', 'Pilih Kursi'),
+(565, 'passengerDetails', 'Passenger Details', 'Detail Penumpang'),
+(566, 'journeyDetails', 'Journey Details', 'Detail Perjalanan'),
+(567, 'termNCondition', 'Term & Condition', 'Syarat & Ketentuan'),
+(568, 'enterLoginInfo', 'Enter Your Login Info', 'Enter Your Login Info'),
+(569, 'selectBankName', 'Select Bank Name', 'Pilih Nama Bank'),
+(570, 'enterTransactionId', 'Enter Transaction Id', 'Enter Transaction Id'),
+(571, 'bookedSeat', 'Booked Seat', 'Kursi Dipesan'),
+(572, 'selectedSeat', 'Selected Seat', 'Pilih Kursi'),
 (573, 'operator', 'Operator', 'Operator'),
 (574, 'fare', 'Fare', 'Fare'),
 (575, 'arrival', 'Arrival', 'Perkiraan <br>Tiba'),
 (576, 'departure', 'Departure', 'Keberangkatan'),
 (577, 'duration', 'Duration', 'Durasi'),
-(578, 'no_of_ticket', 'No Of tickets', 'Tarif'),
-(579, 'special_fare', 'Special Price', 'Harga Spesial'),
-(580, 'child_fare', 'Children Fare', 'Tarif Anak'),
-(581, 'adult_fare', 'Adult Fare', 'Tarif '),
-(582, 'ticket_information', 'Ticket Information', 'Informasi Tiket'),
-(583, 'brand_name', 'Brand Name', 'Nama Brand'),
-(584, 'children_seat', 'Children Seat', 'Kursi Anak'),
-(585, 'special_seat', 'Special Seat', 'Kursi Spesial'),
-(586, 'menu_item_list', 'Menu Item List', 'Menu Item List'),
-(587, 'parent_menu', 'Parent Menu', 'Parent Menu'),
-(588, 'page_url', 'Page Url', 'Page Url'),
-(589, 'menu_title', 'Menu title', 'Menu title'),
-(590, 'ins_menu_for_application', 'Insert Menu for the application', 'Insert Menu for the application'),
-(591, 'yearly_progressbar', 'Yearly Progress Bar', 'Yearly Progress Bar'),
-(592, 'child_price', 'Child Price', 'Tarif Anak'),
-(593, 'adult_price', 'Adult Price', 'Tarif'),
-(594, 'special_price', 'Special Price', 'Special Price'),
-(595, 'how_to_use', 'HOW TO USE', 'Cara Penggunaan'),
-(596, 'bank_commission', 'Bank Commission', 'Komisi Bank'),
-(597, 'bank_charge', 'Bank Charge', 'Biaya Bank'),
+(578, 'noOfTicket', 'No Of tickets', 'Tarif'),
+(579, 'specialFare', 'Special Price', 'Harga Spesial'),
+(580, 'childFare', 'Children Fare', 'Tarif Anak'),
+(581, 'adultFare', 'Adult Fare', 'Tarif '),
+(582, 'ticketInformation', 'Ticket Information', 'Informasi Tiket'),
+(583, 'brandName', 'Brand Name', 'Nama Brand'),
+(584, 'childrenSeat', 'Children Seat', 'Kursi Anak'),
+(585, 'specialSeat', 'Special Seat', 'Kursi Spesial'),
+(586, 'menuItemList', 'Menu Item List', 'Menu Item List'),
+(587, 'parentMenu', 'Parent Menu', 'Parent Menu'),
+(588, 'pageUrl', 'Page Url', 'Page Url'),
+(589, 'menuTitle', 'Menu title', 'Menu title'),
+(590, 'insMenuForApplication', 'Insert Menu for the application', 'Insert Menu for the application'),
+(591, 'yearlyProgressbar', 'Yearly Progress Bar', 'Yearly Progress Bar'),
+(592, 'childPrice', 'Child Price', 'Tarif Anak'),
+(593, 'adultPrice', 'Adult Price', 'Tarif'),
+(594, 'specialPrice', 'Special Price', 'Special Price'),
+(595, 'howToUse', 'HOW TO USE', 'Cara Penggunaan'),
+(596, 'bankCommission', 'Bank Commission', 'Komisi Bank'),
+(597, 'bankCharge', 'Bank Charge', 'Biaya Bank'),
 (598, 'type', 'Type', 'Type'),
-(599, 'amount_paid', 'Amount Paid', 'Jumlah Dibayar'),
-(600, 'txn_id', 'TXN ID', 'TXN ID'),
-(601, 'item_number', 'Item Number', 'Nomor Barang'),
-(602, 'paument_success_message', 'Your Payment Successfully Paid', 'Pembayaran Anda Berhasil Dibayar'),
+(599, 'amountPaid', 'Amount Paid', 'Jumlah Dibayar'),
+(600, 'txnId', 'TXN ID', 'TXN ID'),
+(601, 'itemNumber', 'Item Number', 'Nomor Barang'),
+(602, 'paumentSuccessMessage', 'Your Payment Successfully Paid', 'Pembayaran Anda Berhasil Dibayar'),
 (603, 'unpaid', 'Unpaid', 'Belum Bayar'),
 (604, 'paid', 'Paid', 'Dibayar'),
-(605, 'trip_name', 'Trip Name', 'Nama Perjalanan'),
-(606, 'account_number', 'Account Number', 'Nomor Rekening'),
-(607, 'owner_phone', 'Owner Phone No', 'Nomor Telepon Pemilik'),
-(608, 'passenger_email', 'Passenger Email', 'Email Penumpang'),
-(609, 'child_no', 'Child', 'Anak'),
-(610, 'close_trip', 'Close Trip', 'Tutup Perjalanan'),
-(611, 'agent_commission', 'Agent Commission', 'Komisi Agen'),
+(605, 'tripName', 'Trip Name', 'Nama Perjalanan'),
+(606, 'accountNumber', 'Account Number', 'Nomor Rekening'),
+(607, 'ownerPhone', 'Owner Phone No', 'Nomor Telepon Pemilik'),
+(608, 'passengerEmail', 'Passenger Email', 'Email Penumpang'),
+(609, 'childNo', 'Child', 'Anak'),
+(610, 'closeTrip', 'Close Trip', 'Tutup Perjalanan'),
+(611, 'agentCommission', 'Agent Commission', 'Komisi Agen'),
 (612, 'credit', 'Credit', 'Kredit'),
 (613, 'debit', 'Debit', 'Debit'),
 (614, 'balance', 'Balance', 'Saldo'),
-(615, 'agent_log', 'Agent Log', 'Log Agen'),
-(616, 'total_ticket', 'Total Ticket', 'Total Tiket'),
-(617, 'total_amount', 'Total Amount', 'Jumlah total'),
-(618, 'total_commission', 'Total Commission', 'Total Komisi'),
-(619, 'select_agent_name', 'Select Agent Name', 'Select Agent Name'),
-(620, 'commission_amount', 'Commission Amout', 'Jumlah Komisi'),
-(621, 'total_price', 'Total Price', 'Total Harga'),
-(622, 'commission_rate', 'Commission Rate', 'Tarif Komisi'),
-(623, 'ticket_sales', 'Ticket Sale', 'Penjualan Tiket'),
+(615, 'agentLog', 'Agent Log', 'Log Agen'),
+(616, 'totalTicket', 'Total Ticket', 'Total Tiket'),
+(617, 'totalAmount', 'Total Amount', 'Jumlah total'),
+(618, 'totalCommission', 'Total Commission', 'Total Komisi'),
+(619, 'selectAgentName', 'Select Agent Name', 'Select Agent Name'),
+(620, 'commissionAmount', 'Commission Amout', 'Jumlah Komisi'),
+(621, 'totalPrice', 'Total Price', 'Total Harga'),
+(622, 'commissionRate', 'Commission Rate', 'Tarif Komisi'),
+(623, 'ticketSales', 'Ticket Sale', 'Penjualan Tiket'),
 (624, 'vehicle', 'Vehicle', 'Kendaraan'),
-(625, 'ticket_sales_report_for', 'Ticket Sales Report For', 'Laporan Penjualan Tiket Untuk'),
-(626, 'agent_report', 'Agent Report', 'Laporan Agen'),
-(627, 'agent_ledger', 'Agent Ledger', 'Buku Besar Agen'),
-(628, 'booking_details', 'Journey Details', 'Detail Perjalanan'),
+(625, 'ticketSalesReportFor', 'Ticket Sales Report For', 'Laporan Penjualan Tiket Untuk'),
+(626, 'agentReport', 'Agent Report', 'Laporan Agen'),
+(627, 'agentLedger', 'Agent Ledger', 'Buku Besar Agen'),
+(628, 'bookingDetails', 'Journey Details', 'Detail Perjalanan'),
 (630, 'websites', 'Go to Frontend', 'Go to Frontend'),
-(631, 'backup_and_download', 'Backup && Download', 'Backup && Download'),
-(632, 'distance_kmmile', '1 Km/Mile', '1 Km/Mile'),
+(631, 'backupAndDownload', 'Backup && Download', 'Backup && Download'),
+(632, 'distanceKmmile', '1 Km/Mile', '1 Km/Mile'),
 (633, 'children', 'Children', 'Anak'),
-(634, 'login_info', 'Login Information', 'Informasi Login'),
-(635, 'please_configure_your_mail', 'Please configure your mail.', 'Harap konfigurasikan email Anda.'),
+(634, 'loginInfo', 'Login Information', 'Informasi Login'),
+(635, 'pleaseConfigureYourMail', 'Please configure your mail.', 'Harap konfigurasikan email Anda.'),
 (636, 'error', 'Error', 'Error'),
-(637, 'settings_not_found', 'No Setting Here', 'No Setting Here'),
-(638, 'location_not_found', 'Location Not Found', 'Lokasi Tidak ditemukan'),
-(639, 'fleets_not_found', 'Fleets Not Found', 'Armada Tidak Ditemukan'),
-(640, 'image_not_found', 'Image Not Found', 'Gambar Tidak Ditemukan'),
-(641, 'no_trip_available', 'No Trip Available', 'Tidak Tersedia Perjalanan'),
-(642, 'required_field', 'Fields Are Required ', 'Fields Are Required '),
-(643, 'successfully_login', 'Successfully Loged In', 'Successfully Loged In'),
-(644, 'no_data_found', 'No Data Found', 'No Data Found'),
+(637, 'settingsNotFound', 'No Setting Here', 'No Setting Here'),
+(638, 'locationNotFound', 'Location Not Found', 'Lokasi Tidak ditemukan'),
+(639, 'fleetsNotFound', 'Fleets Not Found', 'Armada Tidak Ditemukan'),
+(640, 'imageNotFound', 'Image Not Found', 'Gambar Tidak Ditemukan'),
+(641, 'noTripAvailable', 'No Trip Available', 'Tidak Tersedia Perjalanan'),
+(642, 'requiredField', 'Fields Are Required ', 'Fields Are Required '),
+(643, 'successfullyLogin', 'Successfully Loged In', 'Successfully Loged In'),
+(644, 'noDataFound', 'No Data Found', 'No Data Found'),
 (645, 'registrantion', 'Registration', 'Pendaftaran'),
-(646, 'forgot_password', 'Forgot Password', 'Tidak ingat kata sandi'),
+(646, 'forgotPassword', 'Forgot Password', 'Tidak ingat kata sandi'),
 (647, 'register', 'Register', 'Pendaftar'),
-(648, 'location_details', 'Location Details', 'Detail Lokasi'),
-(649, 'journey_date', 'Journey Date', 'Tanggal Perjalanan'),
-(650, 'select_start_point', 'Select Start Point', 'Pilih Titik Awal'),
-(651, 'select_end_point', 'Select End Point', 'Pilih Titik Akhir'),
-(652, 'select_fleet_type', 'Select Fleet Type', 'Pilih Jenis Armada'),
-(653, 'total_seats', 'Total Seats', 'Total Kursi'),
-(654, 'pickup_and_drop', 'Pickup and Drop', 'Jemput dan Antar'),
-(655, 'select_pickup_location', 'Select Pickup Location', 'Pilih Lokasi Penjemputan'),
-(656, 'select_drop_location', 'Select Drop Location', 'Pilih Lokasi Antar'),
-(657, 'tap_to_select_seat', 'Tap To Select Seat', 'Ketuk Untuk Memilih Kursi'),
-(658, 'seat_layout', 'Seat Layout', 'Tata Letak Kursi'),
+(648, 'locationDetails', 'Location Details', 'Detail Lokasi'),
+(649, 'journeyDate', 'Journey Date', 'Tanggal Perjalanan'),
+(650, 'selectStartPoint', 'Select Start Point', 'Pilih Titik Awal'),
+(651, 'selectEndPoint', 'Select End Point', 'Pilih Titik Akhir'),
+(652, 'selectFleetType', 'Select Fleet Type', 'Pilih Jenis Armada'),
+(653, 'totalSeats', 'Total Seats', 'Total Kursi'),
+(654, 'pickupAndDrop', 'Pickup and Drop', 'Jemput dan Antar'),
+(655, 'selectPickupLocation', 'Select Pickup Location', 'Pilih Lokasi Penjemputan'),
+(656, 'selectDropLocation', 'Select Drop Location', 'Pilih Lokasi Antar'),
+(657, 'tapToSelectSeat', 'Tap To Select Seat', 'Ketuk Untuk Memilih Kursi'),
+(658, 'seatLayout', 'Seat Layout', 'Tata Letak Kursi'),
 (659, 'continue', 'Continue', 'Selanjutnya'),
-(660, 'full_name', 'Full Name', 'Nama Lengkap'),
-(661, 'email_address', 'Email Address', 'Alamat email'),
-(662, 'journery_details', 'Journey Details', 'Detail Perjalanan'),
-(663, 'select_your_payment_method', 'Select Your Payment Method', 'Pilih Metode Pembayaran Anda'),
-(664, 'bank_transfer', 'Bank Transfer', 'Transfer Bank'),
-(665, 'cash_payment', 'Cash Payment', 'Pembayaran Cash'),
-(666, 'select_your_bank_first', 'Select Bank Name First', 'Pilih Nama Bank Terlebih Dahulu'),
-(667, 'transaction_id', 'Transaction Id', 'Transaction Id'),
-(668, 'select_journey_date', 'Select Journey Date', 'Pilih Tanggal Perjalanan'),
-(669, 'seat_details', 'Seat Details ', 'Detail Kursi'),
-(670, 'seat_n', 'Seat Number', 'Nomor Kursi'),
-(671, 'last_name', 'Last Name', 'Nama Keluarga'),
-(672, 'confirm_password', 'Confirm Password', 'Konfirmasi Password'),
-(673, 'no_facilities_available', 'No facilities Available', 'Tidak ada fasilitas yang tersedia'),
-(674, 'must_put_email_pass', 'Must Put Email and Password', 'Harus Memasukkan Email dan Kata Sandi'),
-(675, 'havn_nt_acc', 'Have n\'t Account', 'Belum punya akun'),
-(676, 'email_and_password_d_match', 'Email And Password doesn\'t Match', 'Email Dan Kata Sandi Tidak Cocok'),
-(677, 'must_put_email', 'Must Put Your Email', 'Harus Menempatkan Email Anda'),
-(678, 'select_pickup_and_drop_location', 'Select Pickup and Drop Location', 'Pilih Pickup dan Drop Lokasi'),
-(679, 'select_your_seat_properly', 'Select Your', 'Pilih Pickup dan Drop Lokasi'),
-(680, 'check_term_and_condition', 'Check Terms and Condition', 'Periksa Syarat dan Ketentuan'),
-(681, 'check_your_mail', 'Please Check Your Mail', 'Silakan Periksa Email Anda'),
-(682, 'plz_check_your_seat', 'Please Check Your Seat', 'Silakan Periksa Tempat Duduk Anda'),
-(683, 'no_rout_available', 'No rout Available', 'Tidak ada rute yang tersedia'),
-(684, 'your_booking_complete', 'Your Booking Successfully Completed', 'Pemesanan Anda Berhasil Selesai'),
-(685, 'bank_booking_message', 'Check Bank Name,Transaction ID', 'Periksa Nama Bank, ID Transaksi'),
-(686, 'seat_properly', 'Seat Properly', 'Kursi dengan Benar'),
-(687, 'must_put_atlest_seat_num', 'You Must put Atleast 1 seat on adult/child/Special', 'Anda Harus menempatkan Minimal 1 kursi untuk dewasa/anak/Khusus'),
-(688, 'paypal_payment', 'Paypal Payment', 'Pembayaran Paypal'),
-(689, 'bank_information', 'Bank Information', 'Informasi Bank'),
-(690, 'change_select_end_point', '& Change select end point', '& Ubah pilihan titik akhir'),
-(691, 'must_put_your_mail', 'You must put your email', 'Anda harus memasukkan email Anda'),
-(692, 'invalid_email_address', 'Invalid Email Address', 'Alamat email salah'),
-(693, 'plz_check_your_mail_to_reset_passw', 'Please Check Your email to reset Password', 'Silakan Periksa email Anda untuk mengatur ulang Kata Sandi'),
-(694, 'edit_profile', 'EDIT PROFILE', 'EDIT PROFILE'),
-(695, 'select_profile_image', 'Select Profile Image', 'Pilih Gambar Profil'),
-(696, 'save_profile', 'Save Profile', 'Save Profile'),
-(697, 'view_profile', 'View Profile', 'View Profile'),
-(698, 'developed_by_bdtask', 'Developed By PT Mestika Aplikasi', 'Dikembangkan Oleh PT Mestika Aplikasi'),
-(699, 'use_new_password_to_update_password', 'Use New Password to Update Password', 'Gunakan Kata Sandi Baru untuk Memperbarui Kata Sandi'),
-(700, 'pass_username_cant_be_empty', 'Password, First Name, Last Name can\'t empty. Use New password to update password , otherwise type old password', 'Sandi, Nama Depan, Nama Belakang tidak boleh kosong. Gunakan Kata sandi baru untuk memperbarui kata sandi, jika tidak ketik kata sandi lama'),
+(660, 'fullName', 'Full Name', 'Nama Lengkap'),
+(661, 'emailAddress', 'Email Address', 'Alamat email'),
+(662, 'journeryDetails', 'Journey Details', 'Detail Perjalanan'),
+(663, 'selectYourPaymentMethod', 'Select Your Payment Method', 'Pilih Metode Pembayaran Anda'),
+(664, 'bankTransfer', 'Bank Transfer', 'Transfer Bank'),
+(665, 'cashPayment', 'Cash Payment', 'Pembayaran Cash'),
+(666, 'selectYourBankFirst', 'Select Bank Name First', 'Pilih Nama Bank Terlebih Dahulu'),
+(667, 'transactionId', 'Transaction Id', 'Transaction Id'),
+(668, 'selectJourneyDate', 'Select Journey Date', 'Pilih Tanggal Perjalanan'),
+(669, 'seatDetails', 'Seat Details ', 'Detail Kursi'),
+(670, 'seatN', 'Seat Number', 'Nomor Kursi'),
+(671, 'lastName', 'Last Name', 'Nama Keluarga'),
+(672, 'confirmPassword', 'Confirm Password', 'Konfirmasi Password'),
+(673, 'noFacilitiesAvailable', 'No facilities Available', 'Tidak ada fasilitas yang tersedia'),
+(674, 'mustPutEmailPass', 'Must Put Email and Password', 'Harus Memasukkan Email dan Kata Sandi'),
+(675, 'havnNtAcc', 'Have n\'t Account', 'Belum punya akun'),
+(676, 'emailAndPasswordDMatch', 'Email And Password doesn\'t Match', 'Email Dan Kata Sandi Tidak Cocok'),
+(677, 'mustPutEmail', 'Must Put Your Email', 'Harus Menempatkan Email Anda'),
+(678, 'selectPickupAndDropLocation', 'Select Pickup and Drop Location', 'Pilih Pickup dan Drop Lokasi'),
+(679, 'selectYourSeatProperly', 'Select Your', 'Pilih Pickup dan Drop Lokasi'),
+(680, 'checkTermAndCondition', 'Check Terms and Condition', 'Periksa Syarat dan Ketentuan'),
+(681, 'checkYourMail', 'Please Check Your Mail', 'Silakan Periksa Email Anda'),
+(682, 'plzCheckYourSeat', 'Please Check Your Seat', 'Silakan Periksa Tempat Duduk Anda'),
+(683, 'noRoutAvailable', 'No rout Available', 'Tidak ada rute yang tersedia'),
+(684, 'yourBookingComplete', 'Your Booking Successfully Completed', 'Pemesanan Anda Berhasil Selesai'),
+(685, 'bankBookingMessage', 'Check Bank Name,Transaction ID', 'Periksa Nama Bank, ID Transaksi'),
+(686, 'seatProperly', 'Seat Properly', 'Kursi dengan Benar'),
+(687, 'mustPutAtlestSeatNum', 'You Must put Atleast 1 seat on adult/child/Special', 'Anda Harus menempatkan Minimal 1 kursi untuk dewasa/anak/Khusus'),
+(688, 'paypalPayment', 'Paypal Payment', 'Pembayaran Paypal'),
+(689, 'bankInformation', 'Bank Information', 'Informasi Bank'),
+(690, 'changeSelectEndPoint', '& Change select end point', '& Ubah pilihan titik akhir'),
+(691, 'mustPutYourMail', 'You must put your email', 'Anda harus memasukkan email Anda'),
+(692, 'invalidEmailAddress', 'Invalid Email Address', 'Alamat email salah'),
+(693, 'plzCheckYourMailToResetPassw', 'Please Check Your email to reset Password', 'Silakan Periksa email Anda untuk mengatur ulang Kata Sandi'),
+(694, 'editProfile', 'EDIT PROFILE', 'EDIT PROFILE'),
+(695, 'selectProfileImage', 'Select Profile Image', 'Pilih Gambar Profil'),
+(696, 'saveProfile', 'Save Profile', 'Save Profile'),
+(697, 'viewProfile', 'View Profile', 'View Profile'),
+(698, 'developedByBdtask', 'Developed By PT Mestika Aplikasi', 'Dikembangkan Oleh PT Mestika Aplikasi'),
+(699, 'useNewPasswordToUpdatePassword', 'Use New Password to Update Password', 'Gunakan Kata Sandi Baru untuk Memperbarui Kata Sandi'),
+(700, 'passUsernameCantBeEmpty', 'Password, First Name, Last Name can\'t empty. Use New password to update password , otherwise type old password', 'Sandi, Nama Depan, Nama Belakang tidak boleh kosong. Gunakan Kata sandi baru untuk memperbarui kata sandi, jika tidak ketik kata sandi lama'),
 (701, 'no', 'NO', ''),
-(702, 'login_again', 'Data Save Successfully. Please Login Again', 'Penyimpanan Data Berhasil. Silahkan Login Lagi'),
+(702, 'loginAgain', 'Data Save Successfully. Please Login Again', 'Penyimpanan Data Berhasil. Silahkan Login Lagi'),
 (703, 'company', 'Company', 'Perusahaan'),
-(704, 'add_company', 'Add Company', 'Tambah Perusahaan'),
-(705, 'company_address_line_1', 'Address Line 1', 'Baris Alamat 1'),
-(707, 'company_commission', 'Company Commission', 'Komisi Perusahaan'),
-(708, 'company_ledger', 'Company Ledger', 'Buku Besar Perusahaan'),
-(709, 'company_list', 'Company List', 'List Perusahaan'),
-(710, 'company_log', 'Company Log', 'Log Perusahaan'),
-(711, 'company_report', 'Company Report', 'Laporan Perusahaan'),
-(712, 'company_address_city', 'City', 'Kota'),
-(713, 'company_name', 'Company Name', 'Armada'),
-(714, 'company_country', 'Country', 'Negara'),
-(715, 'company_pic_document', 'Document File', 'File Dokumen'),
-(716, 'company_document_id', 'Document ID', 'ID Dokumen'),
-(717, 'company_email', 'Email', 'Email'),
-(718, 'company_first_name', 'First Name', 'Nama Depan'),
-(719, 'company_second_name', 'LastName', 'Nama Belakang'),
-(720, 'company_mobile', 'Mobile No', 'Mobile No'),
-(721, 'company_phone', 'Phone', 'Telepon Perusahaan'),
-(722, 'company_picture', 'Picture', 'Gambar'),
-(723, 'select_company_name', 'Select Company Name', 'Pilih Nama Perusahaan'),
-(724, 'company_address_line_2', 'Address Line 2', 'Baris Alamat 2');
+(704, 'addCompany', 'Add Company', 'Tambah Perusahaan'),
+(705, 'companyAddressLine1', 'Address Line 1', 'Baris Alamat 1'),
+(707, 'companyCommission', 'Company Commission', 'Komisi Perusahaan'),
+(708, 'companyLedger', 'Company Ledger', 'Buku Besar Perusahaan'),
+(709, 'companyList', 'Company List', 'List Perusahaan'),
+(710, 'companyLog', 'Company Log', 'Log Perusahaan'),
+(711, 'companyReport', 'Company Report', 'Laporan Perusahaan'),
+(712, 'companyAddressCity', 'City', 'Kota'),
+(713, 'companyName', 'Company Name', 'Armada'),
+(714, 'companyCountry', 'Country', 'Negara'),
+(715, 'companyPicDocument', 'Document File', 'File Dokumen'),
+(716, 'companyDocumentId', 'Document ID', 'ID Dokumen'),
+(717, 'companyEmail', 'Email', 'Email'),
+(718, 'companyFirstName', 'First Name', 'Nama Depan'),
+(719, 'companySecondName', 'LastName', 'Nama Belakang'),
+(720, 'companyMobile', 'Mobile No', 'Mobile No'),
+(721, 'companyPhone', 'Phone', 'Telepon Perusahaan'),
+(722, 'companyPicture', 'Picture', 'Gambar'),
+(723, 'selectCompanyName', 'Select Company Name', 'Pilih Nama Perusahaan'),
+(724, 'companyAddressLine2', 'Address Line 2', 'Baris Alamat 2');
 
 -- --------------------------------------------------------
 
@@ -1046,13 +1046,13 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `indonesian`) VALUES
 
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
-  `sender_id` int(11) NOT NULL,
-  `receiver_id` int(11) NOT NULL,
+  `senderId` int(11) NOT NULL,
+  `receiverId` int(11) NOT NULL,
   `subject` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `datetime` datetime NOT NULL,
-  `sender_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=unseen, 1=seen, 2=delete',
-  `receiver_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=unseen, 1=seen, 2=delete'
+  `senderStatus` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=unseen, 1=seen, 2=delete',
+  `receiverStatus` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=unseen, 1=seen, 2=delete'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1080,13 +1080,13 @@ INSERT INTO `module` (`id`, `name`, `description`, `image`, `directory`, `status
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module_permission`
+-- Table structure for table `modulepermission`
 --
 
-CREATE TABLE `module_permission` (
+CREATE TABLE `modulepermission` (
   `id` int(11) NOT NULL,
-  `fk_module_id` int(11) NOT NULL,
-  `fk_user_id` int(11) NOT NULL,
+  `fkModuleId` int(11) NOT NULL,
+  `fkUserId` int(11) NOT NULL,
   `create` tinyint(1) DEFAULT NULL,
   `read` tinyint(1) DEFAULT NULL,
   `update` tinyint(1) DEFAULT NULL,
@@ -1096,40 +1096,40 @@ CREATE TABLE `module_permission` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ofr_offer`
+-- Table structure for table `ofroffer`
 --
 
-CREATE TABLE `ofr_offer` (
-  `offer_id` int(11) NOT NULL,
-  `offer_name` varchar(100) DEFAULT NULL,
-  `offer_start_date` date DEFAULT NULL,
-  `offer_end_date` date DEFAULT NULL,
-  `offer_code` varchar(50) DEFAULT NULL,
-  `offer_discount` float DEFAULT NULL,
-  `offer_terms` varchar(30) DEFAULT NULL,
-  `offer_route_id` varchar(50) DEFAULT NULL,
-  `offer_number` int(15) DEFAULT NULL
+CREATE TABLE `ofroffer` (
+  `offerId` int(11) NOT NULL,
+  `offerName` varchar(100) DEFAULT NULL,
+  `offerStartDate` date DEFAULT NULL,
+  `offerEndDate` date DEFAULT NULL,
+  `offerCode` varchar(50) DEFAULT NULL,
+  `offerDiscount` float DEFAULT NULL,
+  `offerTerms` varchar(30) DEFAULT NULL,
+  `offerRouteId` varchar(50) DEFAULT NULL,
+  `offerNumber` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_informations`
+-- Table structure for table `paymentinformations`
 --
 
-CREATE TABLE `payment_informations` (
+CREATE TABLE `paymentinformations` (
   `id` int(11) NOT NULL,
-  `how_to_pay` text NOT NULL,
-  `terms_and_condition` text NOT NULL
+  `howToPay` text NOT NULL,
+  `termsAndCondition` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pri_price`
+-- Table structure for table `priprice`
 --
 
-CREATE TABLE `pri_price` (
+CREATE TABLE `priprice` (
   `priceId` int(11) NOT NULL,
   `routeId` int(50) DEFAULT NULL,
   `vehicleTypeId` int(50) DEFAULT NULL,
@@ -1142,10 +1142,10 @@ CREATE TABLE `pri_price` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `pri_price`
+-- Dumping data for table `priprice`
 --
 
-INSERT INTO `pri_price` (`priceId`, `routeId`, `vehicleTypeId`, `price`, `childrenPrice`, `specialPrice`, `groupPricePerPerson`, `groupSize`, `companyId`) VALUES
+INSERT INTO `priprice` (`priceId`, `routeId`, `vehicleTypeId`, `price`, `childrenPrice`, `specialPrice`, `groupPricePerPerson`, `groupSize`, `companyId`) VALUES
 (1, 1, 2, 170000, 0, 0, NULL, NULL, 4),
 (2, 2, 1, 160000, 0, 0, NULL, NULL, 4),
 (3, 3, 3, 175000, 0, 0, NULL, NULL, 5),
@@ -1155,20 +1155,20 @@ INSERT INTO `pri_price` (`priceId`, `routeId`, `vehicleTypeId`, `price`, `childr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reg_districts`
+-- Table structure for table `regdistricts`
 --
 
-CREATE TABLE `reg_districts` (
+CREATE TABLE `regdistricts` (
   `id` char(8) NOT NULL,
-  `regency_id` char(5) NOT NULL,
+  `regencyId` char(5) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reg_districts`
+-- Dumping data for table `regdistricts`
 --
 
-INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
+INSERT INTO `regdistricts` (`id`, `regencyId`, `name`) VALUES
 ('110101', '1101', 'Bakongan'),
 ('110102', '1101', 'Kluet Utara'),
 ('110103', '1101', 'Kluet Selatan'),
@@ -2668,9 +2668,9 @@ INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
 ('170306', '1703', 'Kerkap'),
 ('170307', '1703', 'Kota Arga Makmur'),
 ('170308', '1703', 'Giri Mulya'),
-('170309', '1703', 'Padang Jaya');
-INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
-('170310', '1703', 'Lais'),
+('170309', '1703', 'Padang Jaya'),
+('170310', '1703', 'Lais');
+INSERT INTO `regdistricts` (`id`, `regencyId`, `name`) VALUES
 ('170311', '1703', 'Batik Nau'),
 ('170312', '1703', 'Ketahun'),
 ('170313', '1703', 'Napal Putih'),
@@ -4265,9 +4265,9 @@ INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
 ('332602', '3326', 'Paninggaran'),
 ('332603', '3326', 'Lebakbarang'),
 ('332604', '3326', 'Petungkriyono'),
-('332605', '3326', 'Talun');
-INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
-('332606', '3326', 'Doro'),
+('332605', '3326', 'Talun'),
+('332606', '3326', 'Doro');
+INSERT INTO `regdistricts` (`id`, `regencyId`, `name`) VALUES
 ('332607', '3326', 'Karanganyar'),
 ('332608', '3326', 'Kajen'),
 ('332609', '3326', 'Kesesi'),
@@ -5908,9 +5908,9 @@ INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
 ('611204', '6112', 'Terentang'),
 ('611205', '6112', 'Batu Ampar'),
 ('611206', '6112', 'Kubu'),
-('611207', '6112', 'Rasau Jaya');
-INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
-('611208', '6112', 'Teluk Pakedai'),
+('611207', '6112', 'Rasau Jaya'),
+('611208', '6112', 'Teluk Pakedai');
+INSERT INTO `regdistricts` (`id`, `regencyId`, `name`) VALUES
 ('611209', '6112', 'Sungai Kakap'),
 ('617101', '6171', 'Pontianak Selatan'),
 ('617102', '6171', 'Pontianak Timur'),
@@ -7467,9 +7467,9 @@ INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
 ('810611', '8106', 'Elpaputih'),
 ('810701', '8107', 'Pulau-Pulau Aru'),
 ('810702', '8107', 'Aru Selatan'),
-('810703', '8107', 'Aru Tengah');
-INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
-('810704', '8107', 'Aru Utara'),
+('810703', '8107', 'Aru Tengah'),
+('810704', '8107', 'Aru Utara');
+INSERT INTO `regdistricts` (`id`, `regencyId`, `name`) VALUES
 ('810705', '8107', 'Aru Utara Timur Batuley'),
 ('810706', '8107', 'Sir-Sir'),
 ('810707', '8107', 'Aru Tengah Timur'),
@@ -8407,19 +8407,19 @@ INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reg_provinces`
+-- Table structure for table `regprovinces`
 --
 
-CREATE TABLE `reg_provinces` (
+CREATE TABLE `regprovinces` (
   `id` char(2) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reg_provinces`
+-- Dumping data for table `regprovinces`
 --
 
-INSERT INTO `reg_provinces` (`id`, `name`) VALUES
+INSERT INTO `regprovinces` (`id`, `name`) VALUES
 ('11', 'ACEH'),
 ('12', 'SUMATERA UTARA'),
 ('13', 'SUMATERA BARAT'),
@@ -8458,20 +8458,20 @@ INSERT INTO `reg_provinces` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reg_regencies`
+-- Table structure for table `regregencies`
 --
 
-CREATE TABLE `reg_regencies` (
+CREATE TABLE `regregencies` (
   `id` char(5) NOT NULL,
-  `province_id` char(2) NOT NULL,
+  `provinceId` char(2) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reg_regencies`
+-- Dumping data for table `regregencies`
 --
 
-INSERT INTO `reg_regencies` (`id`, `province_id`, `name`) VALUES
+INSERT INTO `regregencies` (`id`, `provinceId`, `name`) VALUES
 ('1101', '11', 'KAB. ACEH SELATAN'),
 ('1102', '11', 'KAB. ACEH TENGGARA'),
 ('1103', '11', 'KAB. ACEH TIMUR'),
@@ -8990,110 +8990,110 @@ INSERT INTO `reg_regencies` (`id`, `province_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_menu_item`
+-- Table structure for table `secmenuitem`
 --
 
-CREATE TABLE `sec_menu_item` (
-  `menu_id` int(11) NOT NULL,
-  `menu_title` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `page_url` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+CREATE TABLE `secmenuitem` (
+  `menuId` int(11) NOT NULL,
+  `menuTitle` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pageUrl` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `module` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `parent_menu` int(11) DEFAULT NULL,
-  `is_report` tinyint(1) DEFAULT NULL,
+  `parentMenu` int(11) DEFAULT NULL,
+  `isReport` tinyint(1) DEFAULT NULL,
   `createby` int(11) NOT NULL,
   `createdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sec_menu_item`
+-- Dumping data for table `secmenuitem`
 --
 
-INSERT INTO `sec_menu_item` (`menu_id`, `menu_title`, `page_url`, `module`, `parent_menu`, `is_report`, `createby`, `createdate`) VALUES
-(69, 'account_list', 'account_form', 'account', NULL, 0, 2, '2018-07-16 00:00:00'),
+INSERT INTO `secmenuitem` (`menuId`, `menuTitle`, `pageUrl`, `module`, `parentMenu`, `isReport`, `createby`, `createdate`) VALUES
+(69, 'accountList', 'accountForm', 'account', NULL, 0, 2, '2018-07-16 00:00:00'),
 (70, 'Enquiry', 'enquiry/view', 'enquiry', 0, 0, 2, '2018-07-16 00:00:00'),
 (71, 'setting', 'enquiry/setting', 'enquiry', NULL, 0, 2, '2018-07-16 00:00:00'),
-(72, 'agent_list', 'agent/agent_form', 'agent', NULL, 0, 2, '2018-07-16 00:00:00'),
-(73, 'fitness_list', 'fitness/fit_form', 'fitness', NULL, 0, 2, '2018-07-16 00:00:00'),
-(74, 'fitness_period', 'fitness/fit_period_form', 'fitness', NULL, 0, 2, '2018-07-16 00:00:00'),
-(75, 'fleet_type', '', 'fleet', NULL, 0, 2, '2018-07-16 00:00:00'),
-(76, 'add_fleet_type', 'fleet/type/form', 'fleet', 75, 0, 2, '2018-07-16 00:00:00'),
-(77, 'fleet_type_list', 'fleet/type/list', 'fleet', 75, 0, 2, '2018-07-16 00:00:00'),
-(78, 'fleet_facilities', '', 'fleet', NULL, 0, 2, '2018-07-16 00:00:00'),
-(79, 'add_facilities', 'fleet/facilities/form', 'fleet', 78, 0, 2, '2018-07-16 00:00:00'),
-(80, 'facilities_list', 'fleet/facilities/list', 'fleet', 78, 0, 2, '2018-07-16 00:00:00'),
-(81, 'account_transaction', 'transaction_form', 'account', 0, 0, 2, '2018-07-16 00:00:00'),
+(72, 'agentList', 'agent/agentForm', 'agent', NULL, 0, 2, '2018-07-16 00:00:00'),
+(73, 'fitnessList', 'fitness/fitForm', 'fitness', NULL, 0, 2, '2018-07-16 00:00:00'),
+(74, 'fitnessPeriod', 'fitness/fitPeriodForm', 'fitness', NULL, 0, 2, '2018-07-16 00:00:00'),
+(75, 'fleetType', '', 'fleet', NULL, 0, 2, '2018-07-16 00:00:00'),
+(76, 'addFleetType', 'fleet/type/form', 'fleet', 75, 0, 2, '2018-07-16 00:00:00'),
+(77, 'fleetTypeList', 'fleet/type/list', 'fleet', 75, 0, 2, '2018-07-16 00:00:00'),
+(78, 'fleetFacilities', '', 'fleet', NULL, 0, 2, '2018-07-16 00:00:00'),
+(79, 'addFacilities', 'fleet/facilities/form', 'fleet', 78, 0, 2, '2018-07-16 00:00:00'),
+(80, 'facilitiesList', 'fleet/facilities/list', 'fleet', 78, 0, 2, '2018-07-16 00:00:00'),
+(81, 'accountTransaction', 'transactionForm', 'account', 0, 0, 2, '2018-07-16 00:00:00'),
 (82, 'bank', '', 'account', 0, 0, 2, '2018-07-16 00:00:00'),
-(83, 'bank_list', 'account/bank/list', 'account', 82, 0, 2, '2018-07-16 00:00:00'),
-(84, 'add_bank', 'account/bank/form', 'account', 82, 0, 2, '2018-07-16 00:00:00'),
-(85, 'offer_list', 'offer/offer_form', 'offer', 0, 0, 2, '2018-07-17 00:00:00'),
-(86, 'price_list', 'price/price_form', 'price', 0, 0, 2, '2018-07-17 00:00:00'),
+(83, 'bankList', 'account/bank/list', 'account', 82, 0, 2, '2018-07-16 00:00:00'),
+(84, 'addBank', 'account/bank/form', 'account', 82, 0, 2, '2018-07-16 00:00:00'),
+(85, 'offerList', 'offer/offerForm', 'offer', 0, 0, 2, '2018-07-17 00:00:00'),
+(86, 'priceList', 'price/priceForm', 'price', 0, 0, 2, '2018-07-17 00:00:00'),
 (87, 'booking', 'reports/booking/list', 'reports', 130, 0, 2, '2018-07-17 00:00:00'),
 (88, 'assign', 'reports/assign/list', 'reports', 130, 0, 2, '2018-07-17 00:00:00'),
 (89, 'passenger', '', 'ticket', 0, 0, 2, '2018-07-17 00:00:00'),
-(90, 'add_passenger', 'ticket/passenger/form', 'ticket', 89, 0, 2, '2018-07-17 00:00:00'),
-(91, 'passenger_list', 'ticket/passenger/list', 'ticket', 89, 0, 2, '2018-07-17 00:00:00'),
-(92, 'booking_info', '', 'ticket', 0, 0, 2, '2018-07-17 00:00:00'),
-(93, 'add_booking', 'ticket/booking/form', 'ticket', 92, 0, 2, '2018-07-17 00:00:00'),
-(94, 'booking_list', 'ticket/booking/list', 'ticket', 92, 0, 2, '2018-07-17 00:00:00'),
+(90, 'addPassenger', 'ticket/passenger/form', 'ticket', 89, 0, 2, '2018-07-17 00:00:00'),
+(91, 'passengerList', 'ticket/passenger/list', 'ticket', 89, 0, 2, '2018-07-17 00:00:00'),
+(92, 'bookingInfo', '', 'ticket', 0, 0, 2, '2018-07-17 00:00:00'),
+(93, 'addBooking', 'ticket/booking/form', 'ticket', 92, 0, 2, '2018-07-17 00:00:00'),
+(94, 'bookingList', 'ticket/booking/list', 'ticket', 92, 0, 2, '2018-07-17 00:00:00'),
 (95, 'location', '', 'trip', 0, 0, 2, '2018-07-17 00:00:00'),
-(96, 'add_location', 'trip/location/form', 'trip', 95, 0, 2, '2018-07-17 00:00:00'),
-(97, 'location_list', 'trip/location/list', 'trip', 95, 0, 2, '2018-07-17 00:00:00'),
+(96, 'addLocation', 'trip/location/form', 'trip', 95, 0, 2, '2018-07-17 00:00:00'),
+(97, 'locationList', 'trip/location/list', 'trip', 95, 0, 2, '2018-07-17 00:00:00'),
 (98, 'route', '', 'trip', 0, 0, 2, '2018-07-17 00:00:00'),
-(99, 'add_route', 'trip/route/form', 'trip', 98, 0, 2, '2018-07-17 00:00:00'),
-(100, 'route_list', 'trip/route/list', 'trip', 98, 0, 2, '2018-07-17 00:00:00'),
+(99, 'addRoute', 'trip/route/form', 'trip', 98, 0, 2, '2018-07-17 00:00:00'),
+(100, 'routeList', 'trip/route/list', 'trip', 98, 0, 2, '2018-07-17 00:00:00'),
 (101, 'websites', '', 'website', NULL, 0, 2, '2018-07-18 00:00:00'),
-(102, 'web_setting', '', 'website', 0, 0, 2, '2018-07-18 00:00:00'),
-(103, 'email_configue', '', 'website', 0, 0, 2, '2018-07-18 00:00:00'),
-(104, 'ticket_offer', '', 'website', 0, 0, 2, '2018-07-18 00:00:00'),
-(105, 'payment_term_andcondition', '', 'ticket', 0, 0, 2, '2018-07-30 00:00:00'),
-(108, 'unpaid_cash_booking_list', 'booking/unpaid_cashbooking', 'ticket', 0, 0, 2, '2018-07-30 00:00:00'),
-(109, 'employee_type', 'type_view', 'hr', 0, 0, 2, '2018-07-30 00:00:00'),
-(110, 'employee_list', 'viewhr', 'hr', 0, 0, 2, '2018-07-30 00:00:00'),
-(111, 'fleet_registration', 'registration/form', 'fleet', 0, 0, 2, '2018-08-14 00:00:00'),
-(112, 'add_registration', 'registration/form', 'fleet', 111, 0, 2, '2018-08-14 00:00:00'),
-(113, 'registration_list', 'registration/list', 'fleet', 111, 0, 2, '2018-08-14 00:00:00'),
-(114, 'ticket_confirmation', '', 'ticket', 0, 0, 2, '2018-08-14 00:00:00'),
+(102, 'webSetting', '', 'website', 0, 0, 2, '2018-07-18 00:00:00'),
+(103, 'emailConfigue', '', 'website', 0, 0, 2, '2018-07-18 00:00:00'),
+(104, 'ticketOffer', '', 'website', 0, 0, 2, '2018-07-18 00:00:00'),
+(105, 'paymentTermAndcondition', '', 'ticket', 0, 0, 2, '2018-07-30 00:00:00'),
+(108, 'unpaidCashBookingList', 'booking/unpaidCashbooking', 'ticket', 0, 0, 2, '2018-07-30 00:00:00'),
+(109, 'employeeType', 'typeView', 'hr', 0, 0, 2, '2018-07-30 00:00:00'),
+(110, 'employeeList', 'viewhr', 'hr', 0, 0, 2, '2018-07-30 00:00:00'),
+(111, 'fleetRegistration', 'registration/form', 'fleet', 0, 0, 2, '2018-08-14 00:00:00'),
+(112, 'addRegistration', 'registration/form', 'fleet', 111, 0, 2, '2018-08-14 00:00:00'),
+(113, 'registrationList', 'registration/list', 'fleet', 111, 0, 2, '2018-08-14 00:00:00'),
+(114, 'ticketConfirmation', '', 'ticket', 0, 0, 2, '2018-08-14 00:00:00'),
 (115, 'refund', '', 'ticket', 0, 0, 2, '2018-08-14 00:00:00'),
-(116, 'add_refund', 'refund/form', 'ticket', 115, 0, 2, '2018-08-14 00:00:00'),
-(117, 'refund_list', 'refund/list', 'ticket', 115, 0, 2, '2018-08-14 00:00:00'),
+(116, 'addRefund', 'refund/form', 'ticket', 115, 0, 2, '2018-08-14 00:00:00'),
+(117, 'refundList', 'refund/list', 'ticket', 115, 0, 2, '2018-08-14 00:00:00'),
 (118, 'shedules', '', 'trip', 0, 0, 2, '2018-08-14 00:00:00'),
-(119, 'add_shedule', 'shedule/shedule_form', 'trip', 118, 0, 2, '2018-08-14 00:00:00'),
-(120, 'shedule_list', 'shedule/list', 'trip', 118, 0, 2, '2018-08-14 00:00:00'),
+(119, 'addShedule', 'shedule/sheduleForm', 'trip', 118, 0, 2, '2018-08-14 00:00:00'),
+(120, 'sheduleList', 'shedule/list', 'trip', 118, 0, 2, '2018-08-14 00:00:00'),
 (121, 'trips', '', 'trip', 0, 0, 2, '2018-08-14 00:00:00'),
-(122, 'add_trip', 'trip/form', 'trip', 121, 0, 2, '2018-08-14 00:00:00'),
-(123, 'trip_list', 'trip/list', 'trip', 121, 0, 2, '2018-08-14 00:00:00'),
+(122, 'addTrip', 'trip/form', 'trip', 121, 0, 2, '2018-08-14 00:00:00'),
+(123, 'tripList', 'trip/list', 'trip', 121, 0, 2, '2018-08-14 00:00:00'),
 (124, 'assigns', '', 'trip', 0, 0, 2, '2018-08-14 00:00:00'),
-(125, 'add_assign', 'assign/form', 'trip', 124, 0, 2, '2018-08-14 00:00:00'),
-(126, 'assign_list', 'assign/list', 'trip', 124, 0, 2, '2018-08-14 00:00:00'),
+(125, 'addAssign', 'assign/form', 'trip', 124, 0, 2, '2018-08-14 00:00:00'),
+(126, 'assignList', 'assign/list', 'trip', 124, 0, 2, '2018-08-14 00:00:00'),
 (127, 'close', '', 'trip', 0, 0, 2, '2018-08-14 00:00:00'),
-(128, 'close_list', 'close/list', 'trip', 127, 0, 2, '2018-08-14 00:00:00'),
+(128, 'closeList', 'close/list', 'trip', 127, 0, 2, '2018-08-14 00:00:00'),
 (129, 'account', '', 'account', 0, 0, 2, '2018-08-14 00:00:00'),
 (130, 'reports', '', 'reports', 0, 0, 2, '2018-09-11 00:00:00'),
-(131, 'agent_log', 'agent/agent_details', 'reports', 130, 0, 2, '2018-09-11 00:00:00');
+(131, 'agentLog', 'agent/agentDetails', 'reports', 130, 0, 2, '2018-09-11 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_role_permission`
+-- Table structure for table `secrolepermission`
 --
 
-CREATE TABLE `sec_role_permission` (
+CREATE TABLE `secrolepermission` (
   `id` bigint(20) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `can_access` tinyint(1) NOT NULL,
-  `can_create` tinyint(1) NOT NULL,
-  `can_edit` tinyint(1) NOT NULL,
-  `can_delete` tinyint(1) NOT NULL,
+  `roleId` int(11) NOT NULL,
+  `menuId` int(11) NOT NULL,
+  `canAccess` tinyint(1) NOT NULL,
+  `canCreate` tinyint(1) NOT NULL,
+  `canEdit` tinyint(1) NOT NULL,
+  `canDelete` tinyint(1) NOT NULL,
   `createby` int(11) NOT NULL,
   `createdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sec_role_permission`
+-- Dumping data for table `secrolepermission`
 --
 
-INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `can_create`, `can_edit`, `can_delete`, `createby`, `createdate`) VALUES
+INSERT INTO `secrolepermission` (`id`, `roleId`, `menuId`, `canAccess`, `canCreate`, `canEdit`, `canDelete`, `createby`, `createdate`) VALUES
 (1409, 3, 69, 1, 1, 1, 1, 1, '2021-10-21 03:48:14'),
 (1410, 3, 81, 1, 1, 1, 1, 1, '2021-10-21 03:48:14'),
 (1411, 3, 82, 1, 1, 1, 1, 1, '2021-10-21 03:48:14'),
@@ -9159,44 +9159,44 @@ INSERT INTO `sec_role_permission` (`id`, `role_id`, `menu_id`, `can_access`, `ca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_role_tbl`
+-- Table structure for table `secroletbl`
 --
 
-CREATE TABLE `sec_role_tbl` (
-  `role_id` int(11) NOT NULL,
-  `role_name` text NOT NULL,
-  `role_description` text NOT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  `date_time` datetime DEFAULT NULL,
-  `role_status` int(11) NOT NULL DEFAULT 1
+CREATE TABLE `secroletbl` (
+  `roleId` int(11) NOT NULL,
+  `roleName` text NOT NULL,
+  `roleDescription` text NOT NULL,
+  `createBy` int(11) DEFAULT NULL,
+  `dateTime` datetime DEFAULT NULL,
+  `roleStatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sec_role_tbl`
+-- Dumping data for table `secroletbl`
 --
 
-INSERT INTO `sec_role_tbl` (`role_id`, `role_name`, `role_description`, `create_by`, `date_time`, `role_status`) VALUES
+INSERT INTO `secroletbl` (`roleId`, `roleName`, `roleDescription`, `createBy`, `dateTime`, `roleStatus`) VALUES
 (2, 'Agent Role', 'Agen', 2, '2018-08-18 11:48:57', 1),
 (3, 'Perusahaan', 'Perusahaan', 1, '2021-09-24 03:51:12', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sec_user_access_tbl`
+-- Table structure for table `secuseraccesstbl`
 --
 
-CREATE TABLE `sec_user_access_tbl` (
-  `role_acc_id` int(11) NOT NULL,
-  `fk_role_id` int(11) NOT NULL,
-  `fk_user_id` int(11) NOT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+CREATE TABLE `secuseraccesstbl` (
+  `roleAccId` int(11) NOT NULL,
+  `fkRoleId` int(11) NOT NULL,
+  `fkUserId` int(11) NOT NULL,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sec_user_access_tbl`
+-- Dumping data for table `secuseraccesstbl`
 --
 
-INSERT INTO `sec_user_access_tbl` (`role_acc_id`, `fk_role_id`, `fk_user_id`, `company_id`) VALUES
+INSERT INTO `secuseraccesstbl` (`roleAccId`, `fkRoleId`, `fkUserId`, `companyId`) VALUES
 (13, 3, 5, NULL),
 (14, 3, 6, NULL),
 (15, 3, 7, NULL),
@@ -9217,15 +9217,15 @@ CREATE TABLE `setting` (
   `logo` varchar(255) DEFAULT NULL,
   `favicon` varchar(255) DEFAULT NULL,
   `language` varchar(100) DEFAULT NULL,
-  `site_align` varchar(50) DEFAULT NULL,
-  `footer_text` varchar(255) DEFAULT NULL
+  `siteAlign` varchar(50) DEFAULT NULL,
+  `footerText` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `title`, `address`, `email`, `phone`, `logo`, `favicon`, `language`, `site_align`, `footer_text`) VALUES
+INSERT INTO `setting` (`id`, `title`, `address`, `email`, `phone`, `logo`, `favicon`, `language`, `siteAlign`, `footerText`) VALUES
 (1, 'Bis Aceh', 'Jl. Pinang Ranti II No.1A, RT.6/RW.001, Kel, Pinang Ranti, Kec. Makassar, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13560', 'info@bisaceh.com', '(021) 8098928', 'assets/img/icons/813dfe4f2b461352883fdae04c104bed.png', '', 'indonesian', 'LTR', '©2022 PT Mestika Aplikasi');
 
 -- --------------------------------------------------------
@@ -9254,106 +9254,106 @@ INSERT INTO `shedule` (`scheduleId`, `start`, `end`, `duration`, `companyId`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `synchronizer_setting`
+-- Table structure for table `synchronizersetting`
 --
 
-CREATE TABLE `synchronizer_setting` (
+CREATE TABLE `synchronizersetting` (
   `id` int(11) NOT NULL,
   `hostname` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `port` varchar(10) NOT NULL,
   `debug` varchar(10) NOT NULL,
-  `project_root` varchar(100) NOT NULL
+  `projectRoot` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ticket_notification`
+-- Table structure for table `ticketnotification`
 --
 
-CREATE TABLE `ticket_notification` (
+CREATE TABLE `ticketnotification` (
   `id` int(11) NOT NULL,
-  `b_idno` varchar(30) NOT NULL,
-  `passenger_id` varchar(30) NOT NULL,
-  `no_tkts` int(11) NOT NULL,
+  `bIdno` varchar(30) NOT NULL,
+  `passengerId` varchar(30) NOT NULL,
+  `noTkts` int(11) NOT NULL,
   `amount` float NOT NULL,
-  `route_id` varchar(30) NOT NULL,
-  `trip_id` varchar(20) NOT NULL,
-  `booking_time` datetime NOT NULL,
-  `is_seen` int(11) NOT NULL DEFAULT 0,
-  `admin_seen` int(11) NOT NULL DEFAULT 0,
-  `booked_by` int(11) NOT NULL DEFAULT 0
+  `routeId` varchar(30) NOT NULL,
+  `tripId` varchar(20) NOT NULL,
+  `bookingTime` datetime NOT NULL,
+  `isSeen` int(11) NOT NULL DEFAULT 0,
+  `adminSeen` int(11) NOT NULL DEFAULT 0,
+  `bookedBy` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_booking`
+-- Table structure for table `tktbooking`
 --
 
-CREATE TABLE `tkt_booking` (
+CREATE TABLE `tktbooking` (
   `id` int(11) UNSIGNED NOT NULL,
-  `id_no` varchar(20) DEFAULT NULL,
-  `trip_id_no` varchar(20) DEFAULT NULL,
-  `tkt_passenger_id_no` varchar(20) DEFAULT NULL,
-  `trip_route_id` int(11) DEFAULT NULL,
-  `pickup_trip_location` varchar(50) DEFAULT NULL,
-  `pickup_trip_village` varchar(100) DEFAULT NULL,
-  `pickup_trip_district` varchar(100) DEFAULT NULL,
-  `drop_trip_location` varchar(50) DEFAULT NULL,
-  `drop_trip_village` varchar(100) DEFAULT NULL,
-  `drop_trip_district` varchar(100) DEFAULT NULL,
-  `request_facilities` text DEFAULT NULL,
+  `idNo` varchar(20) DEFAULT NULL,
+  `tripIdNo` varchar(20) DEFAULT NULL,
+  `tktPassengerIdNo` varchar(20) DEFAULT NULL,
+  `tripRouteId` int(11) DEFAULT NULL,
+  `pickupTripLocation` varchar(50) DEFAULT NULL,
+  `pickupTripVillage` varchar(100) DEFAULT NULL,
+  `pickupTripDistrict` varchar(100) DEFAULT NULL,
+  `dropTripLocation` varchar(50) DEFAULT NULL,
+  `dropTripVillage` varchar(100) DEFAULT NULL,
+  `dropTripDistrict` varchar(100) DEFAULT NULL,
+  `requestFacilities` text DEFAULT NULL,
   `price` float DEFAULT NULL,
   `discount` float DEFAULT NULL,
   `adult` int(11) NOT NULL DEFAULT 0,
   `child` int(11) DEFAULT 0,
   `special` int(11) DEFAULT 0,
-  `total_seat` int(11) DEFAULT NULL,
-  `seat_numbers` varchar(255) DEFAULT NULL,
-  `offer_code` varchar(255) DEFAULT NULL,
-  `tkt_refund_id` int(11) DEFAULT NULL,
-  `agent_id` int(11) DEFAULT NULL,
-  `booking_date` datetime DEFAULT NULL,
+  `totalSeat` int(11) DEFAULT NULL,
+  `seatNumbers` varchar(255) DEFAULT NULL,
+  `offerCode` varchar(255) DEFAULT NULL,
+  `tktRefundId` int(11) DEFAULT NULL,
+  `agentId` int(11) DEFAULT NULL,
+  `bookingDate` datetime DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  `booking_type` varchar(20) DEFAULT NULL,
-  `payment_status` varchar(20) DEFAULT NULL,
-  `booked_by` int(11) NOT NULL DEFAULT 0,
-  `company_id` varchar(100) DEFAULT NULL
+  `bookingType` varchar(20) DEFAULT NULL,
+  `paymentStatus` varchar(20) DEFAULT NULL,
+  `bookedBy` int(11) NOT NULL DEFAULT 0,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tkt_booking`
+-- Dumping data for table `tktbooking`
 --
 
-INSERT INTO `tkt_booking` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `pickup_trip_village`, `pickup_trip_district`, `drop_trip_location`, `drop_trip_village`, `drop_trip_district`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `booking_type`, `payment_status`, `booked_by`, `company_id`) VALUES
+INSERT INTO `tktbooking` (`id`, `idNo`, `tripIdNo`, `tktPassengerIdNo`, `tripRouteId`, `pickupTripLocation`, `pickupTripVillage`, `pickupTripDistrict`, `dropTripLocation`, `dropTripVillage`, `dropTripDistrict`, `requestFacilities`, `price`, `discount`, `adult`, `child`, `special`, `totalSeat`, `seatNumbers`, `offerCode`, `tktRefundId`, `agentId`, `bookingDate`, `date`, `bookingType`, `paymentStatus`, `bookedBy`, `companyId`) VALUES
 (1, 'BO15FY9Z', '4', 'PD81O0VB', 2, 'Jalan Apa Aja', 'Desa Takengon', 'Kecamatan Takengon', 'Jalan Itu Aja', 'Desa Banda Aceh', 'Kecamatan Banda Aceh', NULL, 320000, 0, 2, 0, 0, 2, 'B2, C2, ', NULL, NULL, NULL, '2021-10-29 10:57:05', '2021-10-29 10:57:05', 'Bank', '1', 0, '4');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_feedback`
+-- Table structure for table `tktfeedback`
 --
 
-CREATE TABLE `tkt_feedback` (
+CREATE TABLE `tktfeedback` (
   `id` int(11) NOT NULL,
-  `tkt_booking_id_no` varchar(20) DEFAULT NULL,
+  `tktBookingIdNo` varchar(20) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `comment` text DEFAULT NULL,
   `rating` tinyint(1) DEFAULT 1,
-  `add_to_website` tinyint(1) DEFAULT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `addToWebsite` tinyint(1) DEFAULT NULL,
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_passenger`
+-- Table structure for table `tktpassenger`
 --
 
-CREATE TABLE `tkt_passenger` (
+CREATE TABLE `tktpassenger` (
   `id` int(11) UNSIGNED NOT NULL,
   `idNo` varchar(35) DEFAULT NULL,
   `firstname` varchar(50) DEFAULT NULL,
@@ -9377,32 +9377,32 @@ CREATE TABLE `tkt_passenger` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_referal`
+-- Table structure for table `tktreferal`
 --
 
-CREATE TABLE `tkt_referal` (
+CREATE TABLE `tktreferal` (
   `id` int(11) NOT NULL,
-  `tkt_passenger_id_no` int(11) DEFAULT NULL,
+  `tktPassengerIdNo` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tkt_refund`
+-- Table structure for table `tktrefund`
 --
 
-CREATE TABLE `tkt_refund` (
+CREATE TABLE `tktrefund` (
   `id` int(11) UNSIGNED NOT NULL,
-  `tkt_booking_id_no` varchar(20) DEFAULT NULL,
-  `tkt_passenger_id_no` varchar(20) DEFAULT NULL,
-  `cancelation_fees` float DEFAULT NULL,
+  `tktBookingIdNo` varchar(20) DEFAULT NULL,
+  `tktPassengerIdNo` varchar(20) DEFAULT NULL,
+  `cancelationFees` float DEFAULT NULL,
   `causes` text DEFAULT NULL,
   `comment` text DEFAULT NULL,
-  `refund_by_id` int(11) DEFAULT NULL,
+  `refundById` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  `company_id` varchar(100) DEFAULT NULL
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -9437,10 +9437,10 @@ INSERT INTO `trip` (`tripId`, `tripTitle`, `type`, `fleetCategory`, `route`, `sc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip_assign`
+-- Table structure for table `tripassign`
 --
 
-CREATE TABLE `trip_assign` (
+CREATE TABLE `tripassign` (
   `id` int(11) UNSIGNED NOT NULL,
   `idNo` int(20) DEFAULT NULL,
   `fleetRegistrationId` int(11) DEFAULT NULL,
@@ -9464,10 +9464,10 @@ CREATE TABLE `trip_assign` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip_location`
+-- Table structure for table `triplocation`
 --
 
-CREATE TABLE `trip_location` (
+CREATE TABLE `triplocation` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -9477,10 +9477,10 @@ CREATE TABLE `trip_location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `trip_location`
+-- Dumping data for table `triplocation`
 --
 
-INSERT INTO `trip_location` (`id`, `name`, `description`, `googleMap`, `image`, `status`) VALUES
+INSERT INTO `triplocation` (`id`, `name`, `description`, `googleMap`, `image`, `status`) VALUES
 (1, 'Banda Aceh', '', '', '', 1),
 (2, 'Langsa', '', '', '', 1),
 (3, 'Sabang', '', '', '', 1),
@@ -9510,10 +9510,10 @@ INSERT INTO `trip_location` (`id`, `name`, `description`, `googleMap`, `image`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip_route`
+-- Table structure for table `triproute`
 --
 
-CREATE TABLE `trip_route` (
+CREATE TABLE `triproute` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `startPoint` int(11) DEFAULT NULL,
@@ -9532,10 +9532,10 @@ CREATE TABLE `trip_route` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `trip_route`
+-- Dumping data for table `triproute`
 --
 
-INSERT INTO `trip_route` (`id`, `name`, `startPoint`, `endPoint`, `stoppagePoints`, `pickupVillage`, `pickupDistrict`, `dropVillage`, `dropDistrict`, `distance`, `approximateTime`, `childrenSeat`, `specialSeat`, `status`, `companyId`) VALUES
+INSERT INTO `triproute` (`id`, `name`, `startPoint`, `endPoint`, `stoppagePoints`, `pickupVillage`, `pickupDistrict`, `dropVillage`, `dropDistrict`, `distance`, `approximateTime`, `childrenSeat`, `specialSeat`, `status`, `companyId`) VALUES
 (1, 'Banda Aceh - Takengon (4)', 1, 17, 'Banda Aceh,Lhokseumawe,Takengon', 'Desa Banda Aceh', 'Kecamatan Banda Aceh', 'Desa Takengon,', 'Kecamatan Takengon', '700 KM', '7 Jam', NULL, NULL, 1, 4),
 (2, 'Takengon - Banda Aceh (4)', 17, 1, 'Takengon,Langsa,Banda Aceh', 'Desa Takengon', 'Kecamatan Takengon', 'Desa Banda Aceh', 'Kecamatan Banda Aceh', '700 KM', '7 Jam', NULL, NULL, 1, 4),
 (3, 'Banda Aceh - Takengon (5)', 1, 17, 'Banda Aceh,Kutacane,Takengon', 'Desa Banda Aceh', 'Kecamatan Banda Aceh', 'Desa Takengon', 'Kecamatan Takengon', '700 KM', '7 Jam', NULL, NULL, 1, 5),
@@ -9578,43 +9578,43 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `about`, `email`, `password`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_booking_history`
+-- Table structure for table `wsbookinghistory`
 --
 
-CREATE TABLE `ws_booking_history` (
+CREATE TABLE `wsbookinghistory` (
   `id` int(11) UNSIGNED NOT NULL,
-  `id_no` varchar(20) DEFAULT NULL,
-  `trip_id_no` varchar(20) DEFAULT NULL,
-  `tkt_passenger_id_no` varchar(20) DEFAULT NULL,
-  `trip_route_id` int(11) DEFAULT NULL,
-  `pickup_trip_location` varchar(50) DEFAULT NULL,
-  `pickup_trip_village` varchar(100) DEFAULT NULL,
-  `pickup_trip_district` varchar(100) DEFAULT NULL,
-  `drop_trip_location` varchar(50) DEFAULT NULL,
-  `drop_trip_village` varchar(100) DEFAULT NULL,
-  `drop_trip_district` varchar(100) DEFAULT NULL,
-  `request_facilities` text DEFAULT NULL,
+  `idNo` varchar(20) DEFAULT NULL,
+  `tripIdNo` varchar(20) DEFAULT NULL,
+  `tktPassengerIdNo` varchar(20) DEFAULT NULL,
+  `tripRouteId` int(11) DEFAULT NULL,
+  `pickupTripLocation` varchar(50) DEFAULT NULL,
+  `pickupTripVillage` varchar(100) DEFAULT NULL,
+  `pickupTripDistrict` varchar(100) DEFAULT NULL,
+  `dropTripLocation` varchar(50) DEFAULT NULL,
+  `dropTripVillage` varchar(100) DEFAULT NULL,
+  `dropTripDistrict` varchar(100) DEFAULT NULL,
+  `requestFacilities` text DEFAULT NULL,
   `price` float DEFAULT NULL,
   `discount` float DEFAULT NULL,
   `adult` int(11) NOT NULL,
   `child` int(11) DEFAULT NULL,
   `special` int(11) DEFAULT NULL,
-  `total_seat` int(11) DEFAULT NULL,
-  `seat_numbers` varchar(255) DEFAULT NULL,
-  `offer_code` varchar(255) DEFAULT NULL,
-  `tkt_refund_id` int(11) DEFAULT NULL,
-  `agent_id` int(11) DEFAULT NULL,
-  `booking_date` datetime DEFAULT NULL,
+  `totalSeat` int(11) DEFAULT NULL,
+  `seatNumbers` varchar(255) DEFAULT NULL,
+  `offerCode` varchar(255) DEFAULT NULL,
+  `tktRefundId` int(11) DEFAULT NULL,
+  `agentId` int(11) DEFAULT NULL,
+  `bookingDate` datetime DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `status` tinyint(4) DEFAULT 0,
-  `company_id` varchar(100) DEFAULT NULL
+  `companyId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ws_booking_history`
+-- Dumping data for table `wsbookinghistory`
 --
 
-INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id_no`, `trip_route_id`, `pickup_trip_location`, `pickup_trip_village`, `pickup_trip_district`, `drop_trip_location`, `drop_trip_village`, `drop_trip_district`, `request_facilities`, `price`, `discount`, `adult`, `child`, `special`, `total_seat`, `seat_numbers`, `offer_code`, `tkt_refund_id`, `agent_id`, `booking_date`, `date`, `status`, `company_id`) VALUES
+INSERT INTO `wsbookinghistory` (`id`, `idNo`, `tripIdNo`, `tktPassengerIdNo`, `tripRouteId`, `pickupTripLocation`, `pickupTripVillage`, `pickupTripDistrict`, `dropTripLocation`, `dropTripVillage`, `dropTripDistrict`, `requestFacilities`, `price`, `discount`, `adult`, `child`, `special`, `totalSeat`, `seatNumbers`, `offerCode`, `tktRefundId`, `agentId`, `bookingDate`, `date`, `status`, `companyId`) VALUES
 (1, 'BYWVLJBJ', '3', 'PKTL7GU3', 1, 'Jalan', 'Desa', 'Kecamatan', 'Jalan', 'Desa', 'Kecamatan', NULL, 340000, 0, 2, 0, 0, 2, 'A1, B1, ', '', NULL, NULL, '2021-10-21 06:37:18', '2021-10-22 06:37:18', 0, '4'),
 (2, 'B7N3KRHO', '4', 'PJN2EWDR', 2, '', 'Desa', 'Kecamatan', '', '', '', NULL, 160000, 0, 1, 0, 0, 1, 'B2, ', '', NULL, NULL, '2021-10-21 08:49:34', '2021-10-22 08:49:34', 0, '4'),
 (3, 'B4XV3GX2', '3', 'PMZEB2DV', 1, '', 'Desa', 'Kecamatan', '', '', '', NULL, 170000, 0, 1, 0, 0, 1, 'C3, ', '', NULL, NULL, '2021-10-22 09:51:29', '2021-10-22 09:51:29', 0, '4'),
@@ -9649,10 +9649,10 @@ INSERT INTO `ws_booking_history` (`id`, `id_no`, `trip_id_no`, `tkt_passenger_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_offer`
+-- Table structure for table `wsoffer`
 --
 
-CREATE TABLE `ws_offer` (
+CREATE TABLE `wsoffer` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `position` tinyint(4) DEFAULT 0,
@@ -9662,27 +9662,27 @@ CREATE TABLE `ws_offer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_payments`
+-- Table structure for table `wspayments`
 --
 
-CREATE TABLE `ws_payments` (
-  `payment_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `txn_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `payment_gross` float(10,2) NOT NULL,
-  `currency_code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `payer_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `payment_status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+CREATE TABLE `wspayments` (
+  `paymentId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `productId` int(11) NOT NULL,
+  `txnId` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `paymentGross` float(10,2) NOT NULL,
+  `currencyCode` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `payerEmail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `paymentStatus` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ws_setting`
+-- Table structure for table `wssetting`
 --
 
-CREATE TABLE `ws_setting` (
+CREATE TABLE `wssetting` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `slogan` varchar(255) DEFAULT NULL,
@@ -9695,18 +9695,18 @@ CREATE TABLE `ws_setting` (
   `timezone` varchar(200) DEFAULT NULL,
   `about` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `payment_type` varchar(30) DEFAULT NULL,
-  `paypal_email` varchar(100) DEFAULT NULL,
-  `bank_commission` float NOT NULL DEFAULT 0,
+  `paymentType` varchar(30) DEFAULT NULL,
+  `paypalEmail` varchar(100) DEFAULT NULL,
+  `bankCommission` float NOT NULL DEFAULT 0,
   `currency` varchar(50) DEFAULT NULL,
-  `google_map` text DEFAULT NULL
+  `googleMap` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ws_setting`
+-- Dumping data for table `wssetting`
 --
 
-INSERT INTO `ws_setting` (`id`, `title`, `slogan`, `address`, `email`, `phone`, `favicon`, `logo`, `status`, `timezone`, `about`, `description`, `payment_type`, `paypal_email`, `bank_commission`, `currency`, `google_map`) VALUES
+INSERT INTO `wssetting` (`id`, `title`, `slogan`, `address`, `email`, `phone`, `favicon`, `logo`, `status`, `timezone`, `about`, `description`, `paymentType`, `paypalEmail`, `bankCommission`, `currency`, `googleMap`) VALUES
 (1, 'Bis Aceh', 'Bis Aceh', '123, demo street, demo-city, 0000', 'business@test.com', '0123456789', 'application/modules/website/assets/images/icons/e5a567074086228d72ee40cf50163276.png', 'application/modules/website/assets/images/icons/2b06026a927e522d2f61f02c1b9db527.png', 1, 'Asia/Jakarta', '', '', 'disable', 'business@test.com', 0, 'Rp', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.7724407117266!2d90.38595131408418!3d23.75549289450067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a4136c4b61%3A0x19549f5462616f04!2sBDTASK!5e0!3m2!1sen!2sbd!4v1531724548584\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>');
 
 --
@@ -9714,117 +9714,117 @@ INSERT INTO `ws_setting` (`id`, `title`, `slogan`, `address`, `email`, `phone`, 
 --
 
 --
--- Indexes for table `acc_account_name`
+-- Indexes for table `accaccountname`
 --
-ALTER TABLE `acc_account_name`
-  ADD PRIMARY KEY (`account_id`);
+ALTER TABLE `accaccountname`
+  ADD PRIMARY KEY (`accountId`);
 
 --
--- Indexes for table `acn_account_transaction`
+-- Indexes for table `acnaccounttransaction`
 --
-ALTER TABLE `acn_account_transaction`
-  ADD PRIMARY KEY (`account_tran_id`);
+ALTER TABLE `acnaccounttransaction`
+  ADD PRIMARY KEY (`accountTranId`);
 
 --
--- Indexes for table `agent_info`
+-- Indexes for table `agentinfo`
 --
-ALTER TABLE `agent_info`
-  ADD PRIMARY KEY (`agent_id`);
+ALTER TABLE `agentinfo`
+  ADD PRIMARY KEY (`agentId`);
 
 --
--- Indexes for table `agent_ledger`
+-- Indexes for table `agentledger`
 --
-ALTER TABLE `agent_ledger`
+ALTER TABLE `agentledger`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bank_info`
+-- Indexes for table `bankinfo`
 --
-ALTER TABLE `bank_info`
+ALTER TABLE `bankinfo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bank_transaction`
+-- Indexes for table `banktransaction`
 --
-ALTER TABLE `bank_transaction`
+ALTER TABLE `banktransaction`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `booking_downtime`
+-- Indexes for table `bookingdowntime`
 --
-ALTER TABLE `booking_downtime`
+ALTER TABLE `bookingdowntime`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `company_info`
+-- Indexes for table `companyinfo`
 --
-ALTER TABLE `company_info`
-  ADD PRIMARY KEY (`company_id`);
+ALTER TABLE `companyinfo`
+  ADD PRIMARY KEY (`companyId`);
 
 --
--- Indexes for table `email_config`
+-- Indexes for table `emailconfig`
 --
-ALTER TABLE `email_config`
+ALTER TABLE `emailconfig`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `employee_history`
+-- Indexes for table `employeehistory`
 --
-ALTER TABLE `employee_history`
+ALTER TABLE `employeehistory`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `employee_type`
+-- Indexes for table `employeetype`
 --
-ALTER TABLE `employee_type`
-  ADD PRIMARY KEY (`type_id`);
+ALTER TABLE `employeetype`
+  ADD PRIMARY KEY (`typeId`);
 
 --
 -- Indexes for table `enquiry`
 --
 ALTER TABLE `enquiry`
-  ADD PRIMARY KEY (`enquiry_id`);
+  ADD PRIMARY KEY (`enquiryId`);
 
 --
--- Indexes for table `fit_fitness`
+-- Indexes for table `fitfitness`
 --
-ALTER TABLE `fit_fitness`
-  ADD PRIMARY KEY (`fitness_id`);
+ALTER TABLE `fitfitness`
+  ADD PRIMARY KEY (`fitnessId`);
 
 --
--- Indexes for table `fleet_category`
+-- Indexes for table `fleetcategory`
 --
-ALTER TABLE `fleet_category`
+ALTER TABLE `fleetcategory`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fleet_facilities`
+-- Indexes for table `fleetfacilities`
 --
-ALTER TABLE `fleet_facilities`
+ALTER TABLE `fleetfacilities`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fleet_registration`
+-- Indexes for table `fleetregistration`
 --
-ALTER TABLE `fleet_registration`
+ALTER TABLE `fleetregistration`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fleet_type`
+-- Indexes for table `fleettype`
 --
-ALTER TABLE `fleet_type`
+ALTER TABLE `fleettype`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ftn_fitness_period`
+-- Indexes for table `ftnfitnessperiod`
 --
-ALTER TABLE `ftn_fitness_period`
+ALTER TABLE `ftnfitnessperiod`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `how_to_use`
+-- Indexes for table `howtouse`
 --
-ALTER TABLE `how_to_use`
+ALTER TABLE `howtouse`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -9846,72 +9846,72 @@ ALTER TABLE `module`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `module_permission`
+-- Indexes for table `modulepermission`
 --
-ALTER TABLE `module_permission`
+ALTER TABLE `modulepermission`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ofr_offer`
+-- Indexes for table `ofroffer`
 --
-ALTER TABLE `ofr_offer`
-  ADD PRIMARY KEY (`offer_id`);
+ALTER TABLE `ofroffer`
+  ADD PRIMARY KEY (`offerId`);
 
 --
--- Indexes for table `payment_informations`
+-- Indexes for table `paymentinformations`
 --
-ALTER TABLE `payment_informations`
+ALTER TABLE `paymentinformations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pri_price`
+-- Indexes for table `priprice`
 --
-ALTER TABLE `pri_price`
+ALTER TABLE `priprice`
   ADD PRIMARY KEY (`priceId`);
 
 --
--- Indexes for table `reg_districts`
+-- Indexes for table `regdistricts`
 --
-ALTER TABLE `reg_districts`
+ALTER TABLE `regdistricts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `districts_regency_id_index` (`regency_id`) USING BTREE;
+  ADD KEY `districtsRegencyIdIndex` (`regencyId`) USING BTREE;
 
 --
--- Indexes for table `reg_provinces`
+-- Indexes for table `regprovinces`
 --
-ALTER TABLE `reg_provinces`
+ALTER TABLE `regprovinces`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reg_regencies`
+-- Indexes for table `regregencies`
 --
-ALTER TABLE `reg_regencies`
+ALTER TABLE `regregencies`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `regencies_province_id_index` (`province_id`) USING BTREE;
+  ADD KEY `regenciesProvinceIdIndex` (`provinceId`) USING BTREE;
 
 --
--- Indexes for table `sec_menu_item`
+-- Indexes for table `secmenuitem`
 --
-ALTER TABLE `sec_menu_item`
-  ADD PRIMARY KEY (`menu_id`);
+ALTER TABLE `secmenuitem`
+  ADD PRIMARY KEY (`menuId`);
 
 --
--- Indexes for table `sec_role_permission`
+-- Indexes for table `secrolepermission`
 --
-ALTER TABLE `sec_role_permission`
+ALTER TABLE `secrolepermission`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sec_role_tbl`
+-- Indexes for table `secroletbl`
 --
-ALTER TABLE `sec_role_tbl`
-  ADD PRIMARY KEY (`role_id`);
+ALTER TABLE `secroletbl`
+  ADD PRIMARY KEY (`roleId`);
 
 --
--- Indexes for table `sec_user_access_tbl`
+-- Indexes for table `secuseraccesstbl`
 --
-ALTER TABLE `sec_user_access_tbl`
-  ADD PRIMARY KEY (`role_acc_id`);
+ALTER TABLE `secuseraccesstbl`
+  ADD PRIMARY KEY (`roleAccId`);
 
 --
 -- Indexes for table `setting`
@@ -9926,48 +9926,48 @@ ALTER TABLE `shedule`
   ADD PRIMARY KEY (`scheduleId`);
 
 --
--- Indexes for table `synchronizer_setting`
+-- Indexes for table `synchronizersetting`
 --
-ALTER TABLE `synchronizer_setting`
+ALTER TABLE `synchronizersetting`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ticket_notification`
+-- Indexes for table `ticketnotification`
 --
-ALTER TABLE `ticket_notification`
+ALTER TABLE `ticketnotification`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_booking`
+-- Indexes for table `tktbooking`
 --
-ALTER TABLE `tkt_booking`
+ALTER TABLE `tktbooking`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_no` (`id_no`);
+  ADD UNIQUE KEY `idNo` (`idNo`);
 
 --
--- Indexes for table `tkt_feedback`
+-- Indexes for table `tktfeedback`
 --
-ALTER TABLE `tkt_feedback`
+ALTER TABLE `tktfeedback`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_passenger`
+-- Indexes for table `tktpassenger`
 --
-ALTER TABLE `tkt_passenger`
+ALTER TABLE `tktpassenger`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_referal`
+-- Indexes for table `tktreferal`
 --
-ALTER TABLE `tkt_referal`
+ALTER TABLE `tktreferal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tkt_refund`
+-- Indexes for table `tktrefund`
 --
-ALTER TABLE `tkt_refund`
+ALTER TABLE `tktrefund`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_tkt_refund_tkt_booking` (`tkt_booking_id_no`);
+  ADD KEY `FkTktRefundTktBooking` (`tktBookingIdNo`);
 
 --
 -- Indexes for table `trip`
@@ -9976,21 +9976,21 @@ ALTER TABLE `trip`
   ADD PRIMARY KEY (`tripId`);
 
 --
--- Indexes for table `trip_assign`
+-- Indexes for table `tripassign`
 --
-ALTER TABLE `trip_assign`
+ALTER TABLE `tripassign`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `trip_location`
+-- Indexes for table `triplocation`
 --
-ALTER TABLE `trip_location`
+ALTER TABLE `triplocation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `trip_route`
+-- Indexes for table `triproute`
 --
-ALTER TABLE `trip_route`
+ALTER TABLE `triproute`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10000,28 +10000,28 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ws_booking_history`
+-- Indexes for table `wsbookinghistory`
 --
-ALTER TABLE `ws_booking_history`
+ALTER TABLE `wsbookinghistory`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_no` (`id_no`);
+  ADD UNIQUE KEY `idNo` (`idNo`);
 
 --
--- Indexes for table `ws_offer`
+-- Indexes for table `wsoffer`
 --
-ALTER TABLE `ws_offer`
+ALTER TABLE `wsoffer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ws_payments`
+-- Indexes for table `wspayments`
 --
-ALTER TABLE `ws_payments`
-  ADD PRIMARY KEY (`payment_id`);
+ALTER TABLE `wspayments`
+  ADD PRIMARY KEY (`paymentId`);
 
 --
--- Indexes for table `ws_setting`
+-- Indexes for table `wssetting`
 --
-ALTER TABLE `ws_setting`
+ALTER TABLE `wssetting`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10029,117 +10029,117 @@ ALTER TABLE `ws_setting`
 --
 
 --
--- AUTO_INCREMENT for table `acc_account_name`
+-- AUTO_INCREMENT for table `accaccountname`
 --
-ALTER TABLE `acc_account_name`
-  MODIFY `account_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `accaccountname`
+  MODIFY `accountId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `acn_account_transaction`
+-- AUTO_INCREMENT for table `acnaccounttransaction`
 --
-ALTER TABLE `acn_account_transaction`
-  MODIFY `account_tran_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `acnaccounttransaction`
+  MODIFY `accountTranId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `agent_info`
+-- AUTO_INCREMENT for table `agentinfo`
 --
-ALTER TABLE `agent_info`
-  MODIFY `agent_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `agentinfo`
+  MODIFY `agentId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `agent_ledger`
+-- AUTO_INCREMENT for table `agentledger`
 --
-ALTER TABLE `agent_ledger`
+ALTER TABLE `agentledger`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `bank_info`
+-- AUTO_INCREMENT for table `bankinfo`
 --
-ALTER TABLE `bank_info`
+ALTER TABLE `bankinfo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `bank_transaction`
+-- AUTO_INCREMENT for table `banktransaction`
 --
-ALTER TABLE `bank_transaction`
+ALTER TABLE `banktransaction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `booking_downtime`
+-- AUTO_INCREMENT for table `bookingdowntime`
 --
-ALTER TABLE `booking_downtime`
+ALTER TABLE `bookingdowntime`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `company_info`
+-- AUTO_INCREMENT for table `companyinfo`
 --
-ALTER TABLE `company_info`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `companyinfo`
+  MODIFY `companyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `email_config`
+-- AUTO_INCREMENT for table `emailconfig`
 --
-ALTER TABLE `email_config`
+ALTER TABLE `emailconfig`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `employee_history`
+-- AUTO_INCREMENT for table `employeehistory`
 --
-ALTER TABLE `employee_history`
+ALTER TABLE `employeehistory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `employee_type`
+-- AUTO_INCREMENT for table `employeetype`
 --
-ALTER TABLE `employee_type`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `employeetype`
+  MODIFY `typeId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
-  MODIFY `enquiry_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `enquiryId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fit_fitness`
+-- AUTO_INCREMENT for table `fitfitness`
 --
-ALTER TABLE `fit_fitness`
-  MODIFY `fitness_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `fitfitness`
+  MODIFY `fitnessId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fleet_category`
+-- AUTO_INCREMENT for table `fleetcategory`
 --
-ALTER TABLE `fleet_category`
+ALTER TABLE `fleetcategory`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `fleet_facilities`
+-- AUTO_INCREMENT for table `fleetfacilities`
 --
-ALTER TABLE `fleet_facilities`
+ALTER TABLE `fleetfacilities`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fleet_registration`
+-- AUTO_INCREMENT for table `fleetregistration`
 --
-ALTER TABLE `fleet_registration`
+ALTER TABLE `fleetregistration`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `fleet_type`
+-- AUTO_INCREMENT for table `fleettype`
 --
-ALTER TABLE `fleet_type`
+ALTER TABLE `fleettype`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `ftn_fitness_period`
+-- AUTO_INCREMENT for table `ftnfitnessperiod`
 --
-ALTER TABLE `ftn_fitness_period`
+ALTER TABLE `ftnfitnessperiod`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `how_to_use`
+-- AUTO_INCREMENT for table `howtouse`
 --
-ALTER TABLE `how_to_use`
+ALTER TABLE `howtouse`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -10161,52 +10161,52 @@ ALTER TABLE `module`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `module_permission`
+-- AUTO_INCREMENT for table `modulepermission`
 --
-ALTER TABLE `module_permission`
+ALTER TABLE `modulepermission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ofr_offer`
+-- AUTO_INCREMENT for table `ofroffer`
 --
-ALTER TABLE `ofr_offer`
-  MODIFY `offer_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ofroffer`
+  MODIFY `offerId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `payment_informations`
+-- AUTO_INCREMENT for table `paymentinformations`
 --
-ALTER TABLE `payment_informations`
+ALTER TABLE `paymentinformations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pri_price`
+-- AUTO_INCREMENT for table `priprice`
 --
-ALTER TABLE `pri_price`
+ALTER TABLE `priprice`
   MODIFY `priceId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `sec_menu_item`
+-- AUTO_INCREMENT for table `secmenuitem`
 --
-ALTER TABLE `sec_menu_item`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+ALTER TABLE `secmenuitem`
+  MODIFY `menuId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
--- AUTO_INCREMENT for table `sec_role_permission`
+-- AUTO_INCREMENT for table `secrolepermission`
 --
-ALTER TABLE `sec_role_permission`
+ALTER TABLE `secrolepermission`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1470;
 
 --
--- AUTO_INCREMENT for table `sec_role_tbl`
+-- AUTO_INCREMENT for table `secroletbl`
 --
-ALTER TABLE `sec_role_tbl`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `secroletbl`
+  MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `sec_user_access_tbl`
+-- AUTO_INCREMENT for table `secuseraccesstbl`
 --
-ALTER TABLE `sec_user_access_tbl`
-  MODIFY `role_acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+ALTER TABLE `secuseraccesstbl`
+  MODIFY `roleAccId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -10221,45 +10221,45 @@ ALTER TABLE `shedule`
   MODIFY `scheduleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `synchronizer_setting`
+-- AUTO_INCREMENT for table `synchronizersetting`
 --
-ALTER TABLE `synchronizer_setting`
+ALTER TABLE `synchronizersetting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ticket_notification`
+-- AUTO_INCREMENT for table `ticketnotification`
 --
-ALTER TABLE `ticket_notification`
+ALTER TABLE `ticketnotification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_booking`
+-- AUTO_INCREMENT for table `tktbooking`
 --
-ALTER TABLE `tkt_booking`
+ALTER TABLE `tktbooking`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tkt_feedback`
+-- AUTO_INCREMENT for table `tktfeedback`
 --
-ALTER TABLE `tkt_feedback`
+ALTER TABLE `tktfeedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_passenger`
+-- AUTO_INCREMENT for table `tktpassenger`
 --
-ALTER TABLE `tkt_passenger`
+ALTER TABLE `tktpassenger`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_referal`
+-- AUTO_INCREMENT for table `tktreferal`
 --
-ALTER TABLE `tkt_referal`
+ALTER TABLE `tktreferal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tkt_refund`
+-- AUTO_INCREMENT for table `tktrefund`
 --
-ALTER TABLE `tkt_refund`
+ALTER TABLE `tktrefund`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -10269,21 +10269,21 @@ ALTER TABLE `trip`
   MODIFY `tripId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `trip_assign`
+-- AUTO_INCREMENT for table `tripassign`
 --
-ALTER TABLE `trip_assign`
+ALTER TABLE `tripassign`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `trip_location`
+-- AUTO_INCREMENT for table `triplocation`
 --
-ALTER TABLE `trip_location`
+ALTER TABLE `triplocation`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `trip_route`
+-- AUTO_INCREMENT for table `triproute`
 --
-ALTER TABLE `trip_route`
+ALTER TABLE `triproute`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -10293,27 +10293,27 @@ ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `ws_booking_history`
+-- AUTO_INCREMENT for table `wsbookinghistory`
 --
-ALTER TABLE `ws_booking_history`
+ALTER TABLE `wsbookinghistory`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `ws_offer`
+-- AUTO_INCREMENT for table `wsoffer`
 --
-ALTER TABLE `ws_offer`
+ALTER TABLE `wsoffer`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ws_payments`
+-- AUTO_INCREMENT for table `wspayments`
 --
-ALTER TABLE `ws_payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `wspayments`
+  MODIFY `paymentId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ws_setting`
+-- AUTO_INCREMENT for table `wssetting`
 --
-ALTER TABLE `ws_setting`
+ALTER TABLE `wssetting`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -10321,16 +10321,16 @@ ALTER TABLE `ws_setting`
 --
 
 --
--- Constraints for table `reg_districts`
+-- Constraints for table `regdistricts`
 --
-ALTER TABLE `reg_districts`
-  ADD CONSTRAINT `district_regency_foreign` FOREIGN KEY (`regency_id`) REFERENCES `reg_regencies` (`id`);
+ALTER TABLE `regdistricts`
+  ADD CONSTRAINT `districtRegencyForeign` FOREIGN KEY (`regencyId`) REFERENCES `regregencies` (`id`);
 
 --
--- Constraints for table `reg_regencies`
+-- Constraints for table `regregencies`
 --
-ALTER TABLE `reg_regencies`
-  ADD CONSTRAINT `regency_province_foreign` FOREIGN KEY (`province_id`) REFERENCES `reg_provinces` (`id`);
+ALTER TABLE `regregencies`
+  ADD CONSTRAINT `regencyProvinceForeign` FOREIGN KEY (`provinceId`) REFERENCES `regprovinces` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
