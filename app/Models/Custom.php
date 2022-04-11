@@ -70,7 +70,7 @@ class Custom extends Model
             tr.`distance`,
             sc.`start`,
             sc.`end`,
-            tras.`closedById`,
+            tras.`closedById`
             "
 
         );
@@ -81,11 +81,9 @@ class Custom extends Model
         $builder->join("tripLocation AS tl1", "tl1.id = tr.startPoint");
         $builder->join("tripLocation AS tl2", "tl1.id = tr.startPoint");
         $builder->join("priPrice AS pp", "pp.routeid = ta.route AND pp.vehicletypeid= ta.type");
-        $builder->where("(FIND_IN_SET('$startpoint',tr.stoppagePoints)) AND (FIND_IN_SET('$endpoint',tr.stoppagePoints))");
-        $builder->where("(!FIND_IN_SET(DAYOFWEEK('$date'),ta.`weekend`))");
-        $builder->groupBy("ta.tripId");
 
-        // $builder->join('tktBooking AS tb', "ta.tripId = tb.tripIdNo")
+
+        // $builder->join("tktBooking AS tb", "ta.tripId = tb.tripIdNo")
         //     ->like('tb.bookingDate', $date, 'after')
         //     ->groupStart()
         //     ->where("tb.tktRefundId IS NULL", null, false)
@@ -93,13 +91,17 @@ class Custom extends Model
         //     ->orWhere("tb.tktRefundId", null)
         //     ->groupEnd();
 
+        $builder->where("(FIND_IN_SET('$startpoint',tr.stoppagePoints)) AND (FIND_IN_SET('$endpoint',tr.stoppagePoints))");
+        $builder->where("(!FIND_IN_SET(DAYOFWEEK('$date'),ta.`weekend`))");
+        $builder->groupBy("ta.tripId");
 
         $query = $builder->get();
         $rests = $query->getResult();
         $result = [];
         foreach ($rests as $rest) {
             $available = $this->available($rest->tripId, $date);
-            $rest->available = $available->available;
+            $rest->used = $available->used;
+            $rest->seatNumbers = $available->seatNumbers;
             $result[] = $rest;
         }
         return $result;
@@ -108,7 +110,7 @@ class Custom extends Model
     public function available($tripIdNo = 4, $getDate = "2021-10-29 10:57:05")
     {
         $builder = $this->db->table('tktBooking AS tb');
-        return  $builder->select("COALESCE(SUM(tb.totalSeat),0 ) AS available")
+        return  $builder->select("COALESCE(SUM(tb.totalSeat),0 ) AS used, seatNumbers ")
             ->join('trip AS ta', "ta.tripId = tb.tripIdNo")
             ->where('tb.tripIdNo', $tripIdNo)
             ->like('tb.bookingDate', $getDate, 'after')
