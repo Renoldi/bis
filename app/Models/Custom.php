@@ -61,11 +61,11 @@ class Custom extends Model
             tl1.`name` AS pickupTripLocation,
             tl2.`name` AS dropTripLocation,
             ta.`type`, 
-            tp.`totalSeat` AS fleetSeats, 
+            tp.`totalSeat`  , 
             pp.`price` AS price,
             pp.`childrenPrice`,
             pp.`specialPrice`,
-            tr.`approximateTime` AS duration,
+            tr.`approximateTime`,
             tr.`stoppagePoints`,
             tr.`distance`,
             sc.`start`,
@@ -78,7 +78,7 @@ class Custom extends Model
         $builder->join("tripAssign as tras", "tras.trip = ta.tripId", "left");
         $builder->join("fleetType AS tp", "tp.id = ta.type", "left");
         $builder->join("tripLocation AS tl1", "tl1.id = tr.startPoint");
-        $builder->join("tripLocation AS tl2", "tl1.id = tr.startPoint");
+        $builder->join("tripLocation AS tl2", "tl2.id = tr.endPoint");
         $builder->join("priPrice AS pp", "pp.routeid = ta.route AND pp.vehicletypeid= ta.type");
         $builder->where("(FIND_IN_SET('$startpoint',tr.stoppagePoints)) AND (FIND_IN_SET('$endpoint',tr.stoppagePoints))");
         $builder->where("(!FIND_IN_SET(DAYOFWEEK('$date'),ta.`weekend`))");
