@@ -72,7 +72,6 @@ class Custom extends Model
             sc.`end`,
             tras.`closedById`
             "
-
         );
         $builder->join("shedule as sc", "sc.scheduleId=ta.scheduleId", "left");
         $builder->join("tripRoute as tr", "tr.id = ta.route", "left");
@@ -81,16 +80,6 @@ class Custom extends Model
         $builder->join("tripLocation AS tl1", "tl1.id = tr.startPoint");
         $builder->join("tripLocation AS tl2", "tl1.id = tr.startPoint");
         $builder->join("priPrice AS pp", "pp.routeid = ta.route AND pp.vehicletypeid= ta.type");
-
-
-        // $builder->join("tktBooking AS tb", "ta.tripId = tb.tripIdNo")
-        //     ->like('tb.bookingDate', $date, 'after')
-        //     ->groupStart()
-        //     ->where("tb.tktRefundId IS NULL", null, false)
-        //     ->orWhere("tb.tktRefundId", 0)
-        //     ->orWhere("tb.tktRefundId", null)
-        //     ->groupEnd();
-
         $builder->where("(FIND_IN_SET('$startpoint',tr.stoppagePoints)) AND (FIND_IN_SET('$endpoint',tr.stoppagePoints))");
         $builder->where("(!FIND_IN_SET(DAYOFWEEK('$date'),ta.`weekend`))");
         $builder->groupBy("ta.tripId");
