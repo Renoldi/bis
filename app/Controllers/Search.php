@@ -50,6 +50,10 @@ class Search extends ResourceController
     {
         $custome = new Custom();
         $search = $custome->search($this->request->getVar("start"), $this->request->getVar("end"), $this->request->getVar("date"));
+        // $available = $custome->available(4, $this->request->getVar("date"));
+        // $data =[
+        //    $search,$available
+        // ];
         return $this->respond($search);
     }
 }
