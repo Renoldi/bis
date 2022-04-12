@@ -14,11 +14,16 @@ https://swagger.io/docs/specification/data-models/data-types/
 
 https://codeigniter4.github.io/userguide/incoming/filters.html?highlight=filter#id12
 search
-   trip,        done
-   shedule,     done
-   trip_route,  done
-   trip_assign, done
-   fleet_type,  done
-   pri_price,   done
-   trip_location, done
+   trip,                    done
+   shedule,                 done
+   trip_route,              done
+   trip_assign,             done
+   pri_price,               done
+   trip_location            done
+   
 
+   app/controller/api   
+        search       custom done
+        bookedSeats  custom done
+        fleettype  full     done
+        

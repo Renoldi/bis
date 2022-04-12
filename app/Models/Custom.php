@@ -88,18 +88,20 @@ class Custom extends Model
         $rests = $query->getResult();
         $result = [];
         foreach ($rests as $rest) {
-            $available = $this->available($rest->tripId, $date);
-            $rest->used = $available->used;
-            $rest->seatNumbers = $available->seatNumbers;
+            $available = $this->bookedSeats($rest->tripId, $date);
+            if ($available) {
+                $rest->used = $available->used;
+                $rest->seatNumbers = trim($available->seatNumbers,", ");
+            }
             $result[] = $rest;
         }
         return $result;
     }
 
-    public function available($tripIdNo = 4, $getDate = "2021-10-29 10:57:05")
+    public function bookedSeats($tripIdNo, $getDate)
     {
         $builder = $this->db->table('tktBooking AS tb');
-        return  $builder->select("COALESCE(SUM(tb.totalSeat),0 ) AS used, seatNumbers ")
+        return $builder->select("COALESCE(SUM(tb.totalSeat),0 ) AS used, seatNumbers,tb.tripIdNo ")
             ->join('trip AS ta', "ta.tripId = tb.tripIdNo")
             ->where('tb.tripIdNo', $tripIdNo)
             ->like('tb.bookingDate', $getDate, 'after')
@@ -110,6 +112,7 @@ class Custom extends Model
             ->groupEnd()
             ->get()
             ->getRow();
+
         // ->available;
         // $last =   $this->db->getLastQuery()->getQuery();
         // return  $last;
