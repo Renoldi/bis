@@ -91,7 +91,7 @@ class Custom extends Model
             $available = $this->bookedSeats($rest->tripId, $date);
             if ($available) {
                 $rest->used = $available->used;
-                $rest->seatNumbers = trim($available->seatNumbers,", ");
+                $rest->seatNumbers = trim($available->seatNumbers, ",");
             }
             $result[] = $rest;
         }
@@ -101,7 +101,7 @@ class Custom extends Model
     public function bookedSeats($tripIdNo, $getDate)
     {
         $builder = $this->db->table('tktBooking AS tb');
-        return $builder->select("COALESCE(SUM(tb.totalSeat),0 ) AS used, seatNumbers,tb.tripIdNo ")
+        return $builder->select("COALESCE(SUM(tb.totalSeat),0 ) AS used, TRIM(seatNumbers) as seatNumbers,tb.tripIdNo ")
             ->join('trip AS ta', "ta.tripId = tb.tripIdNo")
             ->where('tb.tripIdNo', $tripIdNo)
             ->like('tb.bookingDate', $getDate, 'after')
@@ -112,9 +112,5 @@ class Custom extends Model
             ->groupEnd()
             ->get()
             ->getRow();
-
-        // ->available;
-        // $last =   $this->db->getLastQuery()->getQuery();
-        // return  $last;
     }
 }
